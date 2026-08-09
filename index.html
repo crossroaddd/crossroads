@@ -499,7 +499,7 @@ a{color:inherit;text-decoration:none}
   <div class="roster__head">
     <h2 class="roster__title rv">The<br>Roster</h2>
     <div class="roster__aside rv" style="transition-delay:.1s">
-      <span class="roster__count">01 — 06</span>
+      <span class="roster__count" id="count">01 — 06</span>
       <div class="nav">
         <button type="button" data-dir="-1" aria-label="Previous artist">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 4 7 12l8 8"/></svg>
@@ -587,7 +587,8 @@ const PLATFORMS = [
 const ARTISTS = [
   { name:'Mishell',   photo:'img/mishell.jpg', links:{spotify:'#',instagram:'#',beatport:'#',apple:'#'} },
   { name:'Genish',    photo:'img/genish.jpg',  links:{spotify:'#',instagram:'#',beatport:'#',apple:'#'} },
-  { name:'Kino Todo', photo:null,              links:{spotify:'#',instagram:'#',beatport:'#',apple:'#'} },
+  /* Kino Todo pulled for now — restore this line when the photo lands:
+  { name:'Kino Todo', photo:'img/kino-todo.jpg', links:{spotify:'#',instagram:'#',beatport:'#',apple:'#'} }, */
   { name:'Yuvee',     photo:'img/yuvee.jpg',   links:{spotify:'#',instagram:'#',beatport:'#',apple:'#'} },
   { name:'Nevos',     photo:'img/nevos.jpg',   links:{spotify:'#',instagram:'#',beatport:'#',apple:'#'} },
   { name:'Mentesh',   photo:'img/mentesh.jpg', links:{spotify:'#',instagram:'#',beatport:'#',apple:'#'} },
@@ -604,12 +605,18 @@ const links = a => PLATFORMS.map(([key,label]) => `
     <svg aria-hidden="true"><use href="#ic-${key}"/></svg>
   </a>`).join('');
 
+const pad = n => String(n).padStart(2,'0');
+
+/* everything that counts artists reads the array, so pulling one can't leave a
+   stale number behind */
+document.getElementById('count').textContent = `01 — ${pad(ARTISTS.length)}`;
+
 const rail = document.getElementById('rail');
 rail.innerHTML = ARTISTS.map((a,i) => `
   <article class="card rv" style="transition-delay:${Math.min(i,5)*.06}s">
     <div class="card__media">
       ${media(a)}
-      <span class="card__num">${String(i+1).padStart(2,'0')}</span>
+      <span class="card__num">${pad(i+1)}</span>
     </div>
     <div class="card__body">
       <h3 class="card__name">${a.name}</h3>
@@ -675,7 +682,7 @@ function sync(){
   const p   = max > 0 ? pos / max : 0;
   prog.style.width = (12 + p * 88) + '%';
   const n = Math.min(ARTISTS.length, Math.round(pos / step()) + 1);
-  idx.textContent = String(n).padStart(2,'0') + ' / ' + String(ARTISTS.length).padStart(2,'0');
+  idx.textContent = pad(n) + ' / ' + pad(ARTISTS.length);
   btnPrev.disabled = pos < 4;
   btnNext.disabled = pos > max - 4;
 }

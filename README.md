@@ -22,9 +22,9 @@ reads through them.
 `index.html` is self-contained — one file, inline CSS and JS, no build step.
 The logo and the platform icons live once in SVG `<symbol>`s and are reused via `<use>`.
 
-1. **Hero** — full-bleed stencil wordmark on a plain black field, plus a names ticker.
-2. **Roster** — drag/swipe carousel. Order: Mishell, Genish, Kino Todo, Yuvee, Nevos,
-   Mentesh. Each card carries four platform links.
+1. **Hero** — centred stencil wordmark on a plain black field, plus a names ticker.
+2. **Roster** — drag/swipe carousel. Order: Mishell, Genish, Yuvee, Nevos, Mentesh.
+   Each card carries four platform links.
 3. **Footer** — contact columns.
 
 The page is monochrome throughout, so the artist photography is the only colour in it.
@@ -32,9 +32,12 @@ That's deliberate — don't add an accent hue elsewhere without rethinking it.
 
 ## Still placeholder
 
-- **Kino Todo has no photo** — that card falls back to the generated placeholder (dot
-  grid + initial) and carries an `IMAGE PLACEHOLDER` chip. Drop `img/kino-todo.jpg` in
-  and set `photo:` in the `ARTISTS` array.
+- **Kino Todo is pulled from the roster for now.** The entry is commented out in the
+  `ARTISTS` array — drop `img/kino-todo.jpg` in and uncomment it to restore. Every
+  count on the page (the `01 — 05`, the card numbers, the carousel index) and the
+  ticker read from that array, so nothing else needs touching.
+- The generated placeholder (dot grid + initial + `IMAGE PLACEHOLDER` chip) is still
+  wired up — any artist added with `photo: null` gets it automatically.
 - **Every platform link points at `#`.** Real Spotify / Instagram / Beatport / Apple
   Music URLs need filling in per artist.
 - **Footer details** — emails, phone numbers and names are dummy values. The two
