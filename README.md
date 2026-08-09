@@ -22,28 +22,29 @@ reads through them.
 `index.html` is self-contained — one file, inline CSS and JS, no build step.
 The logo and the platform icons live once in SVG `<symbol>`s and are reused via `<use>`.
 
-1. **Hero** — centred stencil wordmark on a plain black field, plus a names ticker.
+1. **Hero** — stencil wordmark on the left, Roster / Contact on the right, sharing a
+   centre line on a plain black field. Below it a ticker of the artist names.
 2. **Roster** — drag/swipe carousel. Order: Mishell, Genish, Yuvee, Nevos, Mentesh.
-   Each card carries four platform links.
-3. **Footer** — contact columns.
+   Each card carries its platform links: Spotify, Apple Music, Beatport, SoundCloud,
+   Instagram.
+3. **Footer** — "Lets talk", the booking address, and the contact details.
 
 The page is monochrome throughout, so the artist photography is the only colour in it.
 That's deliberate — don't add an accent hue elsewhere without rethinking it.
 
 ## Still placeholder
 
-- **Kino Todo is pulled from the roster for now.** The entry is commented out in the
-  `ARTISTS` array — drop `img/kino-todo.jpg` in and uncomment it to restore. Every
-  count on the page (the `01 — 05`, the card numbers, the carousel index) and the
-  ticker read from that array, so nothing else needs touching.
-- The generated placeholder (dot grid + initial + `IMAGE PLACEHOLDER` chip) is still
-  wired up — any artist added with `photo: null` gets it automatically.
-- **Every platform link points at `#`.** Real Spotify / Instagram / Beatport / Apple
-  Music URLs need filling in per artist.
-- **Footer details** — emails, phone numbers and names are dummy values. The two
-  contact names are tagged `Placeholder` in the markup.
-- **The Beatport icon is an approximation** drawn to match the rest of the set. Swap in
-  the official mark if the client wants exact brand assets.
+- **Missing platform links.** Genish and Mentesh have no Spotify — the URLs supplied
+  for it resolved to their SoundCloud pages, so the icon is left off rather than
+  pointed at the wrong service. Nevos still needs Spotify, Apple Music and Beatport.
+  A platform with no URL renders no icon, so nothing on the page is a dead link.
+- **The footer is deliberately thin.** The Management, Studio and Follow columns were
+  removed because every value in them was invented — fake contact details must not sit
+  beside the real ones on a public page. Markers in the markup show where they were.
+- **The Beatport and SoundCloud icons are drawn to match the set**, not the official
+  brand marks. Swap them if exact brand assets are wanted.
+- The generated photo placeholder (dot grid + initial + `IMAGE PLACEHOLDER` chip) is
+  still wired up — any artist added with `photo: null` gets it automatically.
 
 ## Editing the roster
 
