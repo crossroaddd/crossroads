@@ -346,15 +346,18 @@ a{color:inherit;text-decoration:none}
   /* no nav on phones, so the mark centres in the bar rather than hanging left */
   .hdr__nav{display:none}
   .hdr{justify-content:center}
-  /* side by side there is no room for both, and the mark would shrink to
-     nothing next to a full-width button row — so stack them.
-     justify-content must go back to centre: space-between is right for the
-     horizontal layout but in a column it shoves the two apart down the
-     whole hero and opens a big empty gap. */
-  .hero__inner{flex-direction:column;align-items:stretch;justify-content:center;gap:clamp(16px,2.6vh,26px)}
-  .hero__mark{width:100%}
-  /* full-width, equal actions read better than two odd-sized buttons */
-  .hero__actions{width:100%;gap:8px}
+  /* Stacked: side by side there is no room, and the mark would shrink to
+     nothing beside a full-width button row.
+     The mark takes auto margins so it centres in the black field, while the
+     actions stay pinned at the bottom above the ticker. */
+  /* drop the extra top padding: it starts the content well below the header
+     bar, so anything centred inside it lands low in the black field */
+  .hero{padding-top:var(--bar)}
+  .hero__inner{flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0}
+  /* auto margins centre the mark in the field between the header and the
+     buttons, which is the empty area you actually see */
+  .hero__mark{width:100%;margin-block:auto}
+  .hero__actions{width:100%;gap:8px;margin-bottom:clamp(14px,2.4vh,22px)}
   .hero__actions .btn{flex:1 1 150px;justify-content:center;padding:0 18px}
   .ticker__track span{font-size:10.5px;letter-spacing:.18em;gap:20px;padding-right:20px}
   .ftr__top .btn{width:100%;justify-content:space-between;font-size:10.5px;letter-spacing:.1em;padding:0 16px}
