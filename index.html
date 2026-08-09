@@ -284,7 +284,7 @@ a{color:inherit;text-decoration:none}
   font-weight:900;line-height:.94;letter-spacing:-.035em;text-transform:uppercase;
 }
 /* platform links — the only per-artist action */
-.card__links{margin-top:auto;display:flex;gap:6px}
+.card__links{margin-top:auto;display:flex;flex-wrap:wrap;gap:6px}
 .card__links a{
   width:42px;height:42px;display:grid;place-items:center;
   box-shadow:inset 0 0 0 1px var(--line);
@@ -449,6 +449,13 @@ a{color:inherit;text-decoration:none}
     <ellipse cx="7.2" cy="16.9" rx="2.3" ry="2"/>
     <ellipse cx="16.2" cy="14.9" rx="2.3" ry="2"/>
   </symbol>
+  <symbol id="ic-soundcloud" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M2.8 13.4v4.2"/>
+    <path d="M6 11v6.6"/>
+    <path d="M9.2 12.6v5"/>
+    <path d="M12.4 8.4v9.2"/>
+    <path d="M12.4 17.6h6.4a2.6 2.6 0 0 0 .2-5.2 4.7 4.7 0 0 0-6.6-3.7"/>
+  </symbol>
 </svg>
 
 <!-- ============ HEADER ============ -->
@@ -558,20 +565,53 @@ a{color:inherit;text-decoration:none}
    photo: null  -> renders the generated placeholder instead
    links: '#'   -> PLACEHOLDER URL, swap for the artist's real profile   */
 const PLATFORMS = [
-  ['spotify',  'Spotify'],
-  ['instagram','Instagram'],
-  ['beatport', 'Beatport'],
-  ['apple',    'Apple Music'],
+  ['spotify',    'Spotify'],
+  ['apple',      'Apple Music'],
+  ['beatport',   'Beatport'],
+  ['soundcloud', 'SoundCloud'],
+  ['instagram',  'Instagram'],
 ];
 
+/* Real profiles. Share-tracking parameters (igsh / si / utm_* / ref) stripped,
+   and on.soundcloud.com shorteners resolved to their canonical profile URLs so
+   they can't expire. A platform with no entry simply renders no icon — never a
+   dead link, and never one platform's URL behind another's icon. */
 const ARTISTS = [
-  { name:'Mishell',   photo:'img/mishell.jpg', links:{spotify:'#',instagram:'#',beatport:'#',apple:'#'} },
-  { name:'Genish',    photo:'img/genish.jpg',  links:{spotify:'#',instagram:'#',beatport:'#',apple:'#'} },
-  /* Kino Todo pulled for now — restore this line when the photo lands:
-  { name:'Kino Todo', photo:'img/kino-todo.jpg', links:{spotify:'#',instagram:'#',beatport:'#',apple:'#'} }, */
-  { name:'Yuvee',     photo:'img/yuvee.jpg',   links:{spotify:'#',instagram:'#',beatport:'#',apple:'#'} },
-  { name:'Nevos',     photo:'img/nevos.jpg',   links:{spotify:'#',instagram:'#',beatport:'#',apple:'#'} },
-  { name:'Mentesh',   photo:'img/mentesh.jpg', links:{spotify:'#',instagram:'#',beatport:'#',apple:'#'} },
+  { name:'Mishell', photo:'img/mishell.jpg', links:{
+      spotify:   'https://open.spotify.com/artist/3kCsXVpVs1ZhLnIVkNzdHJ',
+      apple:     'https://music.apple.com/il/artist/mishell/250454064',
+      beatport:  'https://www.beatport.com/artist/mishell/270228',
+      soundcloud:'https://soundcloud.com/mishellmusik',
+      instagram: 'https://www.instagram.com/_mishell_____' } },
+
+  /* Spotify missing: the link supplied for it resolved to soundcloud.com/genishmusic */
+  { name:'Genish', photo:'img/genish.jpg', links:{
+      apple:     'https://music.apple.com/il/artist/genish/787229909',
+      beatport:  'https://www.beatport.com/artist/genish/929264',
+      soundcloud:'https://soundcloud.com/genishmusic',
+      instagram: 'https://www.instagram.com/genish__' } },
+
+  /* Kino Todo pulled for now — restore this block when the photo lands:
+  { name:'Kino Todo', photo:'img/kino-todo.jpg', links:{} }, */
+
+  { name:'Yuvee', photo:'img/yuvee.jpg', links:{
+      spotify:   'https://open.spotify.com/artist/2uUpxGX8XaVGhqh398dP2f',
+      apple:     'https://music.apple.com/il/artist/yuvee/1216600486',
+      beatport:  'https://www.beatport.com/artist/yuve/1243590',
+      soundcloud:'https://soundcloud.com/yuveemusic',
+      instagram: 'https://www.instagram.com/yuvee_music' } },
+
+  /* Still needed for Nevos: Spotify, Apple Music, Beatport */
+  { name:'Nevos', photo:'img/nevos.jpg', links:{
+      soundcloud:'https://soundcloud.com/nevosmusic',
+      instagram: 'https://www.instagram.com/nevos_music' } },
+
+  /* Spotify missing: the link supplied for it resolved to soundcloud.com/mentesh */
+  { name:'Mentesh', photo:'img/mentesh.jpg', links:{
+      apple:     'https://music.apple.com/il/artist/mentesh/1671188421',
+      beatport:  'https://www.beatport.com/artist/mentesh/1109477',
+      soundcloud:'https://soundcloud.com/mentesh',
+      instagram: 'https://www.instagram.com/guymentesh' } },
 ];
 
 const media = a => a.photo
@@ -580,8 +620,11 @@ const media = a => a.photo
      <span class="card__initial">${a.name[0]}</span>
      <span class="card__ph"><i class="plus"></i> Image placeholder</span>`;
 
-const links = a => PLATFORMS.map(([key,label]) => `
-  <a href="${a.links[key]}" aria-label="${a.name} on ${label}" title="${label}">
+const links = a => PLATFORMS
+  .filter(([key]) => a.links[key])          // no URL, no icon — never a dead link
+  .map(([key,label]) => `
+  <a href="${a.links[key]}" target="_blank" rel="noopener noreferrer"
+     aria-label="${a.name} on ${label}" title="${label}">
     <svg aria-hidden="true"><use href="#ic-${key}"/></svg>
   </a>`).join('');
 
