@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CROSSROADS — Artist Agency &amp; Booking</title>
-<meta name="description" content="CROSSROADS — artist agency and booking. Live shows, festivals, touring and artist management.">
+<title>CROSSROADS — Artists Agency</title>
+<meta name="description" content="CROSSROADS — artists agency and artist management. Built around artists, driven by strategy, and focused on your next crossroads.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -99,18 +99,6 @@ a{color:inherit;text-decoration:none}
   display:flex;flex-direction:column;
   overflow:hidden;
 }
-/* a page-sized ghost of the logo's own cross:
-   vertical arm at 20–40%, horizontal arm at 25–75% — the mark's exact proportions */
-.hero__grid{position:absolute;inset:0;pointer-events:none}
-.hero__grid b{position:absolute;background:rgba(255,255,255,.028)}
-.hero__grid b.v{top:0;bottom:0;left:20%;width:20%}
-.hero__grid b.h{left:0;right:0;top:25%;bottom:25%}
-.hero__grid i{position:absolute;background:var(--line-inv)}
-.hero__grid i:nth-of-type(1){top:0;bottom:0;left:20%;width:1px}
-.hero__grid i:nth-of-type(2){top:0;bottom:0;left:40%;width:1px}
-.hero__grid i:nth-of-type(3){left:0;right:0;top:25%;height:1px}
-.hero__grid i:nth-of-type(4){left:0;right:0;bottom:25%;height:1px}
-
 .hero__inner{position:relative;flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(26px,4.4vh,52px);width:100%}
 
 .hero__mark{
@@ -175,15 +163,6 @@ a{color:inherit;text-decoration:none}
 .ticker .plus{font-size:8px;opacity:.6}
 @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-.hero__scroll{
-  padding:16px 0 22px;
-  display:flex;align-items:center;gap:12px;
-  font-size:10px;font-weight:700;
-  letter-spacing:.22em;text-transform:uppercase;opacity:.45;
-}
-.hero__scroll i{display:block;width:52px;height:1px;background:currentColor;transform-origin:left;animation:pull 2.4s var(--ease) infinite}
-@keyframes pull{0%,100%{transform:scaleX(.4)}50%{transform:scaleX(1)}}
-
 /* ============================================================
    ROSTER / CAROUSEL
    ============================================================ */
@@ -202,7 +181,6 @@ a{color:inherit;text-decoration:none}
   text-transform:uppercase;
 }
 .roster__aside{margin-left:auto;display:flex;align-items:flex-end;gap:clamp(18px,3vw,40px)}
-.roster__note{max-width:32ch;font-size:14px;line-height:1.5;color:#4A4A46}
 .roster__count{font-size:12px;font-weight:800;letter-spacing:.2em;padding-bottom:2px;white-space:nowrap}
 
 .nav{display:flex;gap:8px}
@@ -240,7 +218,16 @@ a{color:inherit;text-decoration:none}
   display:flex;flex-direction:column;
 }
 
-.card__media{position:relative;aspect-ratio:4/5;overflow:hidden;background:#171717;color:#fff}
+.card__media{position:relative;aspect-ratio:3/4;overflow:hidden;background:#171717;color:#fff}
+/* the page is monochrome by design, so the artists are the only colour in it */
+.card__media img{
+  position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 1s var(--ease);
+}
+@media (hover:hover){
+  .card:hover .card__media img{transform:scale(1.04)}
+}
 /* --- placeholder artwork: dot grid + spotlight + stencil initial ---
    scoped to the three layer classes so it never catches a .plus icon --- */
 .card__media > i.dots,
@@ -277,16 +264,8 @@ a{color:inherit;text-decoration:none}
   background:var(--paper);color:var(--ink);
   font-size:11px;font-weight:800;letter-spacing:.1em;
 }
-.card__hover{
-  position:absolute;inset:0;background:var(--ink);
-  opacity:0;transition:opacity .45s var(--ease);
-  display:grid;place-items:center;
-}
-.card__hover .plus{font-size:34px;color:#fff;transition:transform .55s var(--ease)}
 /* pointer-only: on touch this would stick after a tap */
 @media (hover:hover){
-  .card:hover .card__hover{opacity:.5}
-  .card:hover .card__hover .plus{transform:rotate(90deg)}
   .card:hover .card__media i.dots{transform:scale(1.08)}
 }
 
@@ -299,34 +278,19 @@ a{color:inherit;text-decoration:none}
   margin:0;font-size:clamp(26px,3.4vw,38px);
   font-weight:900;line-height:.94;letter-spacing:-.035em;text-transform:uppercase;
 }
-.card__tags{display:flex;flex-wrap:wrap;gap:6px}
-.card__tags span{
-  font-size:9.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
-  padding:4px 8px;box-shadow:inset 0 0 0 1px var(--line);color:#55554F;
+/* platform links — the only per-artist action */
+.card__links{margin-top:auto;display:flex;gap:6px}
+.card__links a{
+  width:42px;height:42px;display:grid;place-items:center;
+  box-shadow:inset 0 0 0 1px var(--line);
+  transition:background .28s var(--ease),color .28s var(--ease),box-shadow .28s var(--ease);
 }
-/* the single per-artist action */
-.card__kit{
-  margin-top:auto;position:relative;overflow:hidden;
-  display:flex;align-items:center;justify-content:space-between;gap:10px;
-  height:46px;padding:0 14px;
-  box-shadow:inset 0 0 0 1px var(--ink);
-  font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
-  transition:color .35s var(--ease);
-}
-.card__kit span{position:relative;z-index:1;display:inline-flex;align-items:center;gap:10px}
-.card__kit::before{
-  content:"";position:absolute;inset:0;background:var(--ink);
-  transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease);
-}
-.card__kit .plus{font-size:10px;transition:transform .45s var(--ease)}
+.card__links svg{width:18px;height:18px}
 @media (hover:hover){
-  .card__kit:hover{color:var(--paper)}
-  .card__kit:hover::before{transform:scaleX(1)}
-  .card__kit:hover .plus{transform:rotate(90deg)}
+  .card__links a:hover{background:var(--ink);color:var(--paper);box-shadow:inset 0 0 0 1px var(--ink)}
 }
-/* touch feedback, since there is no hover to lean on */
-.card__kit:active{color:var(--paper)}
-.card__kit:active::before{transform:scaleX(1)}
+.card__links a:active{background:var(--ink);color:var(--paper)}
+.card__links a:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 
 /* progress */
 .rail__foot{padding:clamp(20px,3.5vh,34px) var(--gut) 0;display:flex;align-items:center;gap:20px}
@@ -359,9 +323,6 @@ a{color:inherit;text-decoration:none}
   transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease);
 }
 .ftr__col a:hover::after{transform:scaleX(1)}
-
-.ftr__mark{padding:clamp(24px,4vh,44px) 0;color:var(--white)}
-.ftr__mark svg{width:100%;height:auto}
 
 .ftr__base{
   display:flex;flex-wrap:wrap;gap:12px 26px;align-items:center;
@@ -398,7 +359,6 @@ a{color:inherit;text-decoration:none}
   .ftr__top .btn{width:100%;justify-content:space-between;font-size:10.5px;letter-spacing:.1em;padding:0 16px}
   /* the roster meta drops under the title */
   .roster__aside{width:100%;margin-left:0;flex-wrap:wrap;align-items:center;gap:14px 20px}
-  .roster__note{flex:1 1 100%;max-width:none}
   .nav{margin-left:auto}
 }
 
@@ -415,7 +375,6 @@ a{color:inherit;text-decoration:none}
 @media (min-width:721px) and (max-width:1023px){
   .card{flex-basis:min(52vw,340px)}
   .roster__aside{gap:24px}
-  .roster__note{max-width:26ch}
 }
 
 /* ---- desktop ---- */
@@ -436,7 +395,6 @@ a{color:inherit;text-decoration:none}
 @media (max-height:700px){
   .hero{padding-top:calc(var(--bar) + 24px)}
   .hero__inner{gap:20px}
-  .hero__scroll{display:none}
 }
 @media (max-height:560px) and (orientation:landscape){
   .hero{min-height:auto;padding-bottom:12px}
@@ -469,6 +427,28 @@ a{color:inherit;text-decoration:none}
     <path d="M1891.94,287.96c-2.2-2.22-4.78-3.98-7.76-5.26-2.98-1.29-6.21-1.93-9.69-1.93s-6.73.66-9.73,1.97c-3,1.31-5.6,3.08-7.8,5.3-2.19,2.22-3.92,4.85-5.19,7.88-1.26,3.03-1.89,6.23-1.89,9.62s.62,6.64,1.85,9.62c1.24,2.98,2.95,5.58,5.15,7.8,2.2,2.22,4.78,3.98,7.76,5.26,2.98,1.29,6.21,1.93,9.69,1.93s6.73-.66,9.73-1.97c3-1.31,5.6-3.08,7.8-5.3,2.2-2.22,3.92-4.83,5.19-7.84,1.26-3,1.89-6.22,1.89-9.65s-.62-6.57-1.85-9.58c-1.24-3-2.95-5.61-5.15-7.84ZM1881.93,319.38c-1.88.97-4.27,1.45-7.16,1.45-2.2,0-4.25-.4-6.15-1.21-1.9-.8-3.54-1.92-4.91-3.34-1.37-1.42-2.44-3.08-3.22-4.99-.78-1.9-1.17-3.96-1.17-6.15s.39-4.18,1.17-6.11c.78-1.93,1.85-3.62,3.22-5.07,1.37-1.45,3-2.59,4.91-3.42,1.9-.83,4.01-1.25,6.32-1.25,2.9,0,5.26.44,7.08,1.33,1.82.88,3.46,2.02,4.91,3.42l-3.78,4.34c-1.18-1.07-2.44-1.94-3.78-2.62-1.34-.67-2.81-1.01-4.42-1.01-1.4,0-2.67.27-3.82.8-1.15.54-2.16,1.28-3.02,2.21-.86.94-1.52,2.03-1.97,3.26-.46,1.23-.68,2.57-.68,4.02s.24,2.72.73,3.98c.48,1.26,1.14,2.36,1.97,3.3.83.94,1.82,1.68,2.98,2.21,1.15.54,2.43.8,3.82.8,1.82,0,3.36-.33,4.63-1.01,1.26-.67,2.5-1.6,3.74-2.77l3.86,3.78c-1.61,1.72-3.35,3.06-5.23,4.02Z"/>
     <polygon points="1406.67 309.32 1387.6 398.3 1427.85 398.3 1407.73 309.32 1406.67 309.32"/>
   </symbol>
+
+  <!-- platform icons: one consistent line set, drawn to match the mark's weight -->
+  <symbol id="ic-spotify" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+    <circle cx="12" cy="12" r="9.2"/>
+    <path d="M7.1 9.2c3.2-.95 6.6-.6 9.5 1"/>
+    <path d="M7.9 12.4c2.6-.75 5.4-.45 7.8.85"/>
+    <path d="M8.7 15.4c2.05-.55 4.2-.32 6.1.75"/>
+  </symbol>
+  <symbol id="ic-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+    <rect x="3.1" y="3.1" width="17.8" height="17.8" rx="5.2"/>
+    <circle cx="12" cy="12" r="4.1"/>
+    <circle cx="17" cy="7" r="1.15" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="ic-beatport" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+    <path d="M8.6 3.2v7.4"/>
+    <circle cx="13.1" cy="14.6" r="5.6"/>
+  </symbol>
+  <symbol id="ic-apple" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round">
+    <path d="M9.4 16.6V6.4l9-1.75v10.2"/>
+    <ellipse cx="7.2" cy="16.9" rx="2.3" ry="2"/>
+    <ellipse cx="16.2" cy="14.9" rx="2.3" ry="2"/>
+  </symbol>
 </svg>
 
 <!-- ============ HEADER ============ -->
@@ -478,23 +458,16 @@ a{color:inherit;text-decoration:none}
   </a>
   <nav class="hdr__nav">
     <a href="#roster">Roster</a>
-    <a href="#roster">Booking</a>
     <a href="#contact">Contact</a>
   </nav>
-  <a href="#contact" class="hdr__cta">Book now <i class="plus" aria-hidden="true"></i></a>
 </header>
 
 <!-- ============ HERO ============ -->
 <main id="top">
 <section class="hero">
-  <div class="hero__grid" aria-hidden="true">
-    <b class="v"></b><b class="h"></b>
-    <i></i><i></i><i></i><i></i>
-  </div>
-
   <div class="hero__inner">
     <div>
-      <p class="eyebrow rv" style="opacity:.5;margin:0 0 clamp(20px,3.5vh,34px)">Artist Agency &nbsp;/&nbsp; Booking &nbsp;/&nbsp; Est. 2026</p>
+      <p class="eyebrow rv" style="opacity:.5;margin:0 0 clamp(20px,3.5vh,34px)">Artists Agency</p>
       <div class="hero__mark rv" style="transition-delay:.08s">
         <svg viewBox="0 0 1920 768" fill="currentColor" role="img" aria-label="CROSSROADS"><use href="#cr-logo"/></svg>
       </div>
@@ -502,28 +475,24 @@ a{color:inherit;text-decoration:none}
 
     <div class="hero__row rv" style="transition-delay:.18s">
       <p class="hero__lede">
-        An artist agency and booking house. We put <b>artists</b> on the right <b>stages</b> —
-        club nights, festivals, private events and one-off productions. One team, from first call to soundcheck.
+        Built around <b>artists</b>, driven by <b>strategy</b>, and focused on your next crossroads.
       </p>
       <div class="hero__actions">
-        <a href="#roster" class="btn"><span>View roster <i class="plus" aria-hidden="true"></i></span></a>
-        <a href="#contact" class="btn btn--ghost"><span>Get in touch</span></a>
+        <a href="#roster" class="btn"><span>Roster <i class="plus" aria-hidden="true"></i></span></a>
+        <a href="#contact" class="btn btn--ghost"><span>Contact</span></a>
       </div>
     </div>
 
     <div class="hero__meta rv" style="transition-delay:.26s">
-      <span class="eyebrow">06 Artists &nbsp;·&nbsp; Worldwide Booking</span>
+      <span class="eyebrow">Artist Management</span>
     </div>
   </div>
 
+  <!-- names only, per client note -->
   <div class="ticker" aria-hidden="true">
-    <div class="ticker__track">
-      <span>Booking <i class="plus"></i> Live Shows <i class="plus"></i> Artist Management <i class="plus"></i> Festivals <i class="plus"></i> Touring <i class="plus"></i> Private Events <i class="plus"></i></span>
-      <span>Booking <i class="plus"></i> Live Shows <i class="plus"></i> Artist Management <i class="plus"></i> Festivals <i class="plus"></i> Touring <i class="plus"></i> Private Events <i class="plus"></i></span>
-    </div>
+    <div class="ticker__track" id="ticker"></div>
   </div>
 
-  <div class="hero__scroll"><i></i> Scroll</div>
 </section>
 
 <!-- ============ ROSTER ============ -->
@@ -531,7 +500,6 @@ a{color:inherit;text-decoration:none}
   <div class="roster__head">
     <h2 class="roster__title rv">The<br>Roster</h2>
     <div class="roster__aside rv" style="transition-delay:.1s">
-      <p class="roster__note">Six artists, one language. Drag the rail or use the arrows to move through the cards.</p>
       <span class="roster__count">01 — 06</span>
       <div class="nav">
         <button type="button" data-dir="-1" aria-label="Previous artist">
@@ -565,7 +533,7 @@ a{color:inherit;text-decoration:none}
 
   <div class="ftr__cols">
     <div class="ftr__col">
-      <h4 class="eyebrow">Booking</h4>
+      <h4 class="eyebrow">Contact</h4>
       <ul>
         <li><a href="mailto:booking@crossroads.example">booking@crossroads.example</a></li>
         <li><a href="tel:+972500000000">+972 50-000-0000</a></li>
@@ -599,10 +567,6 @@ a{color:inherit;text-decoration:none}
     </div>
   </div>
 
-  <div class="ftr__mark" aria-hidden="true">
-    <svg viewBox="0 0 1920 768" fill="currentColor"><use href="#cr-logo"/></svg>
-  </div>
-
   <div class="ftr__base">
     <span class="eyebrow">© 2026 Crossroads Agency</span>
     <span class="eyebrow">All rights reserved</span>
@@ -611,35 +575,53 @@ a{color:inherit;text-decoration:none}
 </footer>
 
 <script>
-/* ---------- roster data (order exactly as briefed) ---------- */
-const ARTISTS = [
-  { name:'Mishell',   tags:['Live','DJ Set'] },
-  { name:'Genish',    tags:['DJ Set','Club'] },
-  { name:'Kino Todo', tags:['Live Band','Festival'] },
-  { name:'Yuvee',     tags:['DJ Set','Open Air'] },
-  { name:'Nevos',     tags:['Live','Producer'] },
-  { name:'Mentesh',   tags:['DJ Set','B2B'] },
+/* ---------- roster data (order exactly as briefed) ----------
+   photo: null  -> renders the generated placeholder instead
+   links: '#'   -> PLACEHOLDER URL, swap for the artist's real profile   */
+const PLATFORMS = [
+  ['spotify',  'Spotify'],
+  ['instagram','Instagram'],
+  ['beatport', 'Beatport'],
+  ['apple',    'Apple Music'],
 ];
+
+const ARTISTS = [
+  { name:'Mishell',   photo:'img/mishell.jpg', links:{spotify:'#',instagram:'#',beatport:'#',apple:'#'} },
+  { name:'Genish',    photo:'img/genish.jpg',  links:{spotify:'#',instagram:'#',beatport:'#',apple:'#'} },
+  { name:'Kino Todo', photo:null,              links:{spotify:'#',instagram:'#',beatport:'#',apple:'#'} },
+  { name:'Yuvee',     photo:'img/yuvee.jpg',   links:{spotify:'#',instagram:'#',beatport:'#',apple:'#'} },
+  { name:'Nevos',     photo:'img/nevos.jpg',   links:{spotify:'#',instagram:'#',beatport:'#',apple:'#'} },
+  { name:'Mentesh',   photo:'img/mentesh.jpg', links:{spotify:'#',instagram:'#',beatport:'#',apple:'#'} },
+];
+
+const media = a => a.photo
+  ? `<img src="${a.photo}" alt="${a.name}" loading="lazy" decoding="async" width="900" height="1200">`
+  : `<i class="dots"></i><i class="glow"></i><i class="bars"></i>
+     <span class="card__initial">${a.name[0]}</span>
+     <span class="card__ph"><i class="plus"></i> Image placeholder</span>`;
+
+const links = a => PLATFORMS.map(([key,label]) => `
+  <a href="${a.links[key]}" aria-label="${a.name} on ${label}" title="${label}">
+    <svg aria-hidden="true"><use href="#ic-${key}"/></svg>
+  </a>`).join('');
 
 const rail = document.getElementById('rail');
 rail.innerHTML = ARTISTS.map((a,i) => `
   <article class="card rv" style="transition-delay:${Math.min(i,5)*.06}s">
     <div class="card__media">
-      <i class="dots"></i><i class="glow"></i><i class="bars"></i>
-      <span class="card__initial">${a.name[0]}</span>
+      ${media(a)}
       <span class="card__num">${String(i+1).padStart(2,'0')}</span>
-      <span class="card__ph"><i class="plus"></i> Image placeholder</span>
-      <span class="card__hover"><i class="plus"></i></span>
     </div>
     <div class="card__body">
       <h3 class="card__name">${a.name}</h3>
-      <div class="card__tags">${a.tags.map(t=>`<span>${t}</span>`).join('')}</div>
-      <a class="card__kit" href="#contact" aria-label="Press kit — ${a.name}">
-        <span>Press Kit</span><span><i class="plus"></i></span>
-      </a>
+      <div class="card__links">${links(a)}</div>
     </div>
   </article>
 `).join('');
+
+/* ticker: artist names only, doubled so the loop is seamless */
+const names = ARTISTS.map(a => `${a.name} <i class="plus"></i>`).join(' ');
+document.getElementById('ticker').innerHTML = `<span>${names}</span><span>${names}</span>`;
 
 /* ---------- carousel ---------- */
 const prog = document.getElementById('prog');

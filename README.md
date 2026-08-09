@@ -20,32 +20,44 @@ reads through them.
 ## Structure
 
 `index.html` is self-contained — one file, inline CSS and JS, no build step.
-The logo lives once in an SVG `<symbol>` and is reused via `<use>`.
+The logo and the platform icons live once in SVG `<symbol>`s and are reused via `<use>`.
 
-1. **Hero** — full-bleed stencil wordmark over the ghost cross, ticker band.
+1. **Hero** — full-bleed stencil wordmark on a plain black field, plus a names ticker.
 2. **Roster** — drag/swipe carousel. Order: Mishell, Genish, Kino Todo, Yuvee, Nevos,
-   Mentesh. One **Press Kit** action per artist.
-3. **Footer** — contact columns and the wordmark lockup.
+   Mentesh. Each card carries four platform links.
+3. **Footer** — contact columns.
 
-## Placeholder content
+The page is monochrome throughout, so the artist photography is the only colour in it.
+That's deliberate — don't add an accent hue elsewhere without rethinking it.
 
-Both are deliberate and need replacing before launch:
+## Still placeholder
 
-- **Artist images** are generated in CSS (dot grid + spotlight + initial) and carry an
-  `IMAGE PLACEHOLDER` chip. Swap `.card__media` for an `<img>` when the real shots land.
+- **Kino Todo has no photo** — that card falls back to the generated placeholder (dot
+  grid + initial) and carries an `IMAGE PLACEHOLDER` chip. Drop `img/kino-todo.jpg` in
+  and set `photo:` in the `ARTISTS` array.
+- **Every platform link points at `#`.** Real Spotify / Instagram / Beatport / Apple
+  Music URLs need filling in per artist.
 - **Footer details** — emails, phone numbers and names are dummy values. The two
   contact names are tagged `Placeholder` in the markup.
+- **The Beatport icon is an approximation** drawn to match the rest of the set. Swap in
+  the official mark if the client wants exact brand assets.
 
 ## Editing the roster
 
-The card order lives in one place — the `ARTISTS` array near the bottom of `index.html`:
+Order, photos and links all live in one place — the `ARTISTS` array near the bottom of
+`index.html`. The ticker builds itself from the same array, so adding an artist updates
+both:
 
 ```js
 const ARTISTS = [
-  { name:'Mishell', tags:['Live','DJ Set'] },
+  { name:'Mishell', photo:'img/mishell.jpg',
+    links:{spotify:'#', instagram:'#', beatport:'#', apple:'#'} },
   ...
 ];
 ```
+
+Photos are cropped to 3:4 with `object-fit: cover` and served at 900px wide, which
+covers a 2× retina card with room to spare.
 
 ## Responsive
 
