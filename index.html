@@ -104,6 +104,7 @@ a{color:inherit;text-decoration:none}
 .hero__mark{
   /* 1920:768 = 2.5 — capping width by vh keeps the mark inside the fold */
   width:min(100%,78vh,1040px);
+  margin-inline:auto;
   color:var(--white);
   /* the letters are knocked out of the bar → the black field reads through them */
 }
@@ -123,7 +124,6 @@ a{color:inherit;text-decoration:none}
 }
 .hero__lede b{font-weight:700;color:var(--white)}
 .hero__actions{display:flex;gap:10px;flex-wrap:wrap;margin-left:auto}
-.hero__meta{opacity:.5}
 
 .btn{
   display:inline-flex;align-items:center;gap:.85em;
@@ -198,9 +198,14 @@ a{color:inherit;text-decoration:none}
   display:flex;gap:1px;
   padding:0 var(--gut);
   overflow-x:auto;
-  scroll-snap-type:x mandatory;
+  overflow-y:hidden;
+  /* 'proximity', not 'mandatory': mandatory fights any vertical wheel/trackpad
+     gesture that passes over the rail and makes the page feel like it snags */
+  scroll-snap-type:x proximity;
   scroll-padding-left:var(--gut);   /* without this the first snap eats the gutter */
   scroll-padding-right:var(--gut);
+  overscroll-behavior-x:contain;    /* don't chain sideways scroll to the page */
+  touch-action:pan-x pan-y;         /* vertical page scroll always wins on touch */
   scrollbar-width:none;-ms-overflow-style:none;
   cursor:grab;
   border-top:1px solid var(--ink);
@@ -466,14 +471,11 @@ a{color:inherit;text-decoration:none}
 <main id="top">
 <section class="hero">
   <div class="hero__inner">
-    <div>
-      <p class="eyebrow rv" style="opacity:.5;margin:0 0 clamp(20px,3.5vh,34px)">Artists Agency</p>
-      <div class="hero__mark rv" style="transition-delay:.08s">
-        <svg viewBox="0 0 1920 768" fill="currentColor" role="img" aria-label="CROSSROADS"><use href="#cr-logo"/></svg>
-      </div>
+    <div class="hero__mark rv">
+      <svg viewBox="0 0 1920 768" fill="currentColor" role="img" aria-label="CROSSROADS"><use href="#cr-logo"/></svg>
     </div>
 
-    <div class="hero__row rv" style="transition-delay:.18s">
+    <div class="hero__row rv" style="transition-delay:.1s">
       <p class="hero__lede">
         Built around <b>artists</b>, driven by <b>strategy</b>, and focused on your next crossroads.
       </p>
@@ -483,9 +485,6 @@ a{color:inherit;text-decoration:none}
       </div>
     </div>
 
-    <div class="hero__meta rv" style="transition-delay:.26s">
-      <span class="eyebrow">Artist Management</span>
-    </div>
   </div>
 
   <!-- names only, per client note -->
@@ -619,9 +618,48 @@ rail.innerHTML = ARTISTS.map((a,i) => `
   </article>
 `).join('');
 
-/* ticker: artist names only, doubled so the loop is seamless */
-const names = ARTISTS.map(a => `${a.name} <i class="plus"></i>`).join(' ');
-document.getElementById('ticker').innerHTML = `<span>${names}</span><span>${names}</span>`;
+/* ticker: artist names only.
+   The -50% loop is only seamless while each half is at least as wide as the
+   viewport. Six short names are not, so the tail ran out and left a blank
+   stretch — repeat the list until one half covers the screen, and scale the
+   duration so the speed stays constant however many repeats that takes. */
+const tick  = document.getElementById('ticker');
+const UNIT  = ARTISTS.map(a => `${a.name} <i class="plus"></i>`).join(' ');
+const SPEED = 90; // px per second
+
+const MIN_HALF = 4000; // px — wider than any viewport this is going to run on
+
+function buildTicker(){
+  tick.style.animation = 'none';
+  tick.innerHTML = `<span>${UNIT}</span>`;
+  const unitW = tick.firstElementChild.getBoundingClientRect().width;
+  if (!unitW) return;
+  // Sizing this to the *current* viewport meant a resize measured mid-layout
+  // could lock in too few repeats and reopen the gap. Overshooting instead costs
+  // a handful of spans and makes the loop correct whatever the timing.
+  const reps = Math.ceil(Math.max(MIN_HALF, window.innerWidth * 2) / unitW);
+  const half = `<span>${Array(reps).fill(UNIT).join(' ')}</span>`;
+  tick.innerHTML = half + half;
+  const halfW = tick.firstElementChild.getBoundingClientRect().width;
+  tick.style.animation = '';
+  tick.style.animationDuration = (halfW / SPEED) + 's';
+}
+/* A resize can land mid-layout — the mobile media query changes the ticker's
+   font-size, so one pass can measure a transient width and lock in a wrong
+   repeat count. buildTicker is idempotent, so run it again after a frame. */
+const settle = () => requestAnimationFrame(() => { buildTicker(); requestAnimationFrame(buildTicker); });
+
+buildTicker();
+document.fonts?.ready.then(settle);   // name widths change once Archivo lands
+
+/* observe the band itself rather than listening for 'resize' — its width tracks
+   the viewport, and this still fires where a resize event doesn't (zoom, devtools
+   viewport overrides, a pane being dragged). Rebuilding the track inside doesn't
+   change the band's own width, so this can't feed back on itself. */
+let tickTimer;
+const rebuild = () => { clearTimeout(tickTimer); tickTimer = setTimeout(settle, 180); };
+new ResizeObserver(rebuild).observe(tick.parentElement);
+window.addEventListener('resize', rebuild);
 
 /* ---------- carousel ---------- */
 const prog = document.getElementById('prog');
