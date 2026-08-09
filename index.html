@@ -699,30 +699,55 @@ rail.addEventListener('keydown', e => {
   rail.scrollBy({ left: step() * (e.key === 'ArrowRight' ? 1 : -1), behavior:'smooth' });
 });
 
-/* drag to scroll (mouse/pen; touch scrolls natively) */
-let down = false, startX = 0, startScroll = 0, moved = 0;
+/* Drag to scroll (mouse/pen; touch scrolls natively).
+   The pointer is captured only once the gesture is genuinely a drag. Capturing
+   on pointerdown retargets the follow-up click to the rail, which silently broke
+   every card link. */
+/* Generous on purpose. A real mouse click on a 42px icon drifts several pixels
+   between press and release; the old 4px threshold read that as a drag and
+   cancelled the click, which is why the card links felt dead. */
+const DRAG_THRESHOLD = 12; // px
+let down = false, dragging = false, startX = 0, startScroll = 0, pid = null, swallowClick = false;
+
 rail.addEventListener('pointerdown', e => {
-  if (e.pointerType === 'touch') return;
-  down = true; moved = 0;
+  swallowClick = false;
+  if (e.pointerType === 'touch' || e.button !== 0) return;
+  down = true; dragging = false; pid = e.pointerId;
   startX = e.clientX; startScroll = rail.scrollLeft;
-  rail.setPointerCapture(e.pointerId);
 });
+
 rail.addEventListener('pointermove', e => {
   if (!down) return;
   const d = e.clientX - startX;
-  moved = Math.abs(d);
-  if (moved > 4) rail.classList.add('is-drag');
+  if (!dragging) {
+    if (Math.abs(d) <= DRAG_THRESHOLD) return;   // still a click — leave links alone
+    dragging = true;
+    rail.classList.add('is-drag');
+    try { rail.setPointerCapture(pid); } catch {}
+  }
   rail.scrollLeft = startScroll - d;
 });
-const release = e => {
+
+const endDrag = () => {
   if (!down) return;
   down = false;
-  rail.classList.remove('is-drag');
-  if (rail.hasPointerCapture?.(e.pointerId)) rail.releasePointerCapture(e.pointerId);
+  if (dragging) {
+    // only eat the click if the rail actually moved — at a scroll boundary a
+    // drag goes nowhere, and swallowing there would kill a legitimate click
+    swallowClick = Math.abs(rail.scrollLeft - startScroll) > 2;
+    rail.classList.remove('is-drag');
+    try { rail.releasePointerCapture(pid); } catch {}
+  }
+  dragging = false;
 };
-rail.addEventListener('pointerup', release);
-rail.addEventListener('pointercancel', release);
-rail.addEventListener('click', e => { if (moved > 4) e.preventDefault(); }, true);
+rail.addEventListener('pointerup', endDrag);
+rail.addEventListener('pointercancel', endDrag);
+
+rail.addEventListener('click', e => {
+  if (!swallowClick) return;
+  e.preventDefault(); e.stopPropagation();
+  swallowClick = false;
+}, true);
 
 sync();
 window.addEventListener('load', sync);
