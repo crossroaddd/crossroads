@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- The logo's own cross, cropped square. In the wordmark the vertical arm is
+       384 of 1920 wide and the horizontal arm 384 of 768 tall, which on a square
+       crop makes both bars exactly half the width — so the plus below is the
+       mark's real geometry, not an approximation. -->
+  <rect width="32" height="32" fill="#000000"/>
+  <path d="M8 0h16v32H8zM0 8h32v16H0z" fill="#FFFFFF"/>
+</svg>
