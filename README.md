@@ -34,10 +34,9 @@ That's deliberate — don't add an accent hue elsewhere without rethinking it.
 
 ## Still placeholder
 
-- **Missing platform links.** Mentesh has no Spotify — the URL supplied for it
-  resolved to his SoundCloud page, so the icon is left off rather than pointed at the
-  wrong service. Nevos still needs Spotify, Apple Music and Beatport. A platform with
-  no URL renders no icon, so nothing on the page is a dead link.
+- **Missing platform links.** Nevos still needs Spotify, Apple Music and Beatport;
+  he currently shows SoundCloud and Instagram only. A platform with no URL renders no
+  icon, so nothing on the page is ever a dead link.
 - **The footer is deliberately thin.** The Management, Studio and Follow columns were
   removed because every value in them was invented — fake contact details must not sit
   beside the real ones on a public page. Markers in the markup show where they were.
