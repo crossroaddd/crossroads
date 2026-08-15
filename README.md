@@ -47,7 +47,7 @@ That's deliberate — don't add an accent hue elsewhere without rethinking it.
 
 ## Artist press kit pages
 
-`mishell/index.html` serves at `/mishell`. Reachable only by clicking the artist's
+`mishell/index.html` and `yuvee/index.html` serve at `/mishell` and `/yuvee`. Reachable only by clicking the artist's
 photo on the roster — set `epk: '/<slug>/'` on the artist in the `ARTISTS` array and
 the photo becomes the link; artists without it render a plain `<div>` as before.
 
@@ -56,10 +56,13 @@ deliberately **not** copied from the PDF: that listed Strange Talent and Ritual
 Artists, and a press kit on the agency's own site should route enquiries to the
 agency, so it carries CrossRoads' details instead.
 
-The page duplicates the design tokens and the header/footer/button CSS from the home
-page. That is fine for one page — extract it to a shared stylesheet before adding a
-second artist, or the two will drift. The custom cursor is already shared, at
-`assets/cursor.js`.
+Each artist page carries its own `og:image` (`og-<slug>.png`) so sharing an artist
+link shows that artist rather than the agency logo. Those are generated from the
+roster photo — see the generator note in the commit history.
+
+**Both artist pages duplicate the design tokens and the header/footer/button CSS.**
+The custom cursor is shared at `assets/cursor.js`, but the CSS is not. With two pages
+live this is now real drift risk — extract it before adding a third.
 
 ## Editing the roster
 
