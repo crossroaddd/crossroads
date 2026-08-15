@@ -45,6 +45,22 @@ That's deliberate — don't add an accent hue elsewhere without rethinking it.
 - The generated photo placeholder (dot grid + initial + `IMAGE PLACEHOLDER` chip) is
   still wired up — any artist added with `photo: null` gets it automatically.
 
+## Artist press kit pages
+
+`mishell/index.html` serves at `/mishell`. Reachable only by clicking the artist's
+photo on the roster — set `epk: '/<slug>/'` on the artist in the `ARTISTS` array and
+the photo becomes the link; artists without it render a plain `<div>` as before.
+
+Content comes from the artist's EPK PDF. For Mishell the contact block was
+deliberately **not** copied from the PDF: that listed Strange Talent and Ritual
+Artists, and a press kit on the agency's own site should route enquiries to the
+agency, so it carries CrossRoads' details instead.
+
+The page duplicates the design tokens and the header/footer/button CSS from the home
+page. That is fine for one page — extract it to a shared stylesheet before adding a
+second artist, or the two will drift. The custom cursor is already shared, at
+`assets/cursor.js`.
+
 ## Editing the roster
 
 Order, photos and links all live in one place — the `ARTISTS` array near the bottom of
