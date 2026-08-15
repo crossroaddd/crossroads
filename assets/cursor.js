@@ -88,5 +88,8 @@
   const hide = () => dot.classList.remove('is-visible');
   document.addEventListener('mouseleave', hide);
   window.addEventListener('blur', hide);
+  /* An iframe swallows pointermove, so the square would freeze on its edge.
+     Stand down and let the embed show its own cursor. */
+  document.addEventListener('mouseover', e => { if (e.target.tagName === 'IFRAME') hide(); });
   window.addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(paint); } }, { passive: true });
 })();

@@ -128,12 +128,15 @@ a{color:inherit;text-decoration:none}
 /* ---------- MESS ---------- */
 .mess__grid{display:grid;gap:clamp(28px,5vw,64px);grid-template-columns:1fr}
 @media (min-width:900px){ .mess__grid{grid-template-columns:1.15fr .85fr;align-items:start} }
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:clamp(22px,3.5vh,32px)}
-.chips span{
-  font-size:clamp(18px,2.6vw,36px);font-weight:900;font-style:italic;
-  letter-spacing:-.02em;text-transform:uppercase;color:var(--white);
-}
-.chips span+span::before{content:"/";margin-right:8px;color:var(--ash);font-style:normal}
+/* their own mark, kept in their own red — it is a real brand asset, not decoration */
+.mess__logo img{width:clamp(132px,17vw,222px);height:auto}
+.visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ---------- SoundCloud spotlight ---------- */
+.sc{margin-top:clamp(36px,5.5vh,66px)}
+.sc__grid{display:grid;gap:10px;grid-template-columns:1fr}
+@media (min-width:900px){ .sc__grid{grid-template-columns:1fr 1fr} }
+.sc__grid iframe{display:block;width:100%;height:166px;border:0;box-shadow:inset 0 0 0 1px var(--line)}
 
 /* shared button */
 .btn{
@@ -148,6 +151,8 @@ a{color:inherit;text-decoration:none}
 .btn:hover::before{transform:scaleY(1)}
 .btn .plus{font-size:10px;transition:transform .4s var(--ease)}
 .btn:hover .plus{transform:rotate(90deg)}
+/* platform icons sit where the plus does, at the end of the label */
+.btn svg{width:16px;height:16px;flex:none}
 .btn--ink{background:var(--ink);color:var(--paper)}
 .btn--ink::before{background:var(--ash)}
 
@@ -254,6 +259,9 @@ a{color:inherit;text-decoration:none}
   <symbol id="ic-facebook" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round">
     <path d="M14.8 21.4v-8.3h2.8l.5-3.3h-3.3V7.7c0-.95.32-1.8 1.85-1.8h1.6V2.95A18 18 0 0 0 15.7 2.8c-2.7 0-4.4 1.65-4.4 4.6v2.4H8.3v3.3h3v8.3z"/>
   </symbol>
+  <symbol id="ic-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+    <circle cx="12" cy="12" r="9.2"/><path d="M2.9 12h18.2"/><ellipse cx="12" cy="12" rx="4.1" ry="9.2"/>
+  </symbol>
 </svg>
 
 <header class="hdr">
@@ -302,18 +310,19 @@ a{color:inherit;text-decoration:none}
 <section class="sec sec--dark">
   <div class="mess__grid">
     <div>
-      <h2 class="sec__head rv">Mess.</h2>
+      <h2 class="sec__head mess__logo rv">
+        <img src="/assets/mess-logo.svg" alt="Mess" width="222" height="99">
+        <span class="visually-hidden">Mess</span>
+      </h2>
       <div class="prose rv" style="transition-delay:.06s">
         <p>Mess Makers is Mishell's core community. Supported by his local team, Mishell has built a unique brand that brings a fresh style to the local and international scene.</p>
         <p>Mess is dedicated to producing concept-driven events, fashion, music, and more — always with a bold, sexy, naughty and uncompromising approach, fully committed to pure art. The brand allows Mishell to form a direct connection with his audience and add a new dimension to his journey.</p>
       </div>
-      <div class="chips rv" style="transition-delay:.1s">
-        <span>Sexy</span><span>Cheeky</span><span>Sharp &amp; Punchy</span>
-      </div>
     </div>
     <div class="rv" style="transition-delay:.14s;display:flex;flex-direction:column;gap:10px;align-items:flex-start">
-      <a class="btn" href="https://youtu.be/juGHYqkk9pY" target="_blank" rel="noopener noreferrer"><span>Live set <i class="plus" aria-hidden="true"></i></span></a>
-      <a class="btn" href="https://www.instagram.com/mess.makerz" target="_blank" rel="noopener noreferrer"><span>Mess Makers <i class="plus" aria-hidden="true"></i></span></a>
+      <a class="btn" href="https://messmakerz.com/" target="_blank" rel="noopener noreferrer"><span>Website <svg aria-hidden="true"><use href="#ic-globe"/></svg></span></a>
+      <a class="btn" href="https://www.instagram.com/mess.makerz" target="_blank" rel="noopener noreferrer"><span>Mess <svg aria-hidden="true"><use href="#ic-instagram"/></svg></span></a>
+      <a class="btn" href="https://youtu.be/juGHYqkk9pY" target="_blank" rel="noopener noreferrer"><span>Live set <svg aria-hidden="true"><use href="#ic-youtube"/></svg></span></a>
     </div>
   </div>
 </section>
@@ -351,6 +360,13 @@ a{color:inherit;text-decoration:none}
     </div>
   </div>
 
+  <!-- His SoundCloud Spotlight, item by item. SoundCloud has no single
+       "spotlight" widget, so each pinned set/track gets its own player. -->
+  <div class="sc rv">
+    <p class="eyebrow" style="color:#6A6A64;margin:0 0 14px">Spotlight on SoundCloud</p>
+    <div class="sc__grid" id="sc-grid"></div>
+  </div>
+
   <div style="margin-top:clamp(40px,6vh,72px)">
     <p class="eyebrow rv" style="color:#6A6A64;margin:0">Has shared decks with</p>
     <div class="decks rv" style="transition-delay:.06s">
@@ -368,7 +384,6 @@ a{color:inherit;text-decoration:none}
     <a class="btn" href="https://www.dropbox.com/scl/fo/ykvhp5rcn7ht2qxiqvn7o/AJwBfZUFGZmhVRbC4jircXw/Photos?dl=0&amp;rlkey=uu6fqx30yetki456r286xrne8" target="_blank" rel="noopener noreferrer"><span>Photos <i class="plus" aria-hidden="true"></i></span></a>
     <a class="btn" href="https://www.dropbox.com/scl/fo/ykvhp5rcn7ht2qxiqvn7o/ADzfybHwq-nnAhtTmKbkV20/Videos?dl=0&amp;rlkey=uu6fqx30yetki456r286xrne8" target="_blank" rel="noopener noreferrer"><span>Videos <i class="plus" aria-hidden="true"></i></span></a>
     <a class="btn" href="https://docs.google.com/document/d/1Znck__3U7GabpGaCuJO50h6A2q253u9zu9e0Q7y4ijA/edit" target="_blank" rel="noopener noreferrer"><span>Rider <i class="plus" aria-hidden="true"></i></span></a>
-    <a class="btn" href="https://www.canva.com/design/DAGKjuxhzXA/YuVQEXg9HWx3NZDHlLT3OQ/view" target="_blank" rel="noopener noreferrer"><span>Discography <i class="plus" aria-hidden="true"></i></span></a>
     <a class="btn" href="https://docs.google.com/document/d/1s_00L1fY5l5WQoGqKvEVbbCcjg9YgZH7M4jUvIIh_MA/edit" target="_blank" rel="noopener noreferrer"><span>Biography <i class="plus" aria-hidden="true"></i></span></a>
   </div>
 
@@ -396,6 +411,25 @@ a{color:inherit;text-decoration:none}
 </footer>
 
 <script>
+/* SoundCloud Spotlight — the five items pinned on his profile, in his order.
+   Built in JS so the list lives in one place and the iframes stay lazy. */
+const SPOTLIGHT = [
+  ['Get Messy',                                        'https://soundcloud.com/mishellmusik/sets/get-messy'],
+  ['Michael Jackson — Billie Jean (Mishell & Oi Edit)','https://soundcloud.com/mishellmusik/htgrfdsrer545hgfds'],
+  ['Meidum Festival',                                  'https://soundcloud.com/mishellmusik/sets/meidum-festival'],
+  ['Creep f. KINNA MONE',                              'https://soundcloud.com/mishellmusik/sets/creep-f-kinna-mone-1'],
+  ['Desire',                                           'https://soundcloud.com/mishellmusik/sets/desire'],
+];
+document.getElementById('sc-grid').innerHTML = SPOTLIGHT.map(([title,url]) => {
+  const p = new URLSearchParams({
+    url, color:'#000000', auto_play:'false', hide_related:'true',
+    show_comments:'false', show_user:'true', show_reposts:'false',
+    show_teaser:'false', visual:'false'
+  });
+  return `<iframe title="${title} — SoundCloud" loading="lazy" allow="autoplay"
+            src="https://w.soundcloud.com/player/?${p}"></iframe>`;
+}).join('');
+
 /* reveal on scroll */
 const io = new IntersectionObserver(es => {
   es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
