@@ -133,6 +133,11 @@ a{color:inherit;text-decoration:none}
 }
 .sec__head em{font-style:normal;color:var(--ash)}
 
+.bio{display:grid;gap:clamp(26px,4.5vw,60px);grid-template-columns:1fr}
+@media (min-width:900px){ .bio{grid-template-columns:1.05fr .95fr;align-items:start} }
+.bio__shot{margin:0}
+.bio__shot img{width:100%;height:auto}
+
 .prose{display:grid;gap:clamp(16px,2.4vh,24px);max-width:66ch}
 .prose p{margin:0;font-size:clamp(15px,1.5vw,19px);line-height:1.55}
 .prose b{font-weight:800}
@@ -378,12 +383,19 @@ a{color:inherit;text-decoration:none}
 
 <!-- ============ BIO ============ -->
 <section class="sec">
-  <h2 class="sec__head rv">Old school refs<br><em>Fresh groove</em></h2>
-  <div class="prose rv" style="transition-delay:.06s">
+  <div class="bio">
+    <div>
+      <h2 class="sec__head rv">Old school refs<br><em>Fresh groove</em></h2>
+      <div class="prose rv" style="transition-delay:.06s">
     <p>MISHELL is an uprising force from the electronic scene and one of the most exciting names shaping Tel Aviv's underground right now. His sound lives where elegant meets naughty, a sharp fusion of psychedelic references, house and indie dance, driven by authentic groove and bold energy.</p>
     <p>His music has landed on leading labels such as Hot Creations, Diynamic, Experts Only, STMPD, Planet X and Get Physical, gaining the support of tastemakers including Solomun, Jamie Jones, John Summit and Vintage Culture.</p>
     <p>Mishell has left his mark on iconic dancefloors like Mayan Warrior, Kater Blau Berlin, Bar Américas, Funk Club and BOMA Brazil. He's also been featured in Mixmag, with airplay on BBC Radio 1 and Kiss FM.</p>
-    <p>Beyond the decks, he is the founder of Mess (Mess Makers) — a creative community for concept-driven events, fashion and music. His sets are sharp, punchy and smooth, moving between dark textures and warm melodic moments, powered by sexy, cheeky rhythms and heavy basslines.</p>
+      <p>Beyond the decks, he is the founder of Mess (Mess Makers) — a creative community for concept-driven events, fashion and music. His sets are sharp, punchy and smooth, moving between dark textures and warm melodic moments, powered by sexy, cheeky rhythms and heavy basslines.</p>
+      </div>
+    </div>
+    <figure class="bio__shot rv" style="transition-delay:.1s">
+      <img src="/img/mishell-bio.jpg" alt="Mishell" width="900" height="1350" loading="lazy" decoding="async">
+    </figure>
   </div>
 </section>
 
