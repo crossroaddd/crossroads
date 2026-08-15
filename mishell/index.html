@@ -36,7 +36,7 @@
    ============================================================ */
 :root{
   --ink:#000000;
-  --paper:#F2F0EA;
+  --paper:#FFFFFF;
   --white:#FFFFFF;
   --ash:#8E8E88;
   --line:rgba(0,0,0,.14);
@@ -79,7 +79,18 @@ a{color:inherit;text-decoration:none}
   background:var(--ink);color:var(--white);
   padding:calc(var(--bar) + clamp(40px,7vh,86px)) var(--gut) clamp(36px,6vh,64px);
 }
-.top__back{display:inline-flex;align-items:center;gap:10px;opacity:.55;margin-bottom:clamp(24px,4vh,44px);transition:opacity .25s var(--ease)}
+.top__bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-bottom:clamp(24px,4vh,44px)}
+.top__back{display:inline-flex;align-items:center;gap:10px;opacity:.55;transition:opacity .25s var(--ease)}
+.top__tools{margin-left:auto;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
+.top__tools a{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.6;transition:opacity .25s var(--ease)}
+.top__tools a:hover{opacity:1}
+.top__book{
+  display:inline-flex;align-items:center;gap:.7em;height:30px;padding:0 13px;
+  background:var(--white);color:var(--ink);opacity:1 !important;
+  font-weight:800 !important;transition:transform .3s var(--ease);
+}
+.top__book:hover{transform:translateY(-2px)}
+.top__book .plus{font-size:8px}
 .top__back:hover{opacity:1}
 .top__back .plus{font-size:9px;transform:rotate(45deg)}
 .name{
@@ -95,11 +106,11 @@ a{color:inherit;text-decoration:none}
 /* platform row */
 .plats{display:flex;flex-wrap:wrap;gap:8px;margin-top:clamp(26px,4.5vh,44px)}
 .plats a{
-  width:46px;height:46px;display:grid;place-items:center;
+  width:38px;height:38px;display:grid;place-items:center;
   box-shadow:inset 0 0 0 1px var(--line-inv);
   transition:background .28s var(--ease),color .28s var(--ease),box-shadow .28s var(--ease);
 }
-.plats svg{width:19px;height:19px}
+.plats svg{width:16px;height:16px}
 @media (hover:hover){.plats a:hover{background:var(--white);color:var(--ink);box-shadow:inset 0 0 0 1px var(--white)}}
 .plats a:active{background:var(--white);color:var(--ink)}
 .plats a:focus-visible{outline:2px solid var(--white);outline-offset:2px}
@@ -112,6 +123,9 @@ a{color:inherit;text-decoration:none}
 /* ---------- generic section ---------- */
 .sec{padding:clamp(56px,9vh,110px) var(--gut)}
 .sec--dark{background:var(--ink);color:var(--white)}
+/* two dark sections in a row need a seam or they read as one slab */
+.sec--dark + .sec--dark{border-top:1px solid var(--line-inv);padding-top:clamp(34px,5vh,60px)}
+.sec--dark:last-of-type{padding-bottom:clamp(34px,5vh,60px)}
 .sec__head{
   margin:0 0 clamp(26px,4vh,46px);
   font-size:clamp(30px,6vw,76px);font-weight:900;line-height:.9;
@@ -126,8 +140,11 @@ a{color:inherit;text-decoration:none}
 .sec--dark .prose b{color:var(--white)}
 
 /* ---------- MESS ---------- */
-.mess__grid{display:grid;gap:clamp(28px,5vw,64px);grid-template-columns:1fr}
-@media (min-width:900px){ .mess__grid{grid-template-columns:1.15fr .85fr;align-items:start} }
+.mess__grid{display:block}
+.mess__actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:clamp(24px,4vh,36px)}
+/* their red, from their own mark */
+.btn.btn--mess{background:#DD3235;color:var(--white)}
+.btn.btn--mess::before{background:#B2262A}
 /* their own mark, kept in their own red — it is a real brand asset, not decoration */
 .mess__logo img{width:clamp(132px,17vw,222px);height:auto}
 .visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
@@ -140,10 +157,10 @@ a{color:inherit;text-decoration:none}
 
 /* shared button */
 .btn{
-  display:inline-flex;align-items:center;gap:.85em;
-  height:52px;padding:0 26px;
+  display:inline-flex;align-items:center;gap:.7em;
+  height:40px;padding:0 16px;
   background:var(--white);color:var(--ink);
-  font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+  font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
   position:relative;overflow:hidden;transition:color .35s var(--ease);
 }
 .btn span{position:relative;z-index:1;display:inline-flex;align-items:center;gap:.85em}
@@ -152,13 +169,69 @@ a{color:inherit;text-decoration:none}
 .btn .plus{font-size:10px;transition:transform .4s var(--ease)}
 .btn:hover .plus{transform:rotate(90deg)}
 /* platform icons sit where the plus does, at the end of the label */
-.btn svg{width:16px;height:16px;flex:none}
+.btn svg{width:14px;height:14px;flex:none}
 .btn--ink{background:var(--ink);color:var(--paper)}
 .btn--ink::before{background:var(--ash)}
 
-/* ---------- two-column data ---------- */
-.cols{display:grid;gap:clamp(36px,6vw,88px);grid-template-columns:1fr}
-@media (min-width:860px){ .cols{grid-template-columns:.8fr 1.2fr} }
+.spotify{display:block;width:100%;height:420px;border:0}
+
+/* ---------- world map ---------- */
+.map{
+  position:relative;
+  width:100%;max-width:1080px;margin:0 auto clamp(24px,4vh,44px);
+  aspect-ratio:180/69;                /* the sampled grid's own ratio */
+}
+.map__dots,.map__lines,.map__pins{position:absolute;inset:0;width:100%;height:100%}
+.map__lines,.map__pins{pointer-events:none}
+.map__lines line{stroke:rgba(255,255,255,.32);stroke-width:1}
+.map__pin{
+  position:absolute;width:6px;height:6px;margin:-3px 0 0 -3px;
+  background:var(--white);border-radius:50%;
+}
+/* labels sit on the map itself — no side gutters to run out of */
+.map__label{
+  position:absolute;white-space:nowrap;
+  font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:rgba(255,255,255,.92);display:flex;align-items:center;gap:5px;
+}
+.map__label .flag{letter-spacing:0;font-size:11px}
+.map__label--l{transform:translate(-100%,-50%)}
+.map__label--r{transform:translate(0,-50%)}
+@media (max-width:760px){
+  /* full world here too, but 2.6:1 leaves no room for labels on a phone, so the
+     box is stretched a little vertically and runs edge to edge */
+  .map{aspect-ratio:180/104;max-width:none;margin-inline:calc(var(--gut) * -1)}
+  .map__label{font-size:8px;letter-spacing:.03em;line-height:1.2;
+    white-space:normal;max-width:34vw;}
+  .map__label .flag{font-size:9px}
+  .map__pin{width:5px;height:5px;margin:-2.5px 0 0 -2.5px}
+}
+
+.gigs__head{display:flex;flex-wrap:wrap;gap:clamp(20px,4vw,56px);align-items:flex-start;margin-bottom:clamp(28px,4.5vh,52px)}
+.gigs__decks{margin-left:auto;max-width:min(100%,520px)}
+@media (max-width:820px){ .gigs__decks{margin-left:0} }
+
+/* ---------- release labels — a quiet list, not buttons ---------- */
+.labels{
+  margin:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 0;
+  font-size:15px;line-height:1.6;
+}
+.labels span{display:inline-flex;align-items:baseline;gap:8px}
+.labels span:not(:last-child)::after{content:"+";margin:0 12px;color:#B4B4AE;font-weight:700}
+.labels a{font-size:9.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  padding:3px 7px;box-shadow:inset 0 0 0 1px var(--line);white-space:nowrap}
+@media (hover:hover){ .labels a:hover{background:var(--ink);color:var(--paper)} }
+
+/* ---------- lists ---------- */
+.list--inline{display:flex;flex-wrap:wrap;gap:0 10px}
+.list--inline li{border:0;padding:10px 0}
+.list--inline li:last-child{border-bottom:0}
+.list--inline li:not(:last-child)::after{content:"+";margin-left:10px;color:#9A9A94;font-weight:700}
+.list--dark li{border-top-color:var(--line-inv)}
+.list--dark li:last-child{border-bottom-color:var(--line-inv)}
+.list--dark .loc{color:rgba(255,255,255,.5)}
+.list--dark .num{font-size:11px;font-weight:800;letter-spacing:.1em;color:rgba(255,255,255,.45);min-width:26px}
+.decks--dark span{box-shadow:inset 0 0 0 1px var(--line-inv);color:var(--white)}
 .list{list-style:none;margin:0;padding:0;display:grid}
 .list li{
   display:flex;align-items:baseline;gap:14px;
@@ -178,17 +251,17 @@ a{color:inherit;text-decoration:none}
 }
 
 /* shared decks */
-.decks{display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:clamp(18px,3vh,26px)}
+.decks{display:flex;flex-wrap:wrap;gap:6px;margin-top:clamp(14px,2vh,20px)}
 .decks span{
-  font-size:clamp(13px,1.4vw,17px);font-weight:800;letter-spacing:-.01em;text-transform:uppercase;
-  padding:8px 12px;box-shadow:inset 0 0 0 1px var(--line);
+  font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:5px 9px;box-shadow:inset 0 0 0 1px var(--line);
 }
 
 /* ---------- assets ---------- */
 .assets{display:flex;flex-wrap:wrap;gap:10px}
 
 /* ---------- contact ---------- */
-.contact{display:grid;gap:clamp(26px,4vw,52px);grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-top:clamp(26px,4vh,40px)}
+.contact{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(26px,4vh,40px)}
 .contact h4{margin:0 0 12px;color:rgba(255,255,255,.42)}
 .contact ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
 .contact li{font-size:15px;color:rgba(255,255,255,.88);overflow-wrap:anywhere}
@@ -197,7 +270,7 @@ a{color:inherit;text-decoration:none}
 .contact a:hover::after{transform:scaleX(1)}
 
 /* ---------- footer ---------- */
-.ftr{background:var(--ink);color:var(--white);padding:clamp(40px,6vh,64px) var(--gut) 26px;border-top:1px solid var(--line-inv)}
+.ftr{background:var(--ink);color:var(--white);padding:clamp(22px,3vh,32px) var(--gut) 24px;border-top:1px solid var(--line-inv)}
 .ftr__base{display:flex;flex-wrap:wrap;gap:12px 26px;align-items:center;color:rgba(255,255,255,.4)}
 .ftr__base .eyebrow{font-size:10px}
 .ftr__base .sep{margin-left:auto}
@@ -279,10 +352,17 @@ a{color:inherit;text-decoration:none}
 
 <!-- ============ NAME ============ -->
 <section class="top">
-  <a href="/#roster" class="top__back eyebrow"><i class="plus" aria-hidden="true"></i> Back to roster</a>
+  <div class="top__bar">
+    <a href="/#roster" class="top__back eyebrow"><i class="plus" aria-hidden="true"></i> Back to roster</a>
+    <div class="top__tools">
+      <a href="https://www.dropbox.com/scl/fo/2uz4zqvzu1l1d7l37pdlg/AGfdzOTr9M2jSUK_yFLLivg?rlkey=dup8j9425c9mifca2zngdmvsd&amp;st=dpkzewly&amp;dl=0" target="_blank" rel="noopener noreferrer">Photos</a>
+      <a href="https://www.dropbox.com/scl/fo/ykvhp5rcn7ht2qxiqvn7o/ADzfybHwq-nnAhtTmKbkV20/Videos?dl=0&amp;rlkey=uu6fqx30yetki456r286xrne8" target="_blank" rel="noopener noreferrer">Videos</a>
+      <a href="https://docs.google.com/document/d/1Znck__3U7GabpGaCuJO50h6A2q253u9zu9e0Q7y4ijA/edit" target="_blank" rel="noopener noreferrer">Rider</a>
+      <a href="https://docs.google.com/document/d/1s_00L1fY5l5WQoGqKvEVbbCcjg9YgZH7M4jUvIIh_MA/edit" target="_blank" rel="noopener noreferrer">Biography</a>
+      <a class="top__book" href="mailto:booking@cross-roadsmgmt.com?subject=Booking%20enquiry%20%E2%80%94%20Mishell">Book now <i class="plus" aria-hidden="true"></i></a>
+    </div>
+  </div>
   <h1 class="name rv">Mishell</h1>
-  <p class="tagline rv" style="transition-delay:.06s">Elegant sounds meet naughty feel</p>
-
   <div class="plats rv" style="transition-delay:.12s">
     <a href="https://soundcloud.com/mishellmusik" target="_blank" rel="noopener noreferrer" title="SoundCloud" aria-label="Mishell on SoundCloud"><svg aria-hidden="true"><use href="#ic-soundcloud"/></svg></a>
     <a href="https://open.spotify.com/artist/3kCsXVpVs1ZhLnIVkNzdHJ" target="_blank" rel="noopener noreferrer" title="Spotify" aria-label="Mishell on Spotify"><svg aria-hidden="true"><use href="#ic-spotify"/></svg></a>
@@ -320,46 +400,20 @@ a{color:inherit;text-decoration:none}
         <p>Mess is dedicated to producing concept-driven events, fashion, music, and more — always with a bold, sexy, naughty and uncompromising approach, fully committed to pure art. The brand allows Mishell to form a direct connection with his audience and add a new dimension to his journey.</p>
       </div>
     </div>
-    <div class="rv" style="transition-delay:.14s;display:flex;flex-direction:column;gap:10px;align-items:flex-start">
-      <a class="btn" href="https://messmakerz.com/" target="_blank" rel="noopener noreferrer"><span>Website <svg aria-hidden="true"><use href="#ic-globe"/></svg></span></a>
-      <a class="btn" href="https://www.instagram.com/mess.makerz" target="_blank" rel="noopener noreferrer"><span>Mess <svg aria-hidden="true"><use href="#ic-instagram"/></svg></span></a>
-      <a class="btn" href="https://youtu.be/juGHYqkk9pY" target="_blank" rel="noopener noreferrer"><span>Live set <svg aria-hidden="true"><use href="#ic-youtube"/></svg></span></a>
+    <div class="mess__actions rv" style="transition-delay:.14s">
+      <a class="btn btn--mess" href="https://messmakerz.com/" target="_blank" rel="noopener noreferrer"><span>Website <svg aria-hidden="true"><use href="#ic-globe"/></svg></span></a>
+      <a class="btn btn--mess" href="https://www.instagram.com/mess.makerz" target="_blank" rel="noopener noreferrer"><span>Mess <svg aria-hidden="true"><use href="#ic-instagram"/></svg></span></a>
+      <a class="btn btn--mess" href="https://youtu.be/juGHYqkk9pY" target="_blank" rel="noopener noreferrer"><span>Live set <svg aria-hidden="true"><use href="#ic-youtube"/></svg></span></a>
     </div>
   </div>
 </section>
 
-<!-- ============ RELEASES + GIGS ============ -->
+<!-- ============ MUSIC ============ -->
 <section class="sec">
-  <div class="cols">
-    <div>
-      <h2 class="sec__head rv" style="font-size:clamp(24px,3.4vw,44px)">Top releases</h2>
-      <ul class="list rv" style="transition-delay:.06s">
-        <li><span class="place">Hot Creations</span></li>
-        <li><span class="place">Diynamic</span>
-            <a class="tag" href="https://youtu.be/dmirdlOHHCQ" target="_blank" rel="noopener noreferrer">Video clip</a></li>
-        <li><span class="place">Experts Only</span></li>
-        <li><span class="place">Planet X</span></li>
-        <li><span class="place">Get Physical</span></li>
-        <li><span class="place">STMPD</span></li>
-      </ul>
-    </div>
-
-    <div>
-      <h2 class="sec__head rv" style="font-size:clamp(24px,3.4vw,44px)">Latest gigs</h2>
-      <ul class="list rv" style="transition-delay:.06s">
-        <li><span class="place">Mayan Warrior — Tulum</span><span class="loc">MX</span></li>
-        <li><span class="place">Stranger Than X Mayan Warrior — LA</span><span class="loc">US</span></li>
-        <li><span class="place">Funk Club — Mexico City</span><span class="loc">MX</span></li>
-        <li><span class="place"><a href="https://www.instagram.com/baramericas/" target="_blank" rel="noopener noreferrer">Bar Americas — Guadalajara</a></span><span class="loc">MX</span></li>
-        <li><span class="place"><a href="https://www.instagram.com/weare_boma/" target="_blank" rel="noopener noreferrer">Boma Festival — São Paulo</a></span><span class="loc">BR</span></li>
-        <li><span class="place"><a href="https://www.instagram.com/katerblaugram/" target="_blank" rel="noopener noreferrer">Kater Blau — Berlin</a></span><span class="loc">DE</span></li>
-        <li><span class="place"><a href="https://www.instagram.com/hearsaynyc" target="_blank" rel="noopener noreferrer">Hearsay NYC — New York</a></span><span class="loc">US</span></li>
-        <li><span class="place"><a href="https://www.instagram.com/thegardensofbabylon/" target="_blank" rel="noopener noreferrer">Gardens of Babylon Festival — Goch</a></span><span class="loc">DE</span></li>
-        <li><span class="place"><a href="https://www.instagram.com/hardclubporto/" target="_blank" rel="noopener noreferrer">Hard Club — Porto</a></span><span class="loc">PT</span></li>
-        <li><span class="place">Sattalight Festival — Marrakesh</span><span class="loc">MA</span></li>
-      </ul>
-    </div>
-  </div>
+  <h2 class="sec__head rv" style="font-size:clamp(24px,3.4vw,44px)">Top releases</h2>
+  <p class="labels rv" style="transition-delay:.06s">
+    <span>Hot Creations</span><span>Diynamic <a href="https://youtu.be/dmirdlOHHCQ" target="_blank" rel="noopener noreferrer">Video clip</a></span><span>Experts Only</span><span>Planet X</span><span>Get Physical</span><span>STMPD</span>
+  </p>
 
   <!-- His SoundCloud Spotlight, item by item. SoundCloud has no single
        "spotlight" widget, so each pinned set/track gets its own player. -->
@@ -368,13 +422,35 @@ a{color:inherit;text-decoration:none}
     <div class="sc__grid" id="sc-grid"></div>
   </div>
 
-  <div style="margin-top:clamp(40px,6vh,72px)">
-    <p class="eyebrow rv" style="color:#6A6A64;margin:0">Has shared decks with</p>
-    <div class="decks rv" style="transition-delay:.06s">
-      <span>The Martinez Brothers</span><span>Adam Port</span><span>&amp;ME</span><span>Mochakk</span>
-      <span>AME</span><span>Trikk</span><span>Echonomist</span><span>Damian Lazarus</span>
-      <span>WhoMadeWho</span><span>Claptone</span>
+  <div class="sc rv">
+    <p class="eyebrow" style="color:#6A6A64;margin:0 0 14px">On Spotify</p>
+    <iframe class="spotify" title="Mishell on Spotify" loading="lazy"
+      allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      src="https://open.spotify.com/embed/artist/3kCsXVpVs1ZhLnIVkNzdHJ?utm_source=generator&theme=0"></iframe>
+  </div>
+</section>
+
+<!-- ============ LATEST GIGS ============ -->
+<section class="sec sec--dark">
+  <div class="gigs__head">
+    <h2 class="sec__head rv" style="font-size:clamp(24px,3.4vw,44px);margin:0">Latest gigs</h2>
+    <div class="gigs__decks rv" style="transition-delay:.06s">
+      <p class="eyebrow" style="color:rgba(255,255,255,.45);margin:0 0 12px">Has shared decks with</p>
+      <div class="decks decks--dark">
+        <span>The Martinez Brothers</span><span>Adam Port</span><span>&amp;ME</span><span>Mochakk</span>
+        <span>AME</span><span>Trikk</span><span>Echonomist</span><span>Damian Lazarus</span>
+        <span>WhoMadeWho</span><span>Claptone</span>
+      </div>
     </div>
+  </div>
+
+  <!-- Dot-grid world map. The land mask below is generated from Natural Earth
+       110m land polygons (public domain), sampled on a 2-degree grid and packed
+       one bit per cell — 1.5KB rather than a megabyte of path data. -->
+  <div class="map rv" id="map">
+    <canvas class="map__dots" id="map-dots"></canvas>
+    <svg class="map__lines" id="map-lines" aria-hidden="true"></svg>
+    <div class="map__pins" id="map-pins"></div>
   </div>
 </section>
 
@@ -382,7 +458,7 @@ a{color:inherit;text-decoration:none}
 <section class="sec sec--dark" id="assets">
   <h2 class="sec__head rv" style="font-size:clamp(24px,3.4vw,44px)">Assets</h2>
   <div class="assets rv" style="transition-delay:.06s">
-    <a class="btn" href="https://www.dropbox.com/scl/fo/ykvhp5rcn7ht2qxiqvn7o/AJwBfZUFGZmhVRbC4jircXw/Photos?dl=0&amp;rlkey=uu6fqx30yetki456r286xrne8" target="_blank" rel="noopener noreferrer"><span>Photos <i class="plus" aria-hidden="true"></i></span></a>
+    <a class="btn" href="https://www.dropbox.com/scl/fo/2uz4zqvzu1l1d7l37pdlg/AGfdzOTr9M2jSUK_yFLLivg?rlkey=dup8j9425c9mifca2zngdmvsd&amp;st=dpkzewly&amp;dl=0" target="_blank" rel="noopener noreferrer"><span>Photos <i class="plus" aria-hidden="true"></i></span></a>
     <a class="btn" href="https://www.dropbox.com/scl/fo/ykvhp5rcn7ht2qxiqvn7o/ADzfybHwq-nnAhtTmKbkV20/Videos?dl=0&amp;rlkey=uu6fqx30yetki456r286xrne8" target="_blank" rel="noopener noreferrer"><span>Videos <i class="plus" aria-hidden="true"></i></span></a>
     <a class="btn" href="https://docs.google.com/document/d/1Znck__3U7GabpGaCuJO50h6A2q253u9zu9e0Q7y4ijA/edit" target="_blank" rel="noopener noreferrer"><span>Rider <i class="plus" aria-hidden="true"></i></span></a>
     <a class="btn" href="https://docs.google.com/document/d/1s_00L1fY5l5WQoGqKvEVbbCcjg9YgZH7M4jUvIIh_MA/edit" target="_blank" rel="noopener noreferrer"><span>Biography <i class="plus" aria-hidden="true"></i></span></a>
@@ -392,13 +468,9 @@ a{color:inherit;text-decoration:none}
        CrossRoads' own details on request — a press kit on the agency's site
        should route enquiries to the agency. -->
   <div class="contact rv" style="transition-delay:.1s">
-    <div>
-      <h4 class="eyebrow">Contact</h4>
-      <ul>
-        <li><a href="mailto:booking@cross-roadsmgmt.com">booking@cross-roadsmgmt.com</a></li>
-        <li><a href="tel:+972548051138">+972 54-805-1138</a></li>
-      </ul>
-    </div>
+    <p class="eyebrow" style="color:rgba(255,255,255,.45);margin:0 0 14px;width:100%">Contact</p>
+    <a class="btn" href="mailto:booking@cross-roadsmgmt.com"><span>booking@cross-roadsmgmt.com <i class="plus" aria-hidden="true"></i></span></a>
+    <a class="btn" href="tel:+972548051138"><span>+972 54-805-1138 <i class="plus" aria-hidden="true"></i></span></a>
   </div>
 </section>
 
@@ -414,6 +486,7 @@ a{color:inherit;text-decoration:none}
 <script>
 /* SoundCloud Spotlight — the five items pinned on his profile, in his order.
    Built in JS so the list lives in one place and the iframes stay lazy. */
+const LAND_MASK = "AAAAAAYd8P///wAA+AAAAAA8AAAAAAAAAAAwAnw////4AAIAAAAAAGAAAAAAAAAAADivwAf//wAAAAADAAf/wAHYAAAAAADoi3sAP//gAAAAAMAD///sAAAAgBgACfwz/AD/+gAAAwAEHf///+/8gBAP/7/nJdjwD/+AAAH/AA7f///////f4P//////h8H/gAAAf/6//f////////Mf/////9H4D8AeAA+ev///////////AP/////4A0B4AAAD5/////////////Af3////gHgA4AAAH5///////////LwAHgH///gHkAAAAAH4/////////+CIAABAB///4D+AAAAGCx/////////4A8AAIAAf///n/gAAAOCD/////////wA4AAAAAf///n/wAAAbP///////////AgAAAAAP/////wAAADf//////////9AAAAAAAF////0YAAAB///////////9AAAAAAAD////8EAAAB///////////5AAAAAAAD////2AAAAB/f5f///////wAAAAAAAD////gAAAAfxnwP///////jAAAAAAAD////AAAAAPCb3///////+CAAAAAAAD///8AAAAAfALf//////+ECAAAAAAAB///8AAAAAGHQP///////mMAAAAAAAA///8AAAAAH+Ai///////E8AAAAAAAAf//wAAAAAP/AA///////BgAAAAAAAAP//gAAAAAf/73///////gAAAAAAAAAD/AQAAAAAf////f/////gAAAAAAAAAF+AQAAAAB///+/n/////AAAAAAAAAAC+AAAAAAB///+f0H////AAAAAAAAAAAeAwAAAAD////f/B///8gAAAAAAAAAAeGEAAAAH////v+B/z/AAAAAAAAAAAAPMAgAAAD////n+A/B+gAAAAAAAAAAAD8AAAAAD////n4AeB/AgAAAAAAAAAAAPAAAAAH////3gAcAfAgAAAAAAAAAAADAAAAAD////6AAcAfggAAAAAAAAAAABDwAAAD////8wAMATAIAAAAAAAAAAAAr/AAAB/////gAKASAAAAAAAAAAAAAAH/gAAA/////gACAAAIAAAAAAAAAAAAH/8AAAaH///AAAAsGAAAAAAAAAAAAAH/+AAAAB//+AAAAUOAAAAAAAAAAAAAP/+AAAAB//8AAAAYegAAAAAAAAAAAAP//gAAAD//4AAAAMeBgAAAAAAAAAAAP//8AAAB//wAAAAGdiuAAAAAAAAAAAf///AAAA//wAAAACAQHgAAAAAAAAAAP///gAAA//wAAAABwAHwgAAAAAAAAAH///AAAA//wAAAAACIDQIAAAAAAAAAH//+AAAAf/wAAAAAAAAAAAAAAAAAAAD//+AAAA//wgAAAAABxAAAAAAAAAAAD//+AAAA//wgAAAAAPxgBAAAAAAAAAA//8AAAA//jgAAAAAf5gAAAAAAAAAAAf/8AAAA//DgAAAAAf/gAAAAAAAAAAAf/8AAAAf/DAAAAAD//4CAAAAAAAAAAf/wAAAAf/DAAAAAH//4AAAAAAAAAAAf/AAAAAf+CAAAAAH//8AAAAAAAAAAAf/AAAAAP8AAAAAAH//+AAAAAAAAAAA/+AAAAAP8AAAAAAH//+AAAAAAAAAAA/+AAAAAH4AAAAAAD//+AAAAAAAAAAA/8AAAAAHwAAAAAADwf8AAAAAAAAAAA/gAAAAAAAAAAAAACAH4AIAAAAAAAAB/wAAAAAAAAAAAAAAAD4AEAAAAAAAAB+AAAAAAAAAAAAAAAAAAAGAAAAAAAAB6AAAAAAAAAAAAAAAAAwAMAAAAAAAAA8AAAAAAAAAAAAAAAAAQAYAAAAAAAAB4AAAAAAAAAAAAAAAAAAAwAAAAAAAAB4AAAAAAAAAAAAAAAAAAAAAAAAAAAADwAAAAAAAAAACAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
 const SPOTLIGHT = [
   ['Get Messy',                                        'https://soundcloud.com/mishellmusik/sets/get-messy'],
   ['Michael Jackson — Billie Jean (Mishell & Oi Edit)','https://soundcloud.com/mishellmusik/htgrfdsrer545hgfds'],
@@ -431,14 +504,175 @@ document.getElementById('sc-grid').innerHTML = SPOTLIGHT.map(([title,url]) => {
             src="https://w.soundcloud.com/player/?${p}"></iframe>`;
 }).join('');
 
-/* Country flags from the ISO code already on each gig, so adding a gig later
-   only needs the two letters. Regional indicator = code point + 0x1F1E6-'A'. */
+/* Regional-indicator flags from a country code. */
 const flagOf = cc => cc.toUpperCase().replace(/./g, c => String.fromCodePoint(0x1F1E6 + c.charCodeAt(0) - 65));
-document.querySelectorAll('.list .loc').forEach(el => {
-  const cc = el.textContent.trim();
-  if (!/^[A-Za-z]{2}$/.test(cc)) return;
-  el.innerHTML = `<span class="flag" aria-hidden="true">${flagOf(cc)}</span>${cc}`;
-});
+
+/* ============================================================
+   LATEST GIGS — list and world map from one array
+   ============================================================ */
+const GIGS = [
+  { venue:'Mayan Warrior',                  city:'Tulum',        cc:'MX', lat: 20.21, lon: -87.47 },
+  { venue:'Stranger Than X Mayan Warrior',  city:'Los Angeles',  cc:'US', lat: 34.05, lon:-118.24 },
+  { venue:'Funk Club',                      city:'Mexico City',  cc:'MX', lat: 19.43, lon: -99.13 },
+  { venue:'Bar Americas',                   city:'Guadalajara',  cc:'MX', lat: 20.67, lon:-103.35, ig:'https://www.instagram.com/baramericas/' },
+  { venue:'Boma Festival',                  city:'São Paulo',    cc:'BR', lat:-23.55, lon: -46.63, ig:'https://www.instagram.com/weare_boma/' },
+  { venue:'Kater Blau',                     city:'Berlin',       cc:'DE', lat: 52.52, lon:  13.40, ig:'https://www.instagram.com/katerblaugram/' },
+  { venue:'Hearsay NYC',                    city:'New York',     cc:'US', lat: 40.71, lon: -74.01, ig:'https://www.instagram.com/hearsaynyc' },
+  { venue:'Gardens of Babylon Festival',    city:'Goch',         cc:'DE', lat: 51.68, lon:   6.16, ig:'https://www.instagram.com/thegardensofbabylon/' },
+  { venue:'Hard Club',                      city:'Porto',        cc:'PT', lat: 41.15, lon:  -8.61, ig:'https://www.instagram.com/hardclubporto/' },
+  { venue:'Sattalight Festival',            city:'Marrakesh',    cc:'MA', lat: 31.63, lon:  -8.01 },
+];
+
+/* ---------- the map ---------- */
+(() => {
+  const COLS = 180, ROWS = 69, LON0 = -180, LON1 = 180, LAT0 = -58, LAT1 = 80;
+  // the whole world, on both breakpoints
+  const VIEW = { lon0: -180, lon1: 180, lat0: -58, lat1: 80 };
+  const C0 = Math.floor((VIEW.lon0 - LON0) / 2), C1 = Math.ceil((VIEW.lon1 - LON0) / 2);
+  const R0 = Math.floor((LAT1 - VIEW.lat1) / 2), R1 = Math.ceil((LAT1 - VIEW.lat0) / 2);
+  const VC = C1 - C0, VR = R1 - R0;
+  const wrap = document.getElementById('map');
+  const cv   = document.getElementById('map-dots');
+  const svg  = document.getElementById('map-lines');
+  const pins = document.getElementById('map-pins');
+  if (!wrap || !cv) return;
+
+  // unpack one bit per grid cell
+  const bin = atob(LAND_MASK);
+  const isLand = i => (bin.charCodeAt(i >> 3) >> (7 - (i & 7))) & 1;
+
+  const project = (lat, lon) => ({
+    x: (lon - VIEW.lon0) / (VIEW.lon1 - VIEW.lon0),
+    y: (VIEW.lat1 - lat) / (VIEW.lat1 - VIEW.lat0),
+  });
+
+  function draw() {
+    const w = wrap.clientWidth, h = wrap.clientHeight;
+    if (!w || !h) return;
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    cv.width = w * dpr; cv.height = h * dpr;
+    const ctx = cv.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+
+    const cw = w / VC, ch = h / VR;
+    const r = Math.max(0.7, Math.min(cw, ch) * 0.30);
+    ctx.fillStyle = 'rgba(255,255,255,.32)';
+    for (let row = R0; row < R1; row++) {
+      for (let col = C0; col < C1; col++) {
+        if (row < 0 || row >= ROWS || col < 0 || col >= COLS) continue;
+        if (!isLand(row * COLS + col)) continue;
+        ctx.beginPath();
+        ctx.arc((col - C0 + 0.5) * cw, (row - R0 + 0.5) * ch, r, 0, 6.284);
+        ctx.fill();
+      }
+    }
+    placePins();
+  }
+
+  function placePins() {
+    const W = wrap.clientWidth, H = wrap.clientHeight;
+    pins.innerHTML = '';
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.innerHTML = '';
+
+    const pts = GIGS.map((g, i) => {
+      const p = project(g.lat, g.lon);
+      return { ...g, i, x: p.x * W, y: p.y * H };
+    });
+
+    pts.forEach(p => {
+      const d = document.createElement('div');
+      d.className = 'map__pin';
+      d.style.left = p.x + 'px';
+      d.style.top  = p.y + 'px';
+      pins.appendChild(d);
+    });
+
+    /* Labels sit beside their own pin, offset outward. Clusters (three Mexican
+       cities within a few degrees) are pushed apart vertically so the leader
+       lines fan out instead of stacking on top of each other. */
+    const narrow = window.innerWidth <= 760;
+    const GAP = narrow ? 13 : 15, REACH = narrow ? 16 : 34;
+    // estimated rendered label width, used only to decide which side to sit on
+    const est = p => p.venue.length * (narrow ? 4.2 : 5.6) + 26;
+    pts.forEach(p => {
+      let side = p.x < W * 0.52 ? 'r' : 'l';
+      const blocked = (s2) => pts.some(q => q !== p && Math.abs(q.y - p.y) < 16 &&
+        (s2 === 'r' ? q.x > p.x + 6 && q.x < p.x + REACH + est(p)
+                    : q.x < p.x - 6 && q.x > p.x - REACH - est(p)));
+      if (blocked(side) && !blocked(side === 'r' ? 'l' : 'r')) side = side === 'r' ? 'l' : 'r';
+      p.side = side;
+    });
+
+    const placed = [];
+    ['l','r'].forEach(side => {
+      const group = pts.filter(p => p.side === side).sort((a,b) => a.y - b.y);
+      let last = -Infinity;
+      group.forEach(p => {
+        const ly = Math.max(p.y, last + GAP);
+        last = ly;
+        const lx = side === 'r' ? p.x + REACH : p.x - REACH;
+
+        const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+        line.setAttribute('x1', p.x); line.setAttribute('y1', p.y);
+        line.setAttribute('x2', lx);  line.setAttribute('y2', ly);
+        svg.appendChild(line);
+
+        const el = document.createElement('div');
+        el.className = `map__label map__label--${side}`;
+        el.style.left = lx + 'px';
+        el.style.top  = ly + 'px';
+        el.innerHTML = side === 'l'
+          ? `<span>${p.venue}</span><span class="flag">${flagOf(p.cc)}</span>`
+          : `<span class="flag">${flagOf(p.cc)}</span><span>${p.venue}</span>`;
+        pins.appendChild(el);
+        placed.push({ el, line, y: ly });
+      });
+    });
+
+    /* Per-side spacing is not enough: a left label and a right label can still
+       land on top of each other. Measure what actually rendered and push the
+       later one down until the boxes clear. */
+    const box = o => {
+      const b = o.el.getBoundingClientRect(), m = wrap.getBoundingClientRect();
+      return { l: b.left - m.left, r: b.right - m.left, t: b.top - m.top, b: b.bottom - m.top };
+    };
+    /* keep every label inside the map box before de-colliding vertically */
+    placed.forEach(o => {
+      const b = o.el.getBoundingClientRect(), m = wrap.getBoundingClientRect();
+      const lw = b.width, left = b.left - m.left, right = b.right - m.left;
+      let lx = parseFloat(o.el.style.left);
+      if (left < 2)      lx += 2 - left;
+      if (right > W - 2) lx -= right - (W - 2);
+      if (lx !== parseFloat(o.el.style.left)) {
+        o.el.style.left = lx + 'px';
+        o.line.setAttribute('x2', lx);
+      }
+    });
+
+    // pins are obstacles too — clamping a label sideways can drop it onto one
+    const pinBoxes = pts.map(p => ({ l: p.x - 5, r: p.x + 5, t: p.y - 5, b: p.y + 5 }));
+    const hits = (A, B) => A.l < B.r && B.l < A.r && A.t < B.b && B.t < A.b;
+
+    placed.sort((a, b) => a.y - b.y);
+    for (let i = 0; i < placed.length; i++) {
+      for (let guard = 0; guard < 24; guard++) {
+        const A = box(placed[i]);
+        const clash = placed.slice(0, i).map(box).find(B => hits(A, B))
+                   || pinBoxes.find(B => hits(A, B));
+        if (!clash) break;
+        placed[i].y += (clash.b - A.t) + 4;
+        placed[i].el.style.top = placed[i].y + 'px';
+        placed[i].line.setAttribute('y2', placed[i].y);
+      }
+    }
+  }
+
+  draw();
+  new ResizeObserver(draw).observe(wrap);
+  document.fonts?.ready.then(draw);
+})();
 
 /* reveal on scroll */
 const io = new IntersectionObserver(es => {
