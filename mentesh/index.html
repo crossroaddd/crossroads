@@ -171,6 +171,32 @@ a{color:inherit;text-decoration:none}
 .btn--ink{background:var(--ink);color:var(--paper)}
 .btn--ink::before{background:var(--ash)}
 
+.sc{margin-top:clamp(30px,4.5vh,50px)}
+.sc__grid{display:grid;gap:10px;grid-template-columns:1fr}
+@media (min-width:900px){ .sc__grid{grid-template-columns:1fr 1fr} }
+.sc__grid iframe{display:block;width:100%;height:166px;border:0;box-shadow:inset 0 0 0 1px var(--line)}
+.spotify{display:block;width:100%;height:520px;border:0}
+
+/* ---------- brand book ---------- */
+.brand{display:grid;gap:clamp(22px,4vw,52px);grid-template-columns:1fr}
+@media (min-width:760px){ .brand{grid-template-columns:1.2fr 1fr} }
+.decks{display:flex;flex-wrap:wrap;gap:6px}
+.decks span{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;box-shadow:inset 0 0 0 1px var(--line)}
+.decks--dark span{box-shadow:inset 0 0 0 1px var(--line-inv);color:var(--white)}
+.brand__note{margin-top:clamp(28px,4.5vh,48px);max-width:72ch}
+.pal{margin-top:clamp(26px,4vh,40px)}
+.pal__row{display:flex;flex-wrap:wrap;gap:8px}
+.sw{
+  display:flex;align-items:flex-end;
+  width:clamp(96px,13vw,140px);height:clamp(66px,9vw,92px);
+  padding:8px;background:var(--c);
+  box-shadow:inset 0 0 0 1px var(--line-inv);
+  font-size:9.5px;font-weight:700;letter-spacing:.08em;
+  color:#191919;
+}
+/* the dark swatches need light type on them */
+.sw[style*="#5b5b5b"],.sw[style*="#191919"],.sw[style*="#303445"],.sw[style*="#293034"],.sw[style*="#ae5b2f"]{color:rgba(255,255,255,.82)}
+
 /* ---------- lists ---------- */
 .list--dark li{border-top-color:var(--line-inv)}
 .list--dark li:last-child{border-bottom-color:var(--line-inv)}
@@ -326,6 +352,69 @@ a{color:inherit;text-decoration:none}
   </div>
 </section>
 
+<!-- ============ MUSIC ============ -->
+<section class="sec">
+  <h2 class="sec__head rv" style="font-size:clamp(24px,3.4vw,44px)">Music</h2>
+
+  <div class="sc rv" style="transition-delay:.06s">
+    <p class="eyebrow" style="color:#6A6A64;margin:0 0 14px">Spotlight on SoundCloud</p>
+    <div class="sc__grid" id="sc-grid"></div>
+  </div>
+
+  <div class="sc rv" style="transition-delay:.1s">
+    <p class="eyebrow" style="color:#6A6A64;margin:0 0 14px">On Spotify</p>
+    <iframe class="spotify" title="Mentesh on Spotify" loading="lazy"
+      allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      src="https://open.spotify.com/embed/artist/4AUqHwTX2zVGZOlXgrSNoF?utm_source=generator&theme=0"></iframe>
+  </div>
+</section>
+
+<!-- ============ BRAND BOOK ============ -->
+<section class="sec sec--dark">
+  <h2 class="sec__head rv" style="font-size:clamp(24px,3.4vw,44px)">Brand book</h2>
+
+  <div class="brand rv" style="transition-delay:.06s">
+    <div>
+      <p class="eyebrow" style="color:rgba(255,255,255,.45);margin:0 0 12px">Brand values</p>
+      <div class="decks decks--dark">
+        <span>Authenticity</span><span>Emotion</span><span>Musical Depth</span><span>Mature</span><span>Passion</span>
+      </div>
+    </div>
+    <div>
+      <p class="eyebrow" style="color:rgba(255,255,255,.45);margin:0 0 12px">Visual principles</p>
+      <div class="decks decks--dark">
+        <span>Clean</span><span>Flow</span><span>Distinct</span><span>Elegant</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand__note prose rv" style="transition-delay:.1s">
+    <p>The logo is built on a bold sans-serif typeface, maintaining simplicity and visual clarity. A subtle "flow" comes from a clever separation between the two parts of the word, emphasising the two syllables of the name. On the right sits a unique <b>MT</b> authentication mark, a personal signature in place of the standard trademark symbol.</p>
+    <p>The brand operates in a dark-mode aesthetic — nocturnal, intimate and sophisticated. Deep blacks and charcoal greys carry typography in off-white, beige and soft cream, giving the logo an authoritative presence and a raw studio feel.</p>
+  </div>
+
+  <div class="pal rv" style="transition-delay:.14s">
+    <p class="eyebrow" style="color:rgba(255,255,255,.45);margin:0 0 12px">Primary palette</p>
+    <div class="pal__row">
+      <span class="sw" style="--c:#fafafa">#fafafa</span>
+      <span class="sw" style="--c:#f5f1e1">#f5f1e1</span>
+      <span class="sw" style="--c:#5b5b5b">#5b5b5b</span>
+      <span class="sw" style="--c:#191919">#191919</span>
+    </div>
+  </div>
+
+  <div class="pal rv" style="transition-delay:.18s">
+    <p class="eyebrow" style="color:rgba(255,255,255,.45);margin:0 0 12px">Secondary palette</p>
+    <div class="pal__row">
+      <span class="sw" style="--c:#ffc868">#ffc868</span>
+      <span class="sw" style="--c:#fb8f40">#fb8f40</span>
+      <span class="sw" style="--c:#ae5b2f">#ae5b2f</span>
+      <span class="sw" style="--c:#303445">#303445</span>
+      <span class="sw" style="--c:#293034">#293034</span>
+    </div>
+  </div>
+</section>
+
 <!-- ============ ASSETS + CONTACT ============ -->
 <section class="sec sec--dark" id="assets">
   <h2 class="sec__head rv" style="font-size:clamp(24px,3.4vw,44px)">Assets</h2>
@@ -356,6 +445,21 @@ a{color:inherit;text-decoration:none}
 <script>
 /* SoundCloud Spotlight — the five items pinned on his profile, in his order.
    Built in JS so the list lives in one place and the iframes stay lazy. */
+/* His SoundCloud Spotlight — the two sets pinned on his profile. */
+const SPOTLIGHT = [
+  ['Originals', 'https://soundcloud.com/mentesh/sets/releases'],
+  ['SET',       'https://soundcloud.com/mentesh/sets/set'],
+];
+document.getElementById('sc-grid').innerHTML = SPOTLIGHT.map(([title,url]) => {
+  const p = new URLSearchParams({
+    url, color:'#000000', auto_play:'false', hide_related:'true',
+    show_comments:'false', show_user:'true', show_reposts:'false',
+    show_teaser:'false', visual:'false'
+  });
+  return `<iframe title="${title} — SoundCloud" loading="lazy" allow="autoplay"
+            src="https://w.soundcloud.com/player/?${p}"></iframe>`;
+}).join('');
+
 /* Regional-indicator flags from a country code. */
 const flagOf = cc => cc.toUpperCase().replace(/./g, c => String.fromCodePoint(0x1F1E6 + c.charCodeAt(0) - 65));
 
