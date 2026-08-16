@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nevos — CrossRoads</title>
+<meta name="description" content="Nevos — press kit. Cheeky latin tech house with Ibiza after-party energy.">
+<link rel="canonical" href="https://cross-roadsmgmt.com/nevos/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#000000">
+
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="CrossRoads">
+<meta property="og:title" content="Nevos — CrossRoads">
+<meta property="og:description" content="A curator of energy — the dj your dance floor needs">
+<meta property="og:url" content="https://cross-roadsmgmt.com/nevos/">
+<meta property="og:image" content="https://cross-roadsmgmt.com/og-nevos.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nevos — CrossRoads">
+<meta name="twitter:description" content="A curator of energy — the dj your dance floor needs">
+<meta name="twitter:image" content="https://cross-roadsmgmt.com/og-nevos.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Press kit page. Same design language as the roster: monochrome,
+   hard edges, bar composition, the plus from the mark as the only motif.
+   NOTE: the tokens and the header/footer/button rules below are duplicated
+   from the home page. Worth extracting to a shared stylesheet once a second
+   artist page exists — flagged rather than done here to keep this change small.
+   ============================================================ */
+:root{
+  --ink:#000000;
+  --paper:#FFFFFF;
+  --white:#FFFFFF;
+  --ash:#8E8E88;
+  --line:rgba(0,0,0,.14);
+  --line-inv:rgba(255,255,255,.18);
+  --bar:clamp(56px,6.5vw,76px);
+  --gut:clamp(16px,4vw,56px);
+  --font:'Archivo','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--font);font-weight:400;line-height:1.5;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--ink);color:var(--paper)}
+
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase}
+.plus{position:relative;display:inline-block;width:1em;height:1em;flex:none}
+.plus::before,.plus::after{content:"";position:absolute;background:currentColor}
+.plus::before{inset:42% 0}
+.plus::after{inset:0 42%}
+
+/* ---------- header ---------- */
+.hdr{
+  position:fixed;inset:0 0 auto 0;z-index:100;height:var(--bar);
+  display:flex;align-items:center;gap:var(--gut);padding:0 var(--gut);
+  background:var(--ink);color:var(--white);
+}
+.hdr__logo{width:clamp(112px,13vw,168px);color:var(--white)}
+.hdr__nav{margin-left:auto;display:flex;align-items:center;gap:clamp(14px,2.2vw,34px)}
+.hdr__nav a{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;opacity:.62;transition:opacity .25s var(--ease)}
+.hdr__nav a:hover{opacity:1}
+
+/* ---------- hero ---------- */
+.top{
+  background:var(--ink);color:var(--white);
+  padding:calc(var(--bar) + clamp(40px,7vh,86px)) var(--gut) clamp(36px,6vh,64px);
+}
+.top__bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-bottom:clamp(24px,4vh,44px)}
+.top__back{display:inline-flex;align-items:center;gap:10px;opacity:.55;transition:opacity .25s var(--ease)}
+.top__tools{margin-left:auto;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
+.top__tools a{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.6;transition:opacity .25s var(--ease)}
+.top__tools a:hover{opacity:1}
+.top__book{
+  display:inline-flex;align-items:center;gap:.7em;height:30px;padding:0 13px;
+  background:var(--white);color:var(--ink);opacity:1 !important;
+  font-weight:800 !important;transition:transform .3s var(--ease);
+}
+.top__book:hover{transform:translateY(-2px)}
+.top__book .plus{font-size:8px}
+.top__back:hover{opacity:1}
+.top__back .plus{font-size:9px;transform:rotate(45deg)}
+.name{
+  margin:0;
+  font-size:clamp(56px,14vw,210px);
+  font-weight:900;line-height:.82;letter-spacing:-.05em;text-transform:uppercase;
+}
+.tagline{
+  margin:clamp(18px,3vh,28px) 0 0;
+  font-size:clamp(15px,2.2vw,26px);font-weight:500;font-style:italic;
+  letter-spacing:.02em;color:rgba(255,255,255,.72);
+}
+/* platform row */
+.plats{display:flex;flex-wrap:wrap;gap:8px;margin-top:clamp(26px,4.5vh,44px)}
+.plats a{
+  width:38px;height:38px;display:grid;place-items:center;
+  box-shadow:inset 0 0 0 1px var(--line-inv);
+  transition:background .28s var(--ease),color .28s var(--ease),box-shadow .28s var(--ease);
+}
+.plats svg{width:16px;height:16px}
+@media (hover:hover){.plats a:hover{background:var(--white);color:var(--ink);box-shadow:inset 0 0 0 1px var(--white)}}
+.plats a:active{background:var(--white);color:var(--ink)}
+.plats a:focus-visible{outline:2px solid var(--white);outline-offset:2px}
+
+/* ---------- full-bleed portrait ---------- */
+.shot{position:relative;background:#111;aspect-ratio:16/9;overflow:hidden}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:50% 28%}
+@media (max-width:720px){ .shot{aspect-ratio:4/5} }
+
+/* ---------- generic section ---------- */
+.sec{padding:clamp(56px,9vh,110px) var(--gut)}
+.sec--dark{background:var(--ink);color:var(--white)}
+/* two dark sections in a row need a seam or they read as one slab */
+.sec--dark + .sec--dark{border-top:1px solid var(--line-inv);padding-top:clamp(34px,5vh,60px)}
+.sec--dark:last-of-type{padding-bottom:clamp(34px,5vh,60px)}
+.sec__head{
+  margin:0 0 clamp(26px,4vh,46px);
+  font-size:clamp(30px,6vw,76px);font-weight:900;line-height:.9;
+  letter-spacing:-.04em;text-transform:uppercase;
+}
+.sec__head em{font-style:normal;color:var(--ash)}
+
+.bio{display:grid;gap:clamp(26px,4.5vw,60px);grid-template-columns:1fr}
+/* the portrait matches the height of the copy so the two end on the same line */
+@media (min-width:900px){ .bio{grid-template-columns:1.05fr .95fr;align-items:stretch} }
+.bio__shot{margin:0;min-height:0}
+.bio__shot img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
+/* portrait is desktop only */
+@media (max-width:899px){ .bio__shot{display:none} }
+
+.prose{display:grid;gap:clamp(16px,2.4vh,24px);max-width:66ch}
+.prose p{margin:0;font-size:clamp(15px,1.5vw,19px);line-height:1.55}
+.prose--lc p::first-letter{text-transform:none}
+.prose b{font-weight:800}
+.sec--dark .prose p{color:rgba(255,255,255,.84)}
+.sec--dark .prose b{color:var(--white)}
+
+/* ---------- release labels — a quiet list, not buttons ---------- */
+.labels{
+  margin:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 0;
+  font-size:15px;line-height:1.6;
+}
+.labels span{display:inline-flex;align-items:baseline;gap:8px}
+.labels span:not(:last-child)::after{content:"+";margin:0 12px;color:#B4B4AE;font-weight:700}
+.labels a{font-size:9.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  padding:3px 7px;box-shadow:inset 0 0 0 1px var(--line);white-space:nowrap}
+@media (hover:hover){ .labels a:hover{background:var(--ink);color:var(--paper)} }
+
+
+/* shared button */
+.btn{
+  display:inline-flex;align-items:center;gap:.7em;
+  height:40px;padding:0 16px;
+  background:var(--white);color:var(--ink);
+  font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  position:relative;overflow:hidden;transition:color .35s var(--ease);
+}
+.btn span{position:relative;z-index:1;display:inline-flex;align-items:center;gap:.85em}
+.btn::before{content:"";position:absolute;inset:0;background:var(--ash);transform:scaleY(0);transform-origin:bottom;transition:transform .4s var(--ease)}
+.btn:hover::before{transform:scaleY(1)}
+.btn .plus{font-size:10px;transition:transform .4s var(--ease)}
+.btn:hover .plus{transform:rotate(90deg)}
+/* platform icons sit where the plus does, at the end of the label */
+.btn svg{width:14px;height:14px;flex:none}
+.btn--ink{background:var(--ink);color:var(--paper)}
+.btn--ink::before{background:var(--ash)}
+
+/* ---------- live sets with a preview ---------- */
+.sets{display:grid;gap:12px;grid-template-columns:1fr}
+@media (min-width:760px){ .sets{grid-template-columns:repeat(auto-fit,minmax(280px,340px))} }
+.set{display:grid;gap:10px}
+.set__shot{position:relative;display:block;aspect-ratio:16/9;overflow:hidden;background:#111}
+.set__shot img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.set__play{
+  position:absolute;inset:0;margin:auto;width:46px;height:46px;
+  background:rgba(0,0,0,.55);border-radius:50%;
+  transition:background .25s var(--ease);
+}
+.set__play::before{
+  content:"";position:absolute;top:50%;left:52%;transform:translate(-50%,-50%);
+  border-style:solid;border-width:8px 0 8px 13px;border-color:transparent transparent transparent #fff;
+}
+.set__name{
+  display:flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--white);
+}
+.set__name svg{width:14px;height:14px;flex:none;opacity:.6}
+@media (hover:hover){
+  .set:hover .set__shot img{transform:scale(1.05)}
+  .set:hover .set__play{background:rgba(0,0,0,.8)}
+}
+
+/* ---------- lists ---------- */
+.list--dark li{border-top-color:var(--line-inv)}
+.list--dark li:last-child{border-bottom-color:var(--line-inv)}
+.list--dark .loc{color:rgba(255,255,255,.5)}
+.list--dark .num{font-size:11px;font-weight:800;letter-spacing:.1em;color:rgba(255,255,255,.45);min-width:26px}
+.list{list-style:none;margin:0;padding:0;display:grid}
+.list li{
+  display:flex;align-items:baseline;gap:14px;
+  padding:13px 0;border-top:1px solid var(--line);
+  font-size:clamp(14px,1.4vw,17px);
+}
+.list li:last-child{border-bottom:1px solid var(--line)}
+.list .place{font-weight:700}
+.list .loc{margin-left:auto;display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#6A6A64;white-space:nowrap}
+.list .flag{letter-spacing:0;font-size:15px;line-height:1}
+.list a{position:relative}
+.list a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.list a:hover::after{transform:scaleX(1)}
+.tag{
+  margin-left:10px;font-size:9.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  padding:3px 7px;box-shadow:inset 0 0 0 1px var(--line);white-space:nowrap;
+}
+
+
+/* ---------- assets ---------- */
+.assets{display:flex;flex-wrap:wrap;gap:10px}
+
+/* ---------- contact ---------- */
+.contact{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(26px,4vh,40px)}
+.contact h4{margin:0 0 12px;color:rgba(255,255,255,.42)}
+.contact ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.contact li{font-size:15px;color:rgba(255,255,255,.88);overflow-wrap:anywhere}
+.contact a{position:relative}
+.contact a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.contact a:hover::after{transform:scaleX(1)}
+
+/* ---------- footer ---------- */
+.ftr{background:var(--ink);color:var(--white);padding:clamp(22px,3vh,32px) var(--gut) 24px;border-top:1px solid var(--line-inv)}
+.ftr__base{display:flex;flex-wrap:wrap;gap:12px 26px;align-items:center;color:rgba(255,255,255,.4)}
+.ftr__base .eyebrow{font-size:10px}
+.ftr__base .sep{margin-left:auto}
+
+/* ---------- custom cursor (same behaviour as the home page) ---------- */
+.cursor{
+  position:fixed;left:0;top:0;width:14px;height:14px;background:var(--ink);
+  pointer-events:none;z-index:9999;opacity:0;will-change:transform;
+  transition:opacity .16s linear,background-color .12s linear,width .2s var(--ease),height .2s var(--ease);
+}
+.cursor.is-visible{opacity:1}
+.cursor.on-dark{background:var(--white)}
+.cursor.on-target{width:26px;height:26px}
+@media (hover:hover) and (pointer:fine){ html.has-cursor,html.has-cursor *{cursor:none !important} }
+
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  .rv{opacity:1;transform:none}
+  .cursor{transition:opacity .16s linear,background-color .12s linear}
+}
+@media (max-width:720px){ .hdr__nav{display:none} .hdr{justify-content:center} }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="cr-logo" viewBox="0 0 1920 768">
+    <path d="M1249.33,320.98h-31.07c-12,0-14.48,4.94-14.48,13.77v98.51c0,8.83,2.12,13.42,14.48,13.42h31.07c12.36,0,14.83-4.24,14.83-13.42v-98.51c0-9.18-2.82-13.77-14.83-13.77Z"/>
+    <path d="M1596.49,320.98h-42.37v125.7h42.37c14.48,0,18.71-6.36,18.71-20.83v-86.86c0-14.48-4.94-18.01-18.71-18.01Z"/>
+    <path d="M531.69,320.98h-31.07c-12,0-14.48,4.94-14.48,13.77v98.51c0,8.83,2.12,13.42,14.48,13.42h31.07c12.36,0,14.83-4.24,14.83-13.42v-98.51c0-9.18-2.82-13.77-14.83-13.77Z"/>
+    <path d="M1075.39,320.98h-45.55v56.49h45.55c9.53,0,14.12-2.47,14.12-14.83v-27.89c0-12.36-4.59-13.77-14.12-13.77Z"/>
+    <path d="M1536,192V0h-384v192H0v384h384v192h384v-192h1152V192h-384ZM232.19,350.63c0,1.41-.35,2.47-.71,2.82-.71.71-1.41.71-2.82.71h-36.37c-1.41,0-2.47,0-2.82-.71-.71-.35-.71-1.41-.71-2.82v-15.54c0-9.53-2.12-14.12-14.48-14.12h-31.42c-12,0-14.48,4.94-14.48,14.12v97.8c0,12.71,4.59,13.77,14.48,13.77h31.42c9.89,0,14.48-1.06,14.48-13.42v-16.24c0-1.41,0-2.47.71-2.82.35-.35,1.41-.71,2.82-.71h36.37c1.41,0,2.12.35,2.82.71.35.35.71,1.41.71,2.82v22.24c0,29.66-16.59,46.25-46.25,46.25h-54.37c-29.66,0-45.9-16.59-45.9-46.25v-110.16c0-30.01,16.24-46.61,45.9-46.61h54.37c29.66,0,46.25,16.59,46.25,46.61v21.54ZM414.6,364.76c0,26.48-11.65,44.13-32.48,49.08l28.95,69.56c0,.71.35,1.06,0,1.41,0,.35-.35.71-1.06.71h-42.37c-.71,0-1.06-.35-1.41-.71l-1.06-1.06v-.35l-24.72-68.5h-28.6v67.08c0,1.41-.35,2.12-.71,2.47-.71.71-1.41,1.06-2.82,1.06h-35.66c-1.06,0-2.12-.35-2.47-1.06-.35-.35-.71-1.06-.71-2.47v-195.96c0-1.41.35-2.12.71-2.82.35-.35,1.41-.71,2.47-.71h96.04c29.66,0,45.9,16.59,45.9,46.25v36.01ZM589.6,439.26c0,29.66-16.59,46.25-46.25,46.25h-54.02c-29.66,0-46.25-16.59-46.25-46.25v-110.16c0-30.01,16.59-46.61,46.25-46.61h54.02c29.66,0,46.25,16.59,46.25,46.61v110.16ZM769.89,439.61c0,29.66-16.59,45.9-46.61,45.9h-51.9c-29.66,0-46.25-16.59-46.25-46.25v-11.65c0-1.41.35-2.47.71-2.82.71-.35,1.41-.71,2.47-.71h36.01c1.41,0,2.47.35,2.82.71.71.35,1.06,1.41,1.06,2.82v4.94c0,13.06,4.59,15.18,14.83,15.18h28.25c10.24,0,15.18-3.53,15.18-14.48v-7.77c0-9.89-1.77-13.77-11.65-17.3l-57.55-16.24c-22.95-6.36-32.13-19.42-32.13-46.25v-16.59c0-30.01,16.59-46.61,46.25-46.61h50.84c29.66,0,46.25,16.59,46.25,46.61v11.65c0,1.06,0,2.12-.71,2.47-.35.35-1.41.71-2.47.71h-36.01c-1.41,0-2.47-.35-2.82-.71-.35-.35-.71-1.41-.71-2.47v-5.65c0-9.53-2.82-14.83-15.18-14.83h-27.89c-12,0-14.83,5.3-14.83,14.48v8.47c0,10.24,2.12,13.42,12.36,16.59l57.55,16.24c22.95,6,32.13,19.42,32.13,46.25v17.3ZM949.12,439.61c0,29.66-16.59,45.9-46.61,45.9h-51.9c-29.66,0-46.25-16.59-46.25-46.25v-11.65c0-1.41.35-2.47.71-2.82.71-.35,1.41-.71,2.47-.71h36.01c1.41,0,2.47.35,2.82.71.71.35,1.06,1.41,1.06,2.82v4.94c0,13.06,4.59,15.18,14.83,15.18h28.25c10.24,0,15.18-3.53,15.18-14.48v-7.77c0-9.89-1.77-13.77-11.65-17.3l-57.55-16.24c-22.95-6.36-32.13-19.42-32.13-46.25v-16.59c0-33.19,10.24-46.61,46.25-46.61h50.84c34.6,0,46.25,12,46.25,46.61v11.65c0,1.06,0,2.12-.71,2.47-.35.35-1.41.71-2.47.71h-36.01c-1.41,0-2.47-.35-2.82-.71-.35-.35-.71-1.41-.71-2.47v-5.65c0-9.53-2.82-14.83-15.18-14.83h-27.89c-12,0-14.83,5.3-14.83,14.48v8.47c0,10.24,2.12,13.42,12.36,16.24l57.55,16.59c22.95,6,32.13,19.42,32.13,46.25v17.3ZM1132.59,364.76c0,26.48-11.65,44.13-32.48,49.08l28.95,69.56c0,.71.35,1.06,0,1.41,0,.35-.35.71-1.06.71h-42.37c-.71,0-1.06-.35-1.41-.71s-.71-.71-1.06-1.06v-.35l-24.72-68.5h-28.6v67.08c0,1.41-.35,2.12-.71,2.47-.71.71-1.41,1.06-2.82,1.06h-35.66c-1.06,0-2.12-.35-2.47-1.06-.35-.35-.71-1.06-.71-2.47v-195.96c0-1.41.35-2.12.71-2.82.35-.35,1.41-.71,2.47-.71h96.04c29.66,0,45.9,16.59,45.9,46.25v36.01ZM1307.23,439.26c0,29.66-16.59,46.25-46.25,46.25h-54.02c-29.66,0-46.25-16.59-46.25-46.25v-110.16c0-30.01,16.59-46.61,46.25-46.61h54.02c29.66,0,46.25,16.59,46.25,46.61v110.16ZM1488.94,484.45c-.35.71-1.06,1.06-2.12,1.06h-37.07c-1.06,0-1.77-.35-2.47-1.06-.71-.35-1.41-1.06-1.41-2.47l-10.24-47.31h-55.79l-9.53,47.31c-.35,1.41-.71,2.12-1.41,2.47-.71.71-1.77,1.06-2.82,1.06h-37.07c-1.06,0-2.12-.35-2.47-1.06-.35-.35-.35-1.06,0-2.47l45.9-195.96c.35-1.41.71-2.12,1.41-2.82.71-.35,1.77-.71,2.82-.71h60.38c1.41,0,2.47.35,3.18.71.71.71,1.06,1.41,1.06,2.82l47.67,195.96c.35,1.41.35,2.12,0,2.47ZM1657.93,425.84c0,38.49-21.18,59.67-58.96,59.67h-84.03c-1.06,0-2.12-.35-2.47-1.06-.71-.35-.71-1.06-.71-2.47v-195.96c0-1.41,0-2.12.71-2.82.35-.35,1.41-.71,2.47-.71h85.8c36.72,0,57.2,20.13,57.2,56.49v86.86ZM1834.34,439.61c0,29.66-16.59,45.9-46.61,45.9h-51.9c-29.66,0-46.25-16.59-46.25-46.25v-11.65c0-1.41.35-2.47.71-2.82.71-.35,1.41-.71,2.47-.71h36.01c1.41,0,2.47.35,2.82.71.71.35,1.06,1.41,1.06,2.82v4.94c0,13.06,4.59,15.18,14.83,15.18h28.25c10.24,0,15.18-3.53,15.18-14.48v-7.77c0-9.89-1.77-13.77-11.65-17.3l-57.55-16.24c-22.95-6.36-32.13-19.42-32.13-46.25v-16.59c0-30.01,16.59-46.61,46.25-46.61h50.84c29.66,0,46.25,16.59,46.25,46.61v11.65c0,1.06,0,2.12-.71,2.47-.35.35-1.41.71-2.47.71h-36.01c-1.41,0-2.47-.35-2.82-.71-.35-.35-.71-1.41-.71-2.47v-5.65c0-9.53-2.82-14.83-15.18-14.83h-27.89c-12,0-14.83,5.3-14.83,14.48v8.47c0,10.24,2.12,13.42,12.36,16.24l57.55,16.59c22.95,6,32.13,19.42,32.13,46.25v17.3ZM1902,316.94c-1.54,3.63-3.66,6.81-6.36,9.54-2.7,2.73-5.88,4.89-9.54,6.48-3.66,1.6-7.59,2.4-11.77,2.4s-8.09-.79-11.73-2.35c-3.63-1.57-6.79-3.7-9.46-6.4-2.67-2.7-4.78-5.86-6.32-9.5-1.54-3.63-2.31-7.49-2.31-11.56s.77-7.93,2.31-11.56c1.54-3.63,3.66-6.81,6.36-9.54,2.7-2.73,5.88-4.89,9.54-6.48,3.66-1.6,7.59-2.4,11.77-2.4s8.09.79,11.73,2.35c3.63,1.57,6.78,3.7,9.46,6.4,2.67,2.7,4.78,5.86,6.32,9.5,1.54,3.64,2.31,7.49,2.31,11.56s-.77,7.93-2.31,11.56Z"/>
+    <path d="M357.4,320.98h-45.55v56.49h45.55c9.53,0,14.12-2.47,14.12-14.83v-27.89c0-12.36-4.59-13.77-14.12-13.77Z"/>
+    <path d="M1891.94,287.96c-2.2-2.22-4.78-3.98-7.76-5.26-2.98-1.29-6.21-1.93-9.69-1.93s-6.73.66-9.73,1.97c-3,1.31-5.6,3.08-7.8,5.3-2.19,2.22-3.92,4.85-5.19,7.88-1.26,3.03-1.89,6.23-1.89,9.62s.62,6.64,1.85,9.62c1.24,2.98,2.95,5.58,5.15,7.8,2.2,2.22,4.78,3.98,7.76,5.26,2.98,1.29,6.21,1.93,9.69,1.93s6.73-.66,9.73-1.97c3-1.31,5.6-3.08,7.8-5.3,2.2-2.22,3.92-4.83,5.19-7.84,1.26-3,1.89-6.22,1.89-9.65s-.62-6.57-1.85-9.58c-1.24-3-2.95-5.61-5.15-7.84ZM1881.93,319.38c-1.88.97-4.27,1.45-7.16,1.45-2.2,0-4.25-.4-6.15-1.21-1.9-.8-3.54-1.92-4.91-3.34-1.37-1.42-2.44-3.08-3.22-4.99-.78-1.9-1.17-3.96-1.17-6.15s.39-4.18,1.17-6.11c.78-1.93,1.85-3.62,3.22-5.07,1.37-1.45,3-2.59,4.91-3.42,1.9-.83,4.01-1.25,6.32-1.25,2.9,0,5.26.44,7.08,1.33,1.82.88,3.46,2.02,4.91,3.42l-3.78,4.34c-1.18-1.07-2.44-1.94-3.78-2.62-1.34-.67-2.81-1.01-4.42-1.01-1.4,0-2.67.27-3.82.8-1.15.54-2.16,1.28-3.02,2.21-.86.94-1.52,2.03-1.97,3.26-.46,1.23-.68,2.57-.68,4.02s.24,2.72.73,3.98c.48,1.26,1.14,2.36,1.97,3.3.83.94,1.82,1.68,2.98,2.21,1.15.54,2.43.8,3.82.8,1.82,0,3.36-.33,4.63-1.01,1.26-.67,2.5-1.6,3.74-2.77l3.86,3.78c-1.61,1.72-3.35,3.06-5.23,4.02Z"/>
+    <polygon points="1406.67 309.32 1387.6 398.3 1427.85 398.3 1407.73 309.32 1406.67 309.32"/>
+  </symbol>
+
+  <symbol id="ic-spotify" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+    <circle cx="12" cy="12" r="9.2"/><path d="M7.1 9.2c3.2-.95 6.6-.6 9.5 1"/><path d="M7.9 12.4c2.6-.75 5.4-.45 7.8.85"/><path d="M8.7 15.4c2.05-.55 4.2-.32 6.1.75"/>
+  </symbol>
+  <symbol id="ic-apple" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round">
+    <path d="M9.4 16.6V6.4l9-1.75v10.2"/><ellipse cx="7.2" cy="16.9" rx="2.3" ry="2"/><ellipse cx="16.2" cy="14.9" rx="2.3" ry="2"/>
+  </symbol>
+  <symbol id="ic-beatport" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+    <path d="M8.6 3.2v7.4"/><circle cx="13.1" cy="14.6" r="5.6"/>
+  </symbol>
+  <symbol id="ic-soundcloud" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M2.8 13.4v4.2"/><path d="M6 11v6.6"/><path d="M9.2 12.6v5"/><path d="M12.4 8.4v9.2"/>
+    <path d="M12.4 17.6h6.4a2.6 2.6 0 0 0 .2-5.2 4.7 4.7 0 0 0-6.6-3.7"/>
+  </symbol>
+  <symbol id="ic-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+    <rect x="3.1" y="3.1" width="17.8" height="17.8" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17" cy="7" r="1.15" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="ic-youtube" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round">
+    <rect x="2.2" y="5.4" width="19.6" height="13.2" rx="4"/><path d="M10.2 9.3l5.2 2.7-5.2 2.7z"/>
+  </symbol>
+  <symbol id="ic-facebook" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round">
+    <path d="M14.8 21.4v-8.3h2.8l.5-3.3h-3.3V7.7c0-.95.32-1.8 1.85-1.8h1.6V2.95A18 18 0 0 0 15.7 2.8c-2.7 0-4.4 1.65-4.4 4.6v2.4H8.3v3.3h3v8.3z"/>
+  </symbol>
+  <symbol id="ic-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+    <circle cx="12" cy="12" r="9.2"/><path d="M2.9 12h18.2"/><ellipse cx="12" cy="12" rx="4.1" ry="9.2"/>
+  </symbol>
+</svg>
+
+<header class="hdr">
+  <a href="/" class="hdr__logo" aria-label="Crossroads — home">
+    <svg viewBox="0 0 1920 768" fill="currentColor" aria-hidden="true"><use href="#cr-logo"/></svg>
+  </a>
+  <nav class="hdr__nav">
+    <a href="/#roster">Roster</a>
+    <a href="/#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ============ NAME ============ -->
+<section class="top">
+  <div class="top__bar">
+    <a href="/#roster" class="top__back eyebrow"><i class="plus" aria-hidden="true"></i> Back to roster</a>
+    <div class="top__tools">
+      <a href="https://drive.google.com/drive/folders/1lNbWkmH7ftg0h7QkfyJzCqG7ruswd4lo" target="_blank" rel="noopener noreferrer">Photos</a>
+      <a href="https://drive.google.com/drive/folders/1gAxNF8pE8FB-ciKeOhmj2_vRQ_LnPaF8" target="_blank" rel="noopener noreferrer">Videos</a>
+      <a href="https://drive.google.com/file/d/1s9-tzduWGrXCg3CtJ3YPSKi8eAQDQ-6k/view" target="_blank" rel="noopener noreferrer">Rider</a>
+      <a href="https://drive.google.com/file/d/1OH2zKe3uMMGII-j_o_DnOpewbJCOg9_G/view" target="_blank" rel="noopener noreferrer">Biography</a>
+      <a class="top__book" href="mailto:booking@cross-roadsmgmt.com?subject=Booking%20enquiry%20%E2%80%94%20Nevos">Book now <i class="plus" aria-hidden="true"></i></a>
+    </div>
+  </div>
+  <h1 class="name rv">Nevos</h1>
+  <div class="plats rv" style="transition-delay:.12s">
+    <a href="https://soundcloud.com/nevosmusic" target="_blank" rel="noopener noreferrer" title="SoundCloud" aria-label="Nevos on SoundCloud"><svg aria-hidden="true"><use href="#ic-soundcloud"/></svg></a>
+    <a href="https://www.instagram.com/nevos_music/" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Nevos on Instagram"><svg aria-hidden="true"><use href="#ic-instagram"/></svg></a>
+  </div>
+</section>
+
+<div class="shot"><img src="/img/nevos.jpg" alt="Nevos" width="900" height="1351"></div>
+
+<!-- ============ BIO ============ -->
+<section class="sec">
+  <div class="bio">
+    <div>
+      <h2 class="sec__head rv">Bio</h2>
+      <!-- his EPK sets this copy in lower case throughout; kept as written -->
+      <div class="prose prose--lc rv" style="transition-delay:.06s">
+        <p>nevos is a dj and producer known for his ability to truly hold a dance floor. a selector at heart and versatile on the decks, he knows exactly how to read the room — making the crowd dance from their core rather than their hands.</p>
+        <p>from intimate clubs to major festival stages, nevos delivers cheeky latin tech house grooves infused with ibiza after-party energy, creating a deep physical connection on the floor.</p>
+        <p>while still in his early steps as a producer, nevos is already receiving support from key players such as rüfüs du sol and vintage culture, with unreleased tracks being tested on some of the biggest stages.</p>
+        <p>more than just a dj, nevos is a curator of energy. nevos is the dj your dance floor needs.</p>
+      </div>
+    </div>
+    <figure class="bio__shot rv" style="transition-delay:.1s">
+      <img src="/img/nevos.jpg" alt="Nevos" width="900" height="1351" loading="lazy" decoding="async">
+    </figure>
+  </div>
+</section>
+
+<!-- ============ LIVE SET ============ -->
+<section class="sec sec--dark">
+  <h2 class="sec__head rv" style="font-size:clamp(24px,3.4vw,44px)">Live set</h2>
+  <div class="sets rv" style="transition-delay:.06s">
+    <a class="set" href="https://www.youtube.com/watch?v=mM_Qf4nweBU" target="_blank" rel="noopener noreferrer">
+      <span class="set__shot"><img src="/img/set-nevos-weekendance.jpg" alt="" loading="lazy" decoding="async"><i class="set__play" aria-hidden="true"></i></span>
+      <span class="set__name">Weekendance Eilat 2025 <svg aria-hidden="true"><use href="#ic-youtube"/></svg></span></a>
+  </div>
+</section>
+
+<!-- ============ ASSETS + CONTACT ============ -->
+<section class="sec sec--dark" id="assets">
+  <h2 class="sec__head rv" style="font-size:clamp(24px,3.4vw,44px)">Assets</h2>
+  <div class="assets rv" style="transition-delay:.06s">
+    <a class="btn" href="https://drive.google.com/drive/folders/1lNbWkmH7ftg0h7QkfyJzCqG7ruswd4lo" target="_blank" rel="noopener noreferrer"><span>Photos <i class="plus" aria-hidden="true"></i></span></a>
+    <a class="btn" href="https://drive.google.com/drive/folders/1gAxNF8pE8FB-ciKeOhmj2_vRQ_LnPaF8" target="_blank" rel="noopener noreferrer"><span>Videos <i class="plus" aria-hidden="true"></i></span></a>
+    <a class="btn" href="https://drive.google.com/file/d/1s9-tzduWGrXCg3CtJ3YPSKi8eAQDQ-6k/view" target="_blank" rel="noopener noreferrer"><span>Rider <i class="plus" aria-hidden="true"></i></span></a>
+    <a class="btn" href="https://drive.google.com/file/d/1OH2zKe3uMMGII-j_o_DnOpewbJCOg9_G/view" target="_blank" rel="noopener noreferrer"><span>Full biography <i class="plus" aria-hidden="true"></i></span></a>
+  </div>
+
+  <!-- The EPK listed Strange Talent and Ritual Artists here. Replaced with
+       CrossRoads' own details on request — a press kit on the agency's site
+       should route enquiries to the agency. -->
+  <div class="contact rv" style="transition-delay:.1s">
+    <p class="eyebrow" style="color:rgba(255,255,255,.45);margin:0 0 14px;width:100%">Contact</p>
+    <a class="btn" href="mailto:booking@cross-roadsmgmt.com"><span>booking@cross-roadsmgmt.com <i class="plus" aria-hidden="true"></i></span></a>
+    <a class="btn" href="tel:+972548051138"><span>+972 54-805-1138 <i class="plus" aria-hidden="true"></i></span></a>
+  </div>
+</section>
+
+</main>
+
+<footer class="ftr">
+  <div class="ftr__base">
+    <span class="eyebrow">© 2026 Crossroads Agency</span>
+    <span class="eyebrow sep">Design by Ormitus</span>
+  </div>
+</footer>
+
+<script>
+/* SoundCloud Spotlight — the five items pinned on his profile, in his order.
+   Built in JS so the list lives in one place and the iframes stay lazy. */
+/* Regional-indicator flags from a country code. */
+const flagOf = cc => cc.toUpperCase().replace(/./g, c => String.fromCodePoint(0x1F1E6 + c.charCodeAt(0) - 65));
+
+/* reveal on scroll */
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { rootMargin:'0px 0px -8% 0px', threshold:0.08 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+</script>
+<script src="/assets/cursor.js" defer></script>
+</body>
+</html>
