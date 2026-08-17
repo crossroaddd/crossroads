@@ -3,25 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Yuvèe — CrossRoads</title>
-<meta name="description" content="Yuvèe — press kit. Deep and progressive house, jazz-trained, Jerusalem to Tel Aviv.">
-<link rel="canonical" href="https://cross-roadsmgmt.com/yuvee/">
+<title>Genish — CrossRoads</title>
+<meta name="description" content="Genish — press kit. Psychedelia drawn from Middle Eastern and North African heritage.">
+<link rel="canonical" href="https://cross-roadsmgmt.com/genish/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#000000">
 
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="CrossRoads">
-<meta property="og:title" content="Yuvèe — CrossRoads">
-<meta property="og:description" content="Deep and progressive house, where a classically trained musician meets the raw pulse of the streets">
-<meta property="og:url" content="https://cross-roadsmgmt.com/yuvee/">
-<meta property="og:image" content="https://cross-roadsmgmt.com/og-yuvee.png">
+<meta property="og:title" content="Genish — CrossRoads">
+<meta property="og:description" content="Cyclical riffs, worldly polyrhythms and dizzying melodies">
+<meta property="og:url" content="https://cross-roadsmgmt.com/genish/">
+<meta property="og:image" content="https://cross-roadsmgmt.com/og-genish.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Yuvèe — CrossRoads">
-<meta name="twitter:description" content="Deep and progressive house, where a classically trained musician meets the raw pulse of the streets">
-<meta name="twitter:image" content="https://cross-roadsmgmt.com/og-yuvee.png">
+<meta name="twitter:title" content="Genish — CrossRoads">
+<meta name="twitter:description" content="Cyclical riffs, worldly polyrhythms and dizzying melodies">
+<meta name="twitter:image" content="https://cross-roadsmgmt.com/og-genish.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -175,51 +175,10 @@ a{color:inherit;text-decoration:none}
 .btn--ink{background:var(--ink);color:var(--paper)}
 .btn--ink::before{background:var(--ash)}
 
-/* ---------- releases: each one clearly a link ---------- */
-.rel{display:grid;gap:8px}
-.rel__item{
-  display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;
-  padding:16px 18px;box-shadow:inset 0 0 0 1px var(--line);
-  transition:background .25s var(--ease),color .25s var(--ease),box-shadow .25s var(--ease);
-}
-.rel__name{font-size:clamp(16px,1.9vw,21px);font-weight:800;letter-spacing:-.02em}
-.rel__label{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6A6A64}
-.rel__go{
-  margin-left:auto;display:inline-flex;align-items:center;gap:8px;
-  font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
-}
-.rel__go .plus{font-size:9px;transition:transform .35s var(--ease)}
-@media (hover:hover){
-  .rel__item:hover{background:var(--ink);color:var(--paper);box-shadow:inset 0 0 0 1px var(--ink)}
-  .rel__item:hover .rel__label{color:rgba(255,255,255,.6)}
-  .rel__item:hover .rel__go .plus{transform:rotate(90deg)}
-}
-.rel__item:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-
-/* ---------- live sets with a preview ---------- */
-.sets{display:grid;gap:12px;grid-template-columns:1fr}
-@media (min-width:760px){ .sets{grid-template-columns:repeat(3,1fr)} }
-.set{display:grid;gap:10px}
-.set__shot{position:relative;display:block;aspect-ratio:16/9;overflow:hidden;background:#111}
-.set__shot img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
-.set__play{
-  position:absolute;inset:0;margin:auto;width:46px;height:46px;
-  background:rgba(0,0,0,.55);border-radius:50%;
-  transition:background .25s var(--ease);
-}
-.set__play::before{
-  content:"";position:absolute;top:50%;left:52%;transform:translate(-50%,-50%);
-  border-style:solid;border-width:8px 0 8px 13px;border-color:transparent transparent transparent #fff;
-}
-.set__name{
-  display:flex;align-items:center;gap:8px;
-  font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--white);
-}
-.set__name svg{width:14px;height:14px;flex:none;opacity:.6}
-@media (hover:hover){
-  .set:hover .set__shot img{transform:scale(1.05)}
-  .set:hover .set__play{background:rgba(0,0,0,.8)}
-}
+.tech{display:grid;gap:clamp(24px,4vw,56px);grid-template-columns:1fr}
+@media (min-width:820px){ .tech{grid-template-columns:repeat(3,1fr)} }
+.plain{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.plain li{font-size:14.5px;line-height:1.45;color:rgba(255,255,255,.84)}
 
 /* ---------- lists ---------- */
 .list--dark li{border-top-color:var(--line-inv)}
@@ -343,105 +302,87 @@ a{color:inherit;text-decoration:none}
   <div class="top__bar">
     <a href="/#roster" class="top__back eyebrow"><i class="plus" aria-hidden="true"></i> Back to roster</a>
     <div class="top__tools">
-      <a href="https://www.dropbox.com/scl/fo/hg49kncwb14a0vktntiea/h?rlkey=d6wdjjze257ekn194y7fs7anw&amp;st=7xndj7gn&amp;dl=0" target="_blank" rel="noopener noreferrer">Photos</a>
-      <a href="https://www.dropbox.com/scl/fo/mjkse222c380a5a12teb4/AErmLXEoZ2C8BMAe3X6dy4k?rlkey=ujbov5mugq3azmqwx11vgaj7t&amp;st=gm5zmv8p&amp;dl=0" target="_blank" rel="noopener noreferrer">Videos</a>
+      <a href="https://drive.google.com/drive/folders/1OHFdh7vCrtS_FwVQ2cgzPlGYl6PkkvKI" target="_blank" rel="noopener noreferrer">Press images</a>
     </div>
   </div>
-  <h1 class="name rv">Yuvèe</h1>
+  <h1 class="name rv">Genish</h1>
   <div class="plats rv" style="transition-delay:.12s">
-    <a href="https://soundcloud.com/yuveemusic" target="_blank" rel="noopener noreferrer" title="SoundCloud" aria-label="Yuvee on SoundCloud"><svg aria-hidden="true"><use href="#ic-soundcloud"/></svg></a>
-    <a href="https://open.spotify.com/artist/2uUpxGX8XaVGhqh398dP2f" target="_blank" rel="noopener noreferrer" title="Spotify" aria-label="Yuvee on Spotify"><svg aria-hidden="true"><use href="#ic-spotify"/></svg></a>
-    <a href="https://www.youtube.com/@yuveemusic" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="Yuvee on YouTube"><svg aria-hidden="true"><use href="#ic-youtube"/></svg></a>
-    <a href="https://www.beatport.com/artist/yuve/1243590" target="_blank" rel="noopener noreferrer" title="Beatport" aria-label="Yuvee on Beatport"><svg aria-hidden="true"><use href="#ic-beatport"/></svg></a>
-    <a href="https://www.instagram.com/yuvee_music/" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Yuvee on Instagram"><svg aria-hidden="true"><use href="#ic-instagram"/></svg></a>
+    <a href="https://open.spotify.com/artist/12rfpY7qPWCqM5kN8q1Ry1" target="_blank" rel="noopener noreferrer" title="Spotify" aria-label="Genish on Spotify"><svg aria-hidden="true"><use href="#ic-spotify"/></svg></a>
+    <a href="https://music.apple.com/il/artist/genish/787229909" target="_blank" rel="noopener noreferrer" title="Apple Music" aria-label="Genish on Apple Music"><svg aria-hidden="true"><use href="#ic-apple"/></svg></a>
+    <a href="https://www.beatport.com/artist/genish/929264" target="_blank" rel="noopener noreferrer" title="Beatport" aria-label="Genish on Beatport"><svg aria-hidden="true"><use href="#ic-beatport"/></svg></a>
+    <a href="https://soundcloud.com/genishmusic" target="_blank" rel="noopener noreferrer" title="SoundCloud" aria-label="Genish on SoundCloud"><svg aria-hidden="true"><use href="#ic-soundcloud"/></svg></a>
+    <a href="https://www.instagram.com/genish__" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Genish on Instagram"><svg aria-hidden="true"><use href="#ic-instagram"/></svg></a>
   </div>
 </section>
 
-<div class="shot"><img src="/img/yuvee.jpg" alt="Yuvèe" width="900" height="1351"></div>
+<div class="shot"><img src="/img/genish.jpg" alt="Genish" width="900" height="1200"></div>
 
-<!-- ============ BIO ============ -->
+<!-- ============ ABOUT ============ -->
 <section class="sec">
   <div class="bio">
     <div>
-      <h2 class="sec__head rv">Bio</h2>
+      <h2 class="sec__head rv">About</h2>
       <div class="prose rv" style="transition-delay:.06s">
-        <p>Every great story begins with a moment of revelation. For Yuvèe, music has been an integral part of his life since childhood, but it was at the age of 10 — upon discovering EDM and deep house — that he truly found his path into the world of electronic music.</p>
-        <p>With a rich background in jazz and a degree with honors from the prestigious Academy of Music in Jerusalem, Yuvèe's sound is grounded in the timeless principles of music theory, with a commitment to blending live instruments that bring genuine depth and emotion to each track.</p>
-        <p>The contrasting energies of Jerusalem's rhythm and Tel Aviv's underground scene have shaped Yuvèe into a dynamic DJ. His sets seamlessly weave deep house and progressive house, where the sophistication of a classically trained musician meets the raw pulse of the streets.</p>
+        <p>The genesis for the Tel Aviv-based producer Itzhak Genish draws inspiration from his Middle Eastern and North African heritage, infusing and radiating a psychedelia rendered with cyclical riffs, worldly polyrhythms and dizzying melodies.</p>
+        <p>Genish's artistic vision shines through his releases on labels such as Ya Hala Ya Hala and Multi Culti, as well as on his own acclaimed imprint, El Aattali. His performances are marked by elaborate setups that seamlessly integrate organic and analog sounds, creating a rich tapestry of aural textures.</p>
+        <p>Currently, Genish is developing a groundbreaking live show that promises to captivate international audiences. This immersive experience aims to weave a spellbinding sonic journey, entrancing listeners with its hypnotic allure.</p>
       </div>
     </div>
     <figure class="bio__shot rv" style="transition-delay:.1s">
-      <img src="/img/yuvee-bio.jpg" alt="Yuvèe" width="900" height="1350" loading="lazy" decoding="async">
+      <img src="/img/genish.jpg" alt="Genish" width="900" height="1200" loading="lazy" decoding="async">
     </figure>
   </div>
 </section>
 
-<!-- ============ RELEASES ============ -->
+<!-- ============ MUSIC ============ -->
 <section class="sec">
-  <h2 class="sec__head rv" style="font-size:clamp(24px,3.4vw,44px)">Releases</h2>
-  <div class="rel rv" style="transition-delay:.06s">
-    <a class="rel__item" href="https://www.beatport.com/release/freydies-ep/4996339" target="_blank" rel="noopener noreferrer">
-      <span class="rel__name">Freydies EP</span><span class="rel__label">Anjunadeep Explorations</span>
-      <span class="rel__go">Listen <i class="plus" aria-hidden="true"></i></span></a>
-    <a class="rel__item" href="https://www.beatport.com/release/what/5728589" target="_blank" rel="noopener noreferrer">
-      <span class="rel__name">What!</span><span class="rel__label">Get Physical Music</span>
-      <span class="rel__go">Listen <i class="plus" aria-hidden="true"></i></span></a>
-    <a class="rel__item" href="https://soundcloud.com/luvstruckmusic/whats-a-girl-to-do-yuvee-remix" target="_blank" rel="noopener noreferrer">
-      <span class="rel__name">What's a Girl to Do</span><span class="rel__label">Spinnin' Records</span>
-      <span class="rel__go">Listen <i class="plus" aria-hidden="true"></i></span></a>
-    <a class="rel__item" href="https://open.spotify.com/track/7G7iejjUvVun2tPL5KdhBA" target="_blank" rel="noopener noreferrer">
-      <span class="rel__name">Profill</span><span class="rel__label">Crosstown Rebels</span>
-      <span class="rel__go">Listen <i class="plus" aria-hidden="true"></i></span></a>
-  </div>
-
-  <div class="sc rv">
+  <h2 class="sec__head rv" style="font-size:clamp(24px,3.4vw,44px)">Music</h2>
+  <div class="sc rv" style="transition-delay:.06s">
     <p class="eyebrow" style="color:#6A6A64;margin:0 0 14px">Spotlight on SoundCloud</p>
     <div class="sc__grid" id="sc-grid"></div>
   </div>
-
-  <div class="sc rv">
+  <div class="sc rv" style="transition-delay:.1s">
     <p class="eyebrow" style="color:#6A6A64;margin:0 0 14px">On Spotify</p>
-    <iframe class="spotify" title="Yuvee on Spotify" loading="lazy"
+    <iframe class="spotify" title="Genish on Spotify" loading="lazy"
       allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-      src="https://open.spotify.com/embed/artist/2uUpxGX8XaVGhqh398dP2f?utm_source=generator&theme=0" style="height:640px"></iframe>
+      src="https://open.spotify.com/embed/artist/12rfpY7qPWCqM5kN8q1Ry1?utm_source=generator&theme=0" style="height:640px"></iframe>
   </div>
 </section>
 
-<!-- ============ LIVE SETS ============ -->
+<!-- ============ TECHNICAL ============ -->
 <section class="sec sec--dark">
-  <h2 class="sec__head rv" style="font-size:clamp(24px,3.4vw,44px)">Live sets</h2>
-  <div class="sets rv" style="transition-delay:.06s">
-    <a class="set" href="https://www.youtube.com/watch?v=FJNHdPtXbxM" target="_blank" rel="noopener noreferrer">
-      <span class="set__shot"><img src="/img/set-messy.jpg" alt="" loading="lazy" decoding="async"><i class="set__play" aria-hidden="true"></i></span>
-      <span class="set__name">Messy Sessions <svg aria-hidden="true"><use href="#ic-youtube"/></svg></span></a>
-    <a class="set" href="https://soundcloud.com/berny/yuvee_372" target="_blank" rel="noopener noreferrer">
-      <span class="set__shot"><img src="/img/set-idwt.jpg" alt="" loading="lazy" decoding="async"><i class="set__play" aria-hidden="true"></i></span>
-      <span class="set__name">In Dark We Trust <svg aria-hidden="true"><use href="#ic-soundcloud"/></svg></span></a>
-    <a class="set" href="https://soundcloud.com/maccabihouse/maccabi-podcast-by-yuvee-210824" target="_blank" rel="noopener noreferrer">
-      <span class="set__shot"><img src="/img/set-maccabi.jpg" alt="" loading="lazy" decoding="async"><i class="set__play" aria-hidden="true"></i></span>
-      <span class="set__name">Maccabi Podcast <svg aria-hidden="true"><use href="#ic-soundcloud"/></svg></span></a>
-    <a class="set" href="https://youtu.be/QV5FhoyVlnM" target="_blank" rel="noopener noreferrer">
-      <span class="set__shot"><img src="/img/set-yuvee-explorations.jpg" alt="" loading="lazy" decoding="async"><i class="set__play" aria-hidden="true"></i></span>
-      <span class="set__name">Explorations Live Set <svg aria-hidden="true"><use href="#ic-youtube"/></svg></span></a>
+  <h2 class="sec__head rv" style="font-size:clamp(24px,3.4vw,44px)">Technical requirements</h2>
+  <div class="tech rv" style="transition-delay:.06s">
+    <div>
+      <p class="eyebrow" style="color:rgba(255,255,255,.45);margin:0 0 12px">DJ equipment</p>
+      <ul class="plain">
+        <li>3 × Pioneer DJ CDJ-2000NXS2 or CDJ-3000 multi players</li>
+        <li>1 × Pioneer DJ DJM-900NXS2 mixer or Pioneer DJ V10 mixer</li>
+      </ul>
+    </div>
+    <div>
+      <p class="eyebrow" style="color:rgba(255,255,255,.45);margin:0 0 12px">Connectivity</p>
+      <ul class="plain">
+        <li>All DJ equipment networked via an 8-port gigabit network switch</li>
+        <li>Cat5e or Cat6 ethernet cables for a reliable connection</li>
+        <li>All CDJ units updated to the latest firmware version</li>
+      </ul>
+    </div>
+    <div>
+      <p class="eyebrow" style="color:rgba(255,255,255,.45);margin:0 0 12px">Hospitality</p>
+      <ul class="plain">
+        <li>A selection of cold beers</li><li>Coconut water</li><li>Still mineral water</li>
+        <li>Chilled fine white wine</li><li>An assortment of fresh fruits</li><li>Clean towels</li>
+      </ul>
+    </div>
   </div>
-</section>
-
-<!-- ============ UPCOMING SHOWS ============ -->
-<section class="sec sec--dark">
-  <h2 class="sec__head rv" style="font-size:clamp(24px,3.4vw,44px)">Upcoming shows</h2>
-  <ul class="list list--dark rv" style="transition-delay:.06s">
-    <li><span class="place">Anjunadeep Explorations Festival — Dhermi</span><span class="loc"><span class="flag" aria-hidden="true">🇦🇱</span>AL</span></li>
-    <li><span class="place">Colorado Charlie — The Hug</span><span class="loc"><span class="flag" aria-hidden="true">🇳🇱</span>NL</span></li>
-    <li><span class="place">Anjunadeep Malta</span><span class="loc"><span class="flag" aria-hidden="true">🇲🇹</span>MT</span></li>
-  </ul>
 </section>
 
 <!-- ============ ASSETS + CONTACT ============ -->
 <section class="sec sec--dark" id="assets">
   <h2 class="sec__head rv" style="font-size:clamp(24px,3.4vw,44px)">Assets</h2>
   <div class="assets rv" style="transition-delay:.06s">
-    <a class="btn" href="https://www.dropbox.com/scl/fo/hg49kncwb14a0vktntiea/h?rlkey=d6wdjjze257ekn194y7fs7anw&amp;st=7xndj7gn&amp;dl=0" target="_blank" rel="noopener noreferrer"><span>Photos <i class="plus" aria-hidden="true"></i></span></a>
-    <a class="btn" href="https://www.dropbox.com/scl/fo/mjkse222c380a5a12teb4/AErmLXEoZ2C8BMAe3X6dy4k?rlkey=ujbov5mugq3azmqwx11vgaj7t&amp;st=gm5zmv8p&amp;dl=0" target="_blank" rel="noopener noreferrer"><span>Videos <i class="plus" aria-hidden="true"></i></span></a>
+    <a class="btn" href="https://drive.google.com/drive/folders/1OHFdh7vCrtS_FwVQ2cgzPlGYl6PkkvKI" target="_blank" rel="noopener noreferrer"><span>Press images <i class="plus" aria-hidden="true"></i></span></a>
   </div>
 
   <!-- The EPK listed Strange Talent and Ritual Artists here. Replaced with
@@ -469,9 +410,11 @@ a{color:inherit;text-decoration:none}
 /* His SoundCloud Spotlight, item by item — SoundCloud has no single
    "spotlight" widget, so each pinned set gets its own player. */
 const SPOTLIGHT = [
-  ['Originals & Remixes', 'https://soundcloud.com/yuveemusic/sets/originals-remixes'],
-  ['Freydies EP',         'https://soundcloud.com/yuveemusic/sets/freydies-ep'],
-  ["Yuvèe's (:",          'https://soundcloud.com/yuveemusic/sets/yuv-es'],
+  ['Genish feat. Liraz — Talas',                    'https://soundcloud.com/genishmusic/sets/genish-feat-liraz-talas'],
+  ['Mixes / Live',                                  'https://soundcloud.com/genishmusic/sets/podcast'],
+  ['Genish — Je Toon EP',                           'https://soundcloud.com/genishmusic/sets/genish-je-toon-ep'],
+  ['Bahia',                                         'https://soundcloud.com/genishmusic/sets/bahia'],
+  ['Genish feat. Alaev Family — Echoes Of Bukhara', 'https://soundcloud.com/genishmusic/sets/genish-feat-alaev-family'],
 ];
 document.getElementById('sc-grid').innerHTML = SPOTLIGHT.map(([title,url]) => {
   const p = new URLSearchParams({
