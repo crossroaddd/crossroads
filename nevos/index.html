@@ -224,7 +224,9 @@ a{color:inherit;text-decoration:none}
 .assets{display:flex;flex-wrap:wrap;gap:10px}
 
 /* ---------- contact ---------- */
-.contact{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(26px,4vh,40px)}
+.contact{display:flex;flex-wrap:wrap;gap:clamp(20px,3.5vw,44px);margin-top:clamp(26px,4vh,40px);align-items:flex-start}
+.contact__grp{display:flex;flex-wrap:wrap;gap:10px}
+.contact__grp .eyebrow{width:100%;margin:0 0 12px;color:rgba(255,255,255,.45)}
 .contact h4{margin:0 0 12px;color:rgba(255,255,255,.42)}
 .contact ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
 .contact li{font-size:15px;color:rgba(255,255,255,.88);overflow-wrap:anywhere}
@@ -379,9 +381,15 @@ a{color:inherit;text-decoration:none}
        CrossRoads' own details on request — a press kit on the agency's site
        should route enquiries to the agency. -->
   <div class="contact rv" style="transition-delay:.1s">
-    <p class="eyebrow" style="color:rgba(255,255,255,.45);margin:0 0 14px;width:100%">Contact</p>
-    <a class="btn" href="mailto:daniel@cross-roadsmgmt.com"><span>daniel@cross-roadsmgmt.com <i class="plus" aria-hidden="true"></i></span></a>
-    <a class="btn" href="tel:+972525392032"><span>+972 52-539-2032 <i class="plus" aria-hidden="true"></i></span></a>
+    <div class="contact__grp">
+      <p class="eyebrow">Booking</p>
+      <a class="btn" href="mailto:booking@ritual-artists.com"><span>booking@ritual-artists.com <i class="plus" aria-hidden="true"></i></span></a>
+    </div>
+    <div class="contact__grp">
+      <p class="eyebrow">Management</p>
+      <a class="btn" href="mailto:daniel@cross-roadsmgmt.com"><span>daniel@cross-roadsmgmt.com <i class="plus" aria-hidden="true"></i></span></a>
+      <a class="btn" href="tel:+972525392032"><span>+972 52-539-2032 <i class="plus" aria-hidden="true"></i></span></a>
+    </div>
   </div>
 </section>
 
