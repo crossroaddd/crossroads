@@ -382,10 +382,10 @@ a{color:inherit;text-decoration:none}
     <div>
       <h2 class="sec__head rv">Old school refs<br><em>Fresh groove</em></h2>
       <div class="prose rv" style="transition-delay:.06s">
-    <p>MISHELL is an uprising force from the electronic scene and one of the most exciting names shaping Tel Aviv's underground right now. His sound lives where elegant meets naughty, a sharp fusion of psychedelic references, house and indie dance, driven by authentic groove and bold energy.</p>
-    <p>His music has landed on leading labels such as Hot Creations, Diynamic, Experts Only, STMPD, Planet X and Get Physical, gaining the support of tastemakers including Solomun, Jamie Jones, John Summit and Vintage Culture.</p>
-    <p>Mishell has left his mark on iconic dancefloors like Mayan Warrior, Kater Blau Berlin, Bar Américas, Funk Club and BOMA Brazil. He's also been featured in Mixmag, with airplay on BBC Radio 1 and Kiss FM.</p>
-      <p>Beyond the decks, he is the founder of Mess (Mess Makers) — a creative community for concept-driven events, fashion and music. His sets are sharp, punchy and smooth, moving between dark textures and warm melodic moments, powered by sexy, cheeky rhythms and heavy basslines.</p>
+        <p>MISHELL is an uprising force from the electronic scene and one of the most exciting names shaping Tel Aviv's underground right now. His sound lives where elegant meets naughty, a sharp fusion of psychedelic references, house and indie dance, driven by authentic groove and bold energy.</p>
+        <p>His music has landed on leading labels such as Hot Creations, Diynamic, Helix, Anjunadeep, Maccabi House, Catch &amp; Release, Nu Moda and many more.</p>
+        <p>Mishell has left his mark on iconic dancefloors like Space Club, Mayan Warrior, Labyrinth UK, UNVRS Ibiza, Stereo Montreal, Bar Américas, and BOMA Brazil.</p>
+        <p>Beyond the decks, he is the founder of Mess (Mess Makers) — a creative community for concept-driven events, fashion and music. His sets are sharp, punchy and smooth, moving between dark textures and warm melodic moments, powered by sexy, cheeky rhythms and groovy basslines.</p>
       </div>
     </div>
     <figure class="bio__shot rv" style="transition-delay:.1s">
@@ -442,11 +442,10 @@ a{color:inherit;text-decoration:none}
   <div class="gigs__head">
     <h2 class="sec__head rv" style="font-size:clamp(24px,3.4vw,44px);margin:0">Latest gigs</h2>
     <div class="gigs__decks rv" style="transition-delay:.06s">
-      <p class="eyebrow" style="color:rgba(255,255,255,.45);margin:0 0 12px">Has shared decks with</p>
+      <p class="eyebrow" style="color:rgba(255,255,255,.45);margin:0 0 12px">Supported by</p>
       <div class="decks decks--dark">
-        <span>The Martinez Brothers</span><span>Adam Port</span><span>&amp;ME</span><span>Mochakk</span>
-        <span>AME</span><span>Trikk</span><span>Echonomist</span><span>Damian Lazarus</span>
-        <span>WhoMadeWho</span><span>Claptone</span>
+        <span>Seth Troxler</span><span>Solomun</span><span>Jamie Jones</span><span>Michael Bibi</span>
+        <span>Josh Baker</span><span>Diplo</span><span>John Summit</span><span>Vintage Culture</span>
       </div>
     </div>
   </div>
@@ -518,16 +517,19 @@ const flagOf = cc => cc.toUpperCase().replace(/./g, c => String.fromCodePoint(0x
    LATEST GIGS — list and world map from one array
    ============================================================ */
 const GIGS = [
-  { venue:'Mayan Warrior',                  city:'Tulum',        cc:'MX', lat: 20.21, lon: -87.47 },
-  { venue:'Stranger Than X Mayan Warrior',  city:'Los Angeles',  cc:'US', lat: 34.05, lon:-118.24 },
-  { venue:'Funk Club',                      city:'Mexico City',  cc:'MX', lat: 19.43, lon: -99.13 },
-  { venue:'Bar Americas',                   city:'Guadalajara',  cc:'MX', lat: 20.67, lon:-103.35, ig:'https://www.instagram.com/baramericas/' },
-  { venue:'Boma Festival',                  city:'São Paulo',    cc:'BR', lat:-23.55, lon: -46.63, ig:'https://www.instagram.com/weare_boma/' },
-  { venue:'Kater Blau',                     city:'Berlin',       cc:'DE', lat: 52.52, lon:  13.40, ig:'https://www.instagram.com/katerblaugram/' },
-  { venue:'Hearsay NYC',                    city:'New York',     cc:'US', lat: 40.71, lon: -74.01, ig:'https://www.instagram.com/hearsaynyc' },
-  { venue:'Gardens of Babylon Festival',    city:'Goch',         cc:'DE', lat: 51.68, lon:   6.16, ig:'https://www.instagram.com/thegardensofbabylon/' },
-  { venue:'Hard Club',                      city:'Porto',        cc:'PT', lat: 41.15, lon:  -8.61, ig:'https://www.instagram.com/hardclubporto/' },
-  { venue:'Sattalight Festival',            city:'Marrakesh',    cc:'MA', lat: 31.63, lon:  -8.01 },
+  { venue:'Space Club',              city:'Miami',        cc:'US', lat: 25.76, lon: -80.19 },
+  { venue:'Labyrinth',               city:'London',       cc:'GB', lat: 51.51, lon:  -0.13 },
+  { venue:'UNVRS',                   city:'Ibiza',        cc:'ES', lat: 38.91, lon:   1.43 },
+  { venue:'Mayan Warrior',           city:'Tulum',        cc:'MX', lat: 20.21, lon: -87.47 },
+  { venue:'Stereo',                  city:'Montreal',     cc:'CA', lat: 45.50, lon: -73.57 },
+  { venue:'BOMA',                    city:'São Paulo',    cc:'BR', lat:-23.55, lon: -46.63, ig:'https://www.instagram.com/weare_boma/' },
+  { venue:'Meidum Festival',         city:'Cape Town',    cc:'ZA', lat:-33.92, lon:  18.42 },
+  { venue:'Aquapolis Festival',      city:'Varna',        cc:'BG', lat: 43.21, lon:  27.92 },
+  { venue:'Sound',                   city:'Los Angeles',  cc:'US', lat: 34.05, lon:-118.24 },
+  { venue:'We Belong Here Festival', city:'Miami',        cc:'US', lat: 25.79, lon: -80.13 },
+  { venue:'Kater Blau',              city:'Berlin',       cc:'DE', lat: 52.52, lon:  13.40, ig:'https://www.instagram.com/katerblaugram/' },
+  { venue:'Bar Americas',            city:'Guadalajara',  cc:'MX', lat: 20.67, lon:-103.35, ig:'https://www.instagram.com/baramericas/' },
+  { venue:'Funk',                    city:'Mexico City',  cc:'MX', lat: 19.43, lon: -99.13 },
 ];
 
 /* ---------- the map ---------- */

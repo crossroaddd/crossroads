@@ -197,6 +197,11 @@ a{color:inherit;text-decoration:none}
 /* the dark swatches need light type on them */
 .sw[style*="#5b5b5b"],.sw[style*="#191919"],.sw[style*="#303445"],.sw[style*="#293034"],.sw[style*="#ae5b2f"]{color:rgba(255,255,255,.82)}
 
+/* brandbook plates, straight from the PDF */
+.plate{margin:clamp(22px,3.5vh,34px) 0 0;background:#fff}
+.plate figcaption{margin:0 0 10px;color:rgba(255,255,255,.45)}
+.plate img{width:100%;height:auto;display:block}
+
 /* ---------- lists ---------- */
 .list--dark li{border-top-color:var(--line-inv)}
 .list--dark li:last-child{border-bottom-color:var(--line-inv)}
@@ -389,9 +394,26 @@ a{color:inherit;text-decoration:none}
   </div>
 
   <div class="brand__note prose rv" style="transition-delay:.1s">
-    <p>The logo is built on a bold sans-serif typeface, maintaining simplicity and visual clarity. A subtle "flow" comes from a clever separation between the two parts of the word, emphasising the two syllables of the name. On the right sits a unique <b>MT</b> authentication mark, a personal signature in place of the standard trademark symbol.</p>
-    <p>The brand operates in a dark-mode aesthetic — nocturnal, intimate and sophisticated. Deep blacks and charcoal greys carry typography in off-white, beige and soft cream, giving the logo an authoritative presence and a raw studio feel.</p>
+    <p>The logo is built on a bold sans-serif typeface, maintaining simplicity and visual clarity. The design incorporates a subtle "flow" through a clever separation between the two parts of the word, enhancing readability and emphasizing the two syllables of the name Mentesh.</p>
+    <p>On the right, a unique <b>MT</b> authentication mark appears, serving as a personal signature instead of the standard trademark symbol. This choice builds credibility, sustains a high-end feel, and highlights the brand's authenticity as a distinct and recognizable hallmark.</p>
   </div>
+
+  <!-- the logo section's own artwork, rendered from the brandbook PDF -->
+  <figure class="plate rv" style="transition-delay:.14s">
+    <img src="/img/mentesh/logo-lockup.jpg" alt="Mentesh primary logo lockup" loading="lazy" decoding="async">
+  </figure>
+  <figure class="plate rv" style="transition-delay:.16s">
+    <figcaption class="eyebrow">Logo — versions</figcaption>
+    <img src="/img/mentesh/logo-variants.jpg" alt="Mentesh logo on black, light grey, gradient and photography" loading="lazy" decoding="async">
+  </figure>
+  <figure class="plate rv" style="transition-delay:.18s">
+    <figcaption class="eyebrow">Logo — construction &amp; clear space</figcaption>
+    <img src="/img/mentesh/logo-construction.jpg" alt="Mentesh logo construction grid, 12 degree angle and clear space" loading="lazy" decoding="async">
+  </figure>
+  <figure class="plate rv" style="transition-delay:.2s">
+    <figcaption class="eyebrow">Logo — don'ts</figcaption>
+    <img src="/img/mentesh/logo-donts.jpg" alt="Incorrect uses of the Mentesh logo" loading="lazy" decoding="async">
+  </figure>
 
   <div class="pal rv" style="transition-delay:.14s">
     <p class="eyebrow" style="color:rgba(255,255,255,.45);margin:0 0 12px">Primary palette</p>
