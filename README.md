@@ -2,6 +2,10 @@
 
 One-page site for CROSSROADS — artist agency and booking.
 
+See `HANDOFF.md` for the current state of the site, the open items and the
+decisions that are not visible in the code — read it first if you are picking
+this project up on another machine.
+
 ## Design language
 
 Everything derives from the logo, which is a **stencil**: a plus/cross built from two
