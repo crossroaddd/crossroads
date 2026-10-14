@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CrossRoads - roster options</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/proto/assets/site.css">
+<style>
+/* four roster directions, each a full section, so they can be compared by scrolling */
+.opt{position:relative;border-top:1px solid var(--ink)}
+.opt__tag{display:flex;align-items:baseline;gap:14px;padding:14px var(--gut);background:var(--paper);color:var(--ink);
+  font-size:14px;font-weight:800;border-bottom:1px solid var(--ink)}
+.opt__tag span{font-weight:500;color:var(--ash-text)}
+.top{padding-top:var(--bar)}
+.ic{display:block;width:19px;height:19px}
+.plats2{display:flex;gap:14px}
+.plats2 a{display:block}
+
+/* ---- A: carousel, refined: photography first, one caption bar under each ---- */
+.A{background:var(--paper)}
+.A__rail{display:flex;gap:2px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0 var(--gut)}
+.A__rail::-webkit-scrollbar{display:none}
+.A__card{flex:0 0 clamp(260px,30vw,460px);scroll-snap-align:start}
+.A__card img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.A__cap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0 18px;border-bottom:2px solid var(--ink)}
+.A__cap h3{margin:0;font-size:clamp(22px,2.2vw,32px);font-weight:900;letter-spacing:-.03em;text-transform:uppercase}
+.A__bar{display:flex;justify-content:flex-end;gap:8px;padding:18px var(--gut)}
+.A__bar button{width:48px;height:48px;border:1px solid var(--ink);display:grid;place-items:center}
+.A__bar button:hover{background:var(--ink);color:#fff}
+.A__bar svg{width:20px;height:20px}
+.A__wrap{padding-bottom:40px}
+
+/* ---- B: five full-height strips, hovered one opens (the logo's bar, cut into five) ---- */
+.B{background:var(--ink);color:#fff}
+.B__row{display:flex;height:min(86svh,820px);min-height:520px;gap:2px;padding:0 var(--gut) var(--gut)}
+.B__s{position:relative;flex:1;overflow:hidden;transition:flex .6s var(--ease);background:#111}
+.B__s img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;
+  transform:scale(1.04);transition:transform .8s var(--ease)}
+.B__s::after{content:"";position:absolute;inset:auto 0 0 0;height:45%;background:linear-gradient(to top,rgba(0,0,0,.78),transparent)}
+.B__s a.cover{position:absolute;inset:0;z-index:2}
+.B__meta{position:absolute;z-index:3;left:18px;right:18px;bottom:18px;display:flex;flex-direction:column;gap:12px}
+.B__meta h3{margin:0;font-size:clamp(22px,2.4vw,40px);font-weight:900;letter-spacing:-.03em;text-transform:uppercase;line-height:1}
+.B__meta .plats2{opacity:0;transform:translateY(6px);transition:opacity .3s ease-out,transform .3s ease-out;position:relative;z-index:4}
+@media (hover:hover){
+  .B__row:hover .B__s{flex:.7}
+  .B__row .B__s:hover{flex:3}
+  .B__s:hover img{transform:none}
+  .B__s:hover .plats2{opacity:1;transform:none}
+}
+.B__s:focus-within{flex:3}
+.B__s:focus-within .plats2{opacity:1;transform:none}
+@media (max-width:760px){
+  .B__row{flex-direction:column;height:auto}
+  .B__s{flex:none;height:30svh;min-height:200px}
+  .B__meta .plats2{opacity:1;transform:none}
+}
+
+/* ---- C: one stage: big portrait on the left, plain names on the right ---- */
+.C{background:var(--paper)}
+.C__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:min(88svh,860px)}
+.C__stage{position:relative;background:var(--ink);overflow:hidden}
+.C__stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;opacity:0;transition:opacity .4s ease-out}
+.C__stage img.on{opacity:1}
+.C__list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;justify-content:center}
+.C__row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:clamp(14px,2.4vh,26px) var(--gut);border-bottom:1px solid var(--line);position:relative}
+.C__row:first-child{border-top:1px solid var(--line)}
+.C__row h3{margin:0;font-size:clamp(34px,5vw,72px);font-weight:900;letter-spacing:-.04em;text-transform:uppercase;line-height:1}
+.C__row a.cover{position:absolute;inset:0;z-index:1}
+.C__row .plats2{position:relative;z-index:2}
+.C__row h3{transition:transform .35s var(--ease),color .2s}
+.C__row:not(.is-active) h3{color:var(--ash)}
+.C__row.is-active h3{transform:translateX(10px)}
+@media (max-width:760px){.C__grid{grid-template-columns:1fr}.C__stage{aspect-ratio:4/5}}
+
+/* ---- D: one artist per screen ---- */
+.D{background:var(--ink);color:#fff}
+.D__s{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);min-height:calc(100svh - var(--bar));border-bottom:1px solid var(--line-inv)}
+.D__s:nth-child(even){grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+.D__s:nth-child(even) .D__t{order:2}
+.D__t{display:flex;flex-direction:column;justify-content:flex-end;gap:22px;padding:var(--gut)}
+.D__t h3{margin:0;font-size:clamp(44px,7.4vw,112px);font-weight:900;letter-spacing:-.04em;text-transform:uppercase;line-height:.9}
+.D__t a.go{display:inline-flex;align-items:center;gap:.7em;font-size:15px;font-weight:800}
+.D__t a.go:hover{text-decoration:underline;text-underline-offset:5px}
+.D__t .plus{font-size:11px}
+.D__p{position:relative;min-height:60svh;overflow:hidden;background:#111}
+.D__p img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+@media (max-width:760px){.D__s,.D__s:nth-child(even){grid-template-columns:1fr}.D__s:nth-child(even) .D__t{order:0}.D__p{order:-1;min-height:70svh}}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <a href="/proto/" class="hdr__logo" aria-label="Crossroads home">
+    <svg viewBox="0 0 1920 768" fill="currentColor" aria-hidden="true"><use href="/proto/assets/sprite.svg#cr-logo"/></svg>
+  </a>
+  <nav class="hdr__nav"><a href="#A">A</a><a href="#B">B</a><a href="#C">C</a><a href="#D">D</a></nav>
+</header>
+
+<main class="top">
+  <section class="opt A" id="A">
+    <div class="opt__tag">A <span>Carousel, refined. Photography first, one caption under each.</span></div>
+    <div class="A__wrap"><div class="A__rail" id="a-rail"></div>
+      <div class="A__bar">
+        <button type="button" data-d="-1" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 4 7 12l8 8"/></svg></button>
+        <button type="button" data-d="1" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 4l8 8-8 8"/></svg></button>
+      </div></div>
+  </section>
+
+  <section class="opt B" id="B">
+    <div class="opt__tag">B <span>Five full-height strips, the hovered one opens. The logo's bar, cut into five.</span></div>
+    <div class="B__row" id="b-row"></div>
+  </section>
+
+  <section class="opt C" id="C">
+    <div class="opt__tag">C <span>One stage. A big portrait, plain names beside it.</span></div>
+    <div class="C__grid"><div class="C__stage" id="c-stage"></div><ol class="C__list" id="c-list"></ol></div>
+  </section>
+
+  <section class="opt D" id="D">
+    <div class="opt__tag">D <span>One artist per screen, scrolling.</span></div>
+    <div id="d-list"></div>
+  </section>
+</main>
+
+<script src="/proto/assets/artists.js"></script>
+<script>
+const SPRITE='/proto/assets/sprite.svg';
+const href=a=>a.name==='Genish'?'/proto/genish/':a.epk;
+const icons=a=>PLATFORMS.filter(([k])=>a.links[k]).map(([k,l])=>`<a href="${a.links[k]}" target="_blank" rel="noopener noreferrer" title="${l}" aria-label="${a.name} on ${l}"><svg class="ic" aria-hidden="true"><use href="${SPRITE}#ic-${k}"/></svg></a>`).join('');
+
+/* A */
+document.getElementById('a-rail').innerHTML=ARTISTS.map(a=>`<article class="A__card"><a href="${href(a)}"><img src="${a.photo}" alt="${a.name}" width="900" height="1200" loading="lazy"></a>
+  <div class="A__cap"><h3><a href="${href(a)}">${a.name}</a></h3><div class="plats2">${icons(a)}</div></div></article>`).join('');
+document.querySelectorAll('.A__bar button').forEach(b=>b.onclick=()=>{const r=document.getElementById('a-rail');r.scrollBy({left:+b.dataset.d*(r.querySelector('.A__card').offsetWidth+2),behavior:'smooth'})});
+
+/* B */
+document.getElementById('b-row').innerHTML=ARTISTS.map(a=>`<article class="B__s"><img src="${a.photo}" alt="" loading="lazy"><a class="cover" href="${href(a)}" aria-label="${a.name}"></a>
+  <div class="B__meta"><h3>${a.name}</h3><div class="plats2">${icons(a)}</div></div></article>`).join('');
+
+/* C */
+const st=document.getElementById('c-stage'), ls=document.getElementById('c-list');
+st.innerHTML=ARTISTS.map(a=>`<img src="${a.photo}" alt="" decoding="async">`).join('');
+ls.innerHTML=ARTISTS.map(a=>`<li class="C__row"><h3>${a.name}</h3><a class="cover" href="${href(a)}" aria-label="${a.name}"></a><div class="plats2">${icons(a)}</div></li>`).join('');
+const imgs=[...st.children], rows=[...ls.children];
+const act=i=>{rows.forEach((r,j)=>r.classList.toggle('is-active',i===j));imgs.forEach((m,j)=>m.classList.toggle('on',i===j))};
+rows.forEach((r,i)=>{r.addEventListener('pointerenter',()=>act(i));r.addEventListener('focusin',()=>act(i))});act(0);
+
+/* D */
+document.getElementById('d-list').innerHTML=ARTISTS.map(a=>`<article class="D__s"><div class="D__t"><h3>${a.name}</h3><div class="plats2">${icons(a)}</div>
+  <a class="go" href="${href(a)}">View ${a.name} <i class="plus" aria-hidden="true"></i></a></div>
+  <div class="D__p"><img src="${a.photo}" alt="${a.name}" loading="lazy"></div></article>`).join('');
+</script>
+</body>
+</html>
