@@ -53,12 +53,16 @@ not a broken deploy, check githubstatus.com before investigating.
 - **Genish has two riders.** His page carries a `Technical requirements` section
   from his own EPK *and* a `Rider` button pointing at the agency-wide rider. The
   client has not said which one wins.
-- **The five artist pages duplicate their CSS.** Only `assets/cursor.js` is
-  shared; design tokens and the header/footer/button rules are copied into each
-  page. This has already caused one real bug — Yuvee's `.btn` block went missing
-  when his page was scaffolded from Mishell's and his buttons rendered as plain
-  text. Extracting a shared stylesheet has been offered repeatedly and not yet
-  scheduled.
+
+## Redesign (October 2026)
+
+The site was redesigned: stencil-window hero, five-strip roster, split artist pages, one
+shared stylesheet (`assets/site.css`). Content, links, contact details, Open Graph tags
+and URLs are unchanged. Things that changed on purpose:
+
+- The custom cursor (`assets/cursor.js`) is no longer loaded; the file is still in the repo.
+- The ticker and the drag carousel are gone. Roster order lives in `assets/artists.js`.
+- Artist pages still carry their own content; shared look comes from `site.css`.
 
 ## Decisions that are easy to undo by accident
 
@@ -84,10 +88,6 @@ not a broken deploy, check githubstatus.com before investigating.
   Drive) is linked from all five pages, in both the page-header tools and the
   Assets buttons — ten links. It replaced the artists' individual rider
   documents.
-- **The ticker must be built past 4000px per half**, otherwise the `-50%` loop
-  exposes a visible gap on wide screens.
-- **The carousel drag threshold is 12px.** At 4px, normal mouse drift cancelled
-  the click and the card links were unclickable.
 - **Photos are served at 900px wide** (`sips --resampleWidth 900`). Do not use
   `sips -Z 900` — it fits the *longest* side and leaves portraits about 600px
   wide, which is under-resolution for a 2× card.
