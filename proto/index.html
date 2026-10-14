@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CrossRoads - redesign prototype</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/proto/assets/site.css">
+</head>
+<body>
+
+<header class="hdr">
+  <a href="#top" class="hdr__logo" aria-label="Crossroads home">
+    <svg viewBox="0 0 1920 768" fill="currentColor" aria-hidden="true"><use href="/proto/assets/sprite.svg#cr-logo"/></svg>
+  </a>
+  <nav class="hdr__nav">
+    <a href="#roster">Roster</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="hero__stage">
+    <!-- The logo is a stencil: the letters are holes. Here the holes are windows onto
+         the roster — the cross body stays solid white, the photos only show through the letters. -->
+    <div class="hero__mark">
+      <svg viewBox="0 0 1920 768" role="img" aria-label="CROSSROADS">
+        <defs>
+          <clipPath id="sil"><path d="M1536,192V0h-384v192H0v384h384v192h384v-192h1152V192h-384Z"/></clipPath>
+        </defs>
+        <g clip-path="url(#sil)"><g id="windows"></g></g>
+        <use href="/proto/assets/sprite.svg#cr-logo" fill="#fff"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="hero__row">
+    <p class="hero__line">Built around artists, driven by strategy, and focused on your next crossroads</p>
+    <div class="hero__actions">
+      <a href="#roster" class="btn"><span>Roster <i class="plus" aria-hidden="true"></i></span></a>
+    </div>
+  </div>
+
+</section>
+
+<section class="roster" id="roster">
+  <h2 class="sr">The Roster</h2>
+  <div class="strips" id="strips"></div>
+</section>
+</main>
+
+<footer class="ftr" id="contact">
+  <h2 class="ftr__cta">Lets<br>talk</h2>
+  <div class="ftr__row">
+    <a href="mailto:booking@cross-roadsmgmt.com" class="btn"><span>booking@cross-roadsmgmt.com <i class="plus" aria-hidden="true"></i></span></a>
+    <a class="ftr__tel" href="tel:+972548051138">+972 54-805-1138</a>
+  </div>
+  <div class="ftr__base">
+    <span>© 2026 Crossroads Agency</span>
+    <span>Design by Ormitus</span>
+  </div>
+</footer>
+
+<script src="/proto/assets/artists.js"></script>
+<script>
+const SPRITE = '/proto/assets/sprite.svg';
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- hero windows: all five artists sit side by side behind the logo, at natural scale ----------
+   Five 3:4 portraits fill the logo's 1920 width exactly (384 each), faces on the letter band.
+   Every few seconds the whole row slides one portrait over, so the positions rotate. */
+const PW = 384, PH = 512, FACE_Y = 255;           // portrait box in logo units; y puts faces on the letters
+const win = document.getElementById('windows');
+const row = [...ARTISTS, ...ARTISTS];              // doubled so the slide can wrap seamlessly
+win.innerHTML = row.map((a,i) =>
+  `<image href="${a.photo}" x="${i*PW}" y="${FACE_Y}" width="${PW}" height="${PH}" preserveAspectRatio="xMidYMid slice"/>`).join('');
+let pos = 0;
+const slideTo = n => { win.style.transform = `translateX(${-n*PW}px)`; };
+if (!reduce) setInterval(() => {
+  pos++; slideTo(pos);
+  if (pos === ARTISTS.length) {                    // we are now showing the duplicate set: jump back unseen
+    setTimeout(() => { win.classList.add('snap'); pos = 0; slideTo(0); void win.getBoundingClientRect(); win.classList.remove('snap'); }, 1700);
+  }
+}, 3200);
+
+/* ---------- roster: five strips, the hovered one opens ---------- */
+const href = a => a.name === 'Genish' ? '/proto/genish/' : a.epk;
+const icons = a => PLATFORMS.filter(([k]) => a.links[k]).map(([k,label]) =>
+  `<a href="${a.links[k]}" target="_blank" rel="noopener noreferrer" title="${label}" aria-label="${a.name} on ${label}"><svg aria-hidden="true"><use href="${SPRITE}#ic-${k}"/></svg></a>`).join('');
+document.getElementById('strips').innerHTML = ARTISTS.map(a => `
+  <article class="strip">
+    <img src="${a.photo}" alt="" loading="lazy" width="900" height="1200">
+    <a class="strip__cover" href="${href(a)}" aria-label="${a.name}"></a>
+    <div class="strip__meta"><h3 class="strip__name">${a.name}</h3><div class="strip__plats">${icons(a)}</div></div>
+  </article>`).join('');
+
+/* reveal on scroll */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}), { rootMargin:'0px 0px -6% 0px', threshold:0.05 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
