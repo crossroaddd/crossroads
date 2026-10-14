@@ -28,497 +28,14 @@
 <meta name="twitter:image" content="https://cross-roadsmgmt.com/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-/* ============================================================
-   CROSSROADS — design tokens
-   Derived from the logo: stencil cross, pure monochrome,
-   hard edges, heavy grotesk, bar-based composition.
-   ============================================================ */
-:root{
-  --ink:#000000;
-  --paper:#FFFFFF;
-  --white:#FFFFFF;
-  --ash:#8E8E88;
-  --line:rgba(0,0,0,.14);
-  --line-inv:rgba(255,255,255,.18);
-
-  --bar:clamp(56px,6.5vw,76px);   /* header bar height — echoes the logo's arm */
-  --gut:clamp(16px,4vw,56px);
-
-  --font:'Archivo','Helvetica Neue',Helvetica,Arial,sans-serif;
-  --ease:cubic-bezier(.16,1,.3,1);
-}
-
-*,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{
-  margin:0;
-  background:var(--paper);
-  color:var(--ink);
-  font-family:var(--font);
-  font-weight:400;
-  line-height:1.5;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
-img,svg{display:block;max-width:100%}
-button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
-a{color:inherit;text-decoration:none}
-::selection{background:var(--ink);color:var(--paper)}
-
-/* ---------- shared bits ---------- */
-.eyebrow{
-  font-size:11px;font-weight:700;
-  letter-spacing:.22em;text-transform:uppercase;
-}
-.plus{ /* the core motif: two crossing bars */
-  position:relative;display:inline-block;
-  width:1em;height:1em;flex:none;
-}
-.plus::before,.plus::after{content:"";position:absolute;background:currentColor}
-.plus::before{inset:42% 0}
-.plus::after{inset:0 42%}
-
-/* ============================================================
-   HEADER — a horizontal bar, like the logo's horizontal arm
-   ============================================================ */
-.hdr{
-  position:fixed;inset:0 0 auto 0;z-index:100;
-  height:var(--bar);
-  display:flex;align-items:center;gap:var(--gut);
-  padding:0 var(--gut);
-  background:var(--ink);color:var(--white);
-}
-.hdr__logo{width:clamp(112px,13vw,168px);color:var(--white)}
-.hdr__nav{margin-left:auto;display:flex;align-items:center;gap:clamp(14px,2.2vw,34px)}
-.hdr__nav a{
-  font-size:11px;font-weight:600;
-  letter-spacing:.18em;text-transform:uppercase;
-  opacity:.62;transition:opacity .25s var(--ease);
-}
-.hdr__nav a:hover{opacity:1}
-.hdr__cta{
-  display:inline-flex;align-items:center;gap:.6em;
-  height:34px;padding:0 16px;
-  background:var(--white);color:var(--ink);
-  font-size:11px;font-weight:800;
-  letter-spacing:.16em;text-transform:uppercase;
-  transition:transform .3s var(--ease);
-}
-.hdr__cta:hover{transform:translateY(-2px)}
-.hdr__cta .plus{font-size:9px}
-
-/* ============================================================
-   HERO
-   ============================================================ */
-.hero{
-  position:relative;
-  min-height:100svh;
-  padding:calc(var(--bar) + clamp(36px,8vh,100px)) var(--gut) 0;
-  background:var(--ink);color:var(--white);
-  display:flex;flex-direction:column;
-  overflow:hidden;
-}
-/* one row: mark on the left, actions on the right, sharing a centre line */
-.hero__inner{
-  position:relative;flex:1;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:clamp(24px,5vw,80px);
-  width:100%;
-}
-
-.hero__mark{
-  /* 1920:768 = 2.5 — capping width by vh keeps the mark inside the fold */
-  width:min(64%,92vh,1000px);
-  flex:0 1 auto;
-  color:var(--white);
-  /* the letters are knocked out of the bar → the black field reads through them */
-}
-.hero__mark svg{width:100%;height:auto}
-
-.hero__actions{display:flex;gap:10px;flex-wrap:wrap;flex:none}
-.hero__line{
-  margin:0 0 clamp(16px,2.6vh,26px);
-  text-align:center;
-  font-size:clamp(11px,1.1vw,14px);font-weight:500;letter-spacing:.01em;
-  color:rgba(255,255,255,.6);
-}
-
-.btn{
-  display:inline-flex;align-items:center;gap:.85em;
-  height:52px;padding:0 26px;
-  background:var(--white);color:var(--ink);
-  font-size:12px;font-weight:800;
-  letter-spacing:.18em;text-transform:uppercase;
-  position:relative;overflow:hidden;
-  transition:color .35s var(--ease);
-}
-.btn span{position:relative;z-index:1;display:inline-flex;align-items:center;gap:.85em}
-.btn::before{
-  content:"";position:absolute;inset:0;background:var(--ash);
-  transform:scaleY(0);transform-origin:bottom;
-  transition:transform .4s var(--ease);
-}
-.btn:hover::before{transform:scaleY(1)}
-.btn--ghost{background:transparent;color:var(--white);box-shadow:inset 0 0 0 1px rgba(255,255,255,.34)}
-.btn .plus{font-size:10px;transition:transform .4s var(--ease)}
-.btn:hover .plus{transform:rotate(90deg)}
-
-/* ---------- ticker band ---------- */
-.ticker{
-  margin:0 calc(var(--gut) * -1);
-  border-top:1px solid var(--line-inv);
-  border-bottom:1px solid var(--line-inv);
-  overflow:hidden;padding:14px 0;
-}
-.ticker__track{display:flex;width:max-content;animation:slide 34s linear infinite}
-.ticker__track span{
-  display:inline-flex;align-items:center;gap:26px;
-  padding-right:26px;
-  font-size:12px;font-weight:700;
-  letter-spacing:.24em;text-transform:uppercase;
-  white-space:nowrap;color:rgba(255,255,255,.72);
-}
-.ticker .plus{font-size:8px;opacity:.6}
-@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* ============================================================
-   ROSTER / CAROUSEL
-   ============================================================ */
-/* keep anchor jumps clear of the fixed header bar */
-#roster,#contact{scroll-margin-top:var(--bar)}
-
-.roster{padding:clamp(60px,10vh,120px) 0 clamp(56px,9vh,104px)}
-.roster__head{
-  padding:0 var(--gut) clamp(26px,4vh,44px);
-  display:flex;flex-wrap:wrap;align-items:flex-end;gap:24px;
-}
-.roster__title{
-  margin:0;
-  font-size:clamp(44px,9vw,136px);
-  font-weight:900;line-height:.84;letter-spacing:-.045em;
-  text-transform:uppercase;
-}
-.roster__aside{margin-left:auto;display:flex;align-items:flex-end;gap:clamp(18px,3vw,40px)}
-.roster__count{font-size:12px;font-weight:800;letter-spacing:.2em;padding-bottom:2px;white-space:nowrap}
-
-.nav{display:flex;gap:8px}
-.nav button{
-  width:46px;height:46px;display:grid;place-items:center;
-  box-shadow:inset 0 0 0 1px var(--ink);
-  transition:background .3s var(--ease),color .3s var(--ease),opacity .3s;
-}
-.nav button:hover{background:var(--ink);color:var(--paper)}
-.nav button[disabled]{opacity:.22;pointer-events:none}
-.nav svg{width:15px;height:15px}
-
-/* track */
-.rail{
-  display:flex;gap:1px;
-  padding:0 var(--gut);
-  overflow-x:auto;
-  overflow-y:hidden;
-  /* 'proximity', not 'mandatory': mandatory fights any vertical wheel/trackpad
-     gesture that passes over the rail and makes the page feel like it snags */
-  scroll-snap-type:x proximity;
-  scroll-padding-left:var(--gut);   /* without this the first snap eats the gutter */
-  scroll-padding-right:var(--gut);
-  overscroll-behavior-x:contain;    /* don't chain sideways scroll to the page */
-  touch-action:pan-x pan-y;         /* vertical page scroll always wins on touch */
-  scrollbar-width:none;-ms-overflow-style:none;
-  cursor:grab;
-  border-top:1px solid var(--ink);
-  border-bottom:1px solid var(--ink);
-  background:var(--ink);           /* the 1px gaps read as hairlines */
-}
-.rail::-webkit-scrollbar{display:none}
-.rail.is-drag{cursor:grabbing;scroll-snap-type:none}
-.rail.is-drag *{pointer-events:none}
-
-.card{
-  scroll-snap-align:start;
-  flex:0 0 min(80vw,320px);   /* phone default: one card plus a peek */
-  background:var(--paper);
-  display:flex;flex-direction:column;
-}
-
-.card__media{display:block;position:relative;aspect-ratio:3/4;overflow:hidden;background:#171717;color:#fff}
-a.card__media:focus-visible{outline:2px solid var(--ink);outline-offset:-4px}
-/* the page is monochrome by design, so the artists are the only colour in it */
-.card__media img{
-  position:absolute;inset:0;
-  width:100%;height:100%;object-fit:cover;
-  transition:transform 1s var(--ease);
-}
-@media (hover:hover){
-  .card:hover .card__media img{transform:scale(1.04)}
-}
-/* --- placeholder artwork: dot grid + spotlight + stencil initial ---
-   scoped to the three layer classes so it never catches a .plus icon --- */
-.card__media > i.dots,
-.card__media > i.glow,
-.card__media > i.bars{position:absolute;inset:0}
-.card__media i.dots{
-  background-image:radial-gradient(currentColor 1px,transparent 1.1px);
-  background-size:9px 9px;color:rgba(255,255,255,.16);
-  transition:transform 1s var(--ease);
-}
-.card__media i.glow{background:radial-gradient(58% 46% at 50% 38%,rgba(255,255,255,.32),transparent 72%)}
-.card__media i.bars{background:repeating-linear-gradient(115deg,rgba(255,255,255,.05) 0 2px,transparent 2px 9px);mix-blend-mode:overlay}
-.card:nth-child(2n) .card__media{background:#0B0B0B}
-.card:nth-child(3n) .card__media{background:#202020}
-.card:nth-child(3n) .card__media i.dots{background-size:14px 14px}
-.card:nth-child(4n) .card__media i.bars{background-image:repeating-linear-gradient(-115deg,rgba(255,255,255,.06) 0 2px,transparent 2px 12px)}
-.card:nth-child(5n) .card__media i.dots{background-size:6px 6px;color:rgba(255,255,255,.2)}
-
-.card__initial{
-  position:absolute;inset:0;display:grid;place-items:center;
-  font-weight:900;font-size:clamp(120px,26vw,210px);line-height:1;
-  letter-spacing:-.06em;color:rgba(255,255,255,.16);user-select:none;
-}
-.card__ph{
-  position:absolute;left:12px;bottom:12px;
-  display:inline-flex;align-items:center;gap:7px;
-  padding:5px 9px;background:rgba(255,255,255,.12);
-  font-size:9px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
-  color:rgba(255,255,255,.75);
-}
-.card__ph .plus{font-size:7px}
-.card__num{
-  position:absolute;top:0;right:0;padding:9px 12px;
-  background:var(--paper);color:var(--ink);
-  font-size:11px;font-weight:800;letter-spacing:.1em;
-}
-/* pointer-only: on touch this would stick after a tap */
-@media (hover:hover){
-  .card:hover .card__media i.dots{transform:scale(1.08)}
-}
-
-.card__body{
-  flex:1;padding:16px 18px 18px;
-  display:flex;flex-direction:column;gap:12px;
-  border-top:1px solid var(--ink);
-}
-.card__name{
-  margin:0;font-size:clamp(26px,3.4vw,38px);
-  font-weight:900;line-height:.94;letter-spacing:-.035em;text-transform:uppercase;
-}
-/* platform links — the only per-artist action */
-.card__links{margin-top:auto;display:flex;flex-wrap:wrap;gap:6px}
-.card__links a{
-  width:42px;height:42px;display:grid;place-items:center;
-  box-shadow:inset 0 0 0 1px var(--line);
-  transition:background .28s var(--ease),color .28s var(--ease),box-shadow .28s var(--ease);
-}
-.card__links svg{width:18px;height:18px}
-@media (hover:hover){
-  .card__links a:hover{background:var(--ink);color:var(--paper);box-shadow:inset 0 0 0 1px var(--ink)}
-}
-.card__links a:active{background:var(--ink);color:var(--paper)}
-.card__links a:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-
-/* progress */
-.rail__foot{padding:clamp(20px,3.5vh,34px) var(--gut) 0;display:flex;align-items:center;gap:20px}
-.bar{position:relative;flex:1;height:2px;background:var(--line)}
-.bar b{position:absolute;top:0;bottom:0;left:0;width:22%;background:var(--ink);transition:width .18s linear}
-
-/* ============================================================
-   FOOTER
-   ============================================================ */
-.ftr{background:var(--ink);color:var(--white);padding:clamp(52px,9vh,100px) var(--gut) 26px}
-.ftr__top{
-  display:flex;flex-wrap:wrap;align-items:flex-end;gap:clamp(24px,5vw,60px);
-  padding-bottom:clamp(34px,5.5vh,58px);border-bottom:1px solid var(--line-inv);
-}
-.ftr__cta{margin:0;flex:1 1 320px;font-size:clamp(32px,5.6vw,76px);font-weight:900;line-height:.96;letter-spacing:-.04em;text-transform:uppercase}
-.ftr__cta em{font-style:normal;color:var(--ash)}
-
-/* flex, not an auto-fit grid: with only two columns left a 1fr grid stretched
-   them across the whole width and the footer read as empty */
-.ftr__cols{
-  display:flex;flex-wrap:wrap;
-  gap:clamp(28px,7vw,96px);
-  padding:clamp(34px,5.5vh,56px) 0;
-}
-.ftr__col{min-width:170px}
-.ftr__col h4{margin:0 0 14px;color:rgba(255,255,255,.42)}
-.ftr__col ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
-.ftr__col li{font-size:14.5px;line-height:1.45;color:rgba(255,255,255,.88)}
-.ftr__col a{position:relative;transition:color .25s var(--ease)}
-.ftr__col a::after{
-  content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:currentColor;
-  transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease);
-}
-.ftr__col a:hover::after{transform:scaleX(1)}
-
-.ftr__base{
-  display:flex;flex-wrap:wrap;gap:12px 26px;align-items:center;
-  padding-top:20px;border-top:1px solid var(--line-inv);color:rgba(255,255,255,.4);
-}
-.ftr__base .eyebrow{font-size:10px}
-.ftr__base .sep{margin-left:auto}
-
-/* ============================================================
-   RESPONSIVE
-   Base styles above are phone-first for anything that changes
-   structurally; everything else scales with clamp().
-   ============================================================ */
-
-/* ---- long strings must never push the layout wide ---- */
-.ftr__col li,.ftr__col a,.card__name,.hero__lede{overflow-wrap:anywhere}
-.roster__title,.ftr__cta,.hero__lede{text-wrap:balance}
-
-/* ---- phones ---- */
-@media (max-width:720px){
-  /* no nav on phones, so the mark centres in the bar rather than hanging left */
-  .hdr__nav{display:none}
-  .hdr{justify-content:center}
-  /* Stacked: side by side there is no room, and the mark would shrink to
-     nothing beside a full-width button row.
-     The mark takes auto margins so it centres in the black field, while the
-     actions stay pinned at the bottom above the ticker. */
-  /* drop the extra top padding: it starts the content well below the header
-     bar, so anything centred inside it lands low in the black field */
-  .hero{padding-top:var(--bar)}
-  .hero__inner{flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0}
-  /* auto margins centre the mark in the field between the header and the
-     buttons, which is the empty area you actually see */
-  .hero__mark{width:100%;margin-block:auto}
-  .hero__actions{width:100%;gap:8px;margin-bottom:clamp(14px,2.4vh,22px)}
-  .hero__actions .btn{flex:1 1 150px;justify-content:center;padding:0 18px}
-  .ticker__track span{font-size:10.5px;letter-spacing:.18em;gap:20px;padding-right:20px}
-  .ftr__top .btn{width:100%;justify-content:space-between;font-size:10.5px;letter-spacing:.1em;padding:0 16px}
-  /* the roster meta drops under the title */
-  .roster__aside{width:100%;margin-left:0;flex-wrap:wrap;align-items:center;gap:14px 20px}
-  .nav{margin-left:auto}
-}
-
-/* ---- very small phones ---- */
-@media (max-width:400px){
-  .hdr__cta{padding:0 12px;letter-spacing:.1em}
-  .hdr__logo{width:96px}
-  .card{flex-basis:min(86vw,300px)}
-  .rail__foot{gap:12px}
-}
-
-/* ---- tablets ---- */
-@media (min-width:721px) and (max-width:1023px){
-  .card{flex-basis:min(52vw,340px)}
-  .roster__aside{gap:24px}
-}
-
-/* ---- desktop ---- */
-@media (min-width:1024px){
-  .card{flex-basis:min(34vw,360px)}
-}
-@media (min-width:1440px){
-  .card{flex-basis:380px}
-}
-
-/* ---- large screens: keep the mark from looking lost ---- */
-@media (min-width:1800px){
-  :root{--gut:80px}
-  .hero__mark{width:min(100%,78vh,1240px)}
-}
-
-/* ---- short viewports (landscape phones, small laptops) ---- */
-@media (max-height:700px){
-  .hero{padding-top:calc(var(--bar) + 24px)}
-  .hero__inner{gap:20px}
-}
-@media (max-height:560px) and (orientation:landscape){
-  .hero{min-height:auto;padding-bottom:12px}
-  .hero__mark{width:min(62%,72vh,700px)}
-  .ticker{display:none}
-}
-
-/* ============================================================
-   CUSTOM CURSOR — a square that inverts against what is under it
-   ============================================================ */
-.cursor{
-  position:fixed;left:0;top:0;
-  width:14px;height:14px;
-  background:var(--ink);          /* black by default: the page ground is paper */
-  pointer-events:none;            /* must not be found by elementFromPoint */
-  z-index:9999;
-  opacity:0;
-  will-change:transform;
-  transition:opacity .16s linear,background-color .12s linear,
-             width .2s var(--ease),height .2s var(--ease);
-}
-.cursor.is-visible{opacity:1}
-.cursor.on-dark{background:var(--white)}
-.cursor.on-target{width:26px;height:26px}   /* recovers the affordance the native pointer gave */
-
-/* only where there is a real pointer to replace */
-@media (hover:hover) and (pointer:fine){
-  html.has-cursor,html.has-cursor *{cursor:none !important}
-}
-@media (prefers-reduced-motion:reduce){
-  .cursor{transition:opacity .16s linear,background-color .12s linear}
-}
-
-/* ---------- reveal ---------- */
-.rv{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-.rv.in{opacity:1;transform:none}
-
-@media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
-  .rv{opacity:1;transform:none}
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
 
-<!-- ===== logo, defined once, reused as a stencil ===== -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="cr-logo" viewBox="0 0 1920 768">
-    <path d="M1249.33,320.98h-31.07c-12,0-14.48,4.94-14.48,13.77v98.51c0,8.83,2.12,13.42,14.48,13.42h31.07c12.36,0,14.83-4.24,14.83-13.42v-98.51c0-9.18-2.82-13.77-14.83-13.77Z"/>
-    <path d="M1596.49,320.98h-42.37v125.7h42.37c14.48,0,18.71-6.36,18.71-20.83v-86.86c0-14.48-4.94-18.01-18.71-18.01Z"/>
-    <path d="M531.69,320.98h-31.07c-12,0-14.48,4.94-14.48,13.77v98.51c0,8.83,2.12,13.42,14.48,13.42h31.07c12.36,0,14.83-4.24,14.83-13.42v-98.51c0-9.18-2.82-13.77-14.83-13.77Z"/>
-    <path d="M1075.39,320.98h-45.55v56.49h45.55c9.53,0,14.12-2.47,14.12-14.83v-27.89c0-12.36-4.59-13.77-14.12-13.77Z"/>
-    <path d="M1536,192V0h-384v192H0v384h384v192h384v-192h1152V192h-384ZM232.19,350.63c0,1.41-.35,2.47-.71,2.82-.71.71-1.41.71-2.82.71h-36.37c-1.41,0-2.47,0-2.82-.71-.71-.35-.71-1.41-.71-2.82v-15.54c0-9.53-2.12-14.12-14.48-14.12h-31.42c-12,0-14.48,4.94-14.48,14.12v97.8c0,12.71,4.59,13.77,14.48,13.77h31.42c9.89,0,14.48-1.06,14.48-13.42v-16.24c0-1.41,0-2.47.71-2.82.35-.35,1.41-.71,2.82-.71h36.37c1.41,0,2.12.35,2.82.71.35.35.71,1.41.71,2.82v22.24c0,29.66-16.59,46.25-46.25,46.25h-54.37c-29.66,0-45.9-16.59-45.9-46.25v-110.16c0-30.01,16.24-46.61,45.9-46.61h54.37c29.66,0,46.25,16.59,46.25,46.61v21.54ZM414.6,364.76c0,26.48-11.65,44.13-32.48,49.08l28.95,69.56c0,.71.35,1.06,0,1.41,0,.35-.35.71-1.06.71h-42.37c-.71,0-1.06-.35-1.41-.71l-1.06-1.06v-.35l-24.72-68.5h-28.6v67.08c0,1.41-.35,2.12-.71,2.47-.71.71-1.41,1.06-2.82,1.06h-35.66c-1.06,0-2.12-.35-2.47-1.06-.35-.35-.71-1.06-.71-2.47v-195.96c0-1.41.35-2.12.71-2.82.35-.35,1.41-.71,2.47-.71h96.04c29.66,0,45.9,16.59,45.9,46.25v36.01ZM589.6,439.26c0,29.66-16.59,46.25-46.25,46.25h-54.02c-29.66,0-46.25-16.59-46.25-46.25v-110.16c0-30.01,16.59-46.61,46.25-46.61h54.02c29.66,0,46.25,16.59,46.25,46.61v110.16ZM769.89,439.61c0,29.66-16.59,45.9-46.61,45.9h-51.9c-29.66,0-46.25-16.59-46.25-46.25v-11.65c0-1.41.35-2.47.71-2.82.71-.35,1.41-.71,2.47-.71h36.01c1.41,0,2.47.35,2.82.71.71.35,1.06,1.41,1.06,2.82v4.94c0,13.06,4.59,15.18,14.83,15.18h28.25c10.24,0,15.18-3.53,15.18-14.48v-7.77c0-9.89-1.77-13.77-11.65-17.3l-57.55-16.24c-22.95-6.36-32.13-19.42-32.13-46.25v-16.59c0-30.01,16.59-46.61,46.25-46.61h50.84c29.66,0,46.25,16.59,46.25,46.61v11.65c0,1.06,0,2.12-.71,2.47-.35.35-1.41.71-2.47.71h-36.01c-1.41,0-2.47-.35-2.82-.71-.35-.35-.71-1.41-.71-2.47v-5.65c0-9.53-2.82-14.83-15.18-14.83h-27.89c-12,0-14.83,5.3-14.83,14.48v8.47c0,10.24,2.12,13.42,12.36,16.59l57.55,16.24c22.95,6,32.13,19.42,32.13,46.25v17.3ZM949.12,439.61c0,29.66-16.59,45.9-46.61,45.9h-51.9c-29.66,0-46.25-16.59-46.25-46.25v-11.65c0-1.41.35-2.47.71-2.82.71-.35,1.41-.71,2.47-.71h36.01c1.41,0,2.47.35,2.82.71.71.35,1.06,1.41,1.06,2.82v4.94c0,13.06,4.59,15.18,14.83,15.18h28.25c10.24,0,15.18-3.53,15.18-14.48v-7.77c0-9.89-1.77-13.77-11.65-17.3l-57.55-16.24c-22.95-6.36-32.13-19.42-32.13-46.25v-16.59c0-33.19,10.24-46.61,46.25-46.61h50.84c34.6,0,46.25,12,46.25,46.61v11.65c0,1.06,0,2.12-.71,2.47-.35.35-1.41.71-2.47.71h-36.01c-1.41,0-2.47-.35-2.82-.71-.35-.35-.71-1.41-.71-2.47v-5.65c0-9.53-2.82-14.83-15.18-14.83h-27.89c-12,0-14.83,5.3-14.83,14.48v8.47c0,10.24,2.12,13.42,12.36,16.24l57.55,16.59c22.95,6,32.13,19.42,32.13,46.25v17.3ZM1132.59,364.76c0,26.48-11.65,44.13-32.48,49.08l28.95,69.56c0,.71.35,1.06,0,1.41,0,.35-.35.71-1.06.71h-42.37c-.71,0-1.06-.35-1.41-.71s-.71-.71-1.06-1.06v-.35l-24.72-68.5h-28.6v67.08c0,1.41-.35,2.12-.71,2.47-.71.71-1.41,1.06-2.82,1.06h-35.66c-1.06,0-2.12-.35-2.47-1.06-.35-.35-.71-1.06-.71-2.47v-195.96c0-1.41.35-2.12.71-2.82.35-.35,1.41-.71,2.47-.71h96.04c29.66,0,45.9,16.59,45.9,46.25v36.01ZM1307.23,439.26c0,29.66-16.59,46.25-46.25,46.25h-54.02c-29.66,0-46.25-16.59-46.25-46.25v-110.16c0-30.01,16.59-46.61,46.25-46.61h54.02c29.66,0,46.25,16.59,46.25,46.61v110.16ZM1488.94,484.45c-.35.71-1.06,1.06-2.12,1.06h-37.07c-1.06,0-1.77-.35-2.47-1.06-.71-.35-1.41-1.06-1.41-2.47l-10.24-47.31h-55.79l-9.53,47.31c-.35,1.41-.71,2.12-1.41,2.47-.71.71-1.77,1.06-2.82,1.06h-37.07c-1.06,0-2.12-.35-2.47-1.06-.35-.35-.35-1.06,0-2.47l45.9-195.96c.35-1.41.71-2.12,1.41-2.82.71-.35,1.77-.71,2.82-.71h60.38c1.41,0,2.47.35,3.18.71.71.71,1.06,1.41,1.06,2.82l47.67,195.96c.35,1.41.35,2.12,0,2.47ZM1657.93,425.84c0,38.49-21.18,59.67-58.96,59.67h-84.03c-1.06,0-2.12-.35-2.47-1.06-.71-.35-.71-1.06-.71-2.47v-195.96c0-1.41,0-2.12.71-2.82.35-.35,1.41-.71,2.47-.71h85.8c36.72,0,57.2,20.13,57.2,56.49v86.86ZM1834.34,439.61c0,29.66-16.59,45.9-46.61,45.9h-51.9c-29.66,0-46.25-16.59-46.25-46.25v-11.65c0-1.41.35-2.47.71-2.82.71-.35,1.41-.71,2.47-.71h36.01c1.41,0,2.47.35,2.82.71.71.35,1.06,1.41,1.06,2.82v4.94c0,13.06,4.59,15.18,14.83,15.18h28.25c10.24,0,15.18-3.53,15.18-14.48v-7.77c0-9.89-1.77-13.77-11.65-17.3l-57.55-16.24c-22.95-6.36-32.13-19.42-32.13-46.25v-16.59c0-30.01,16.59-46.61,46.25-46.61h50.84c29.66,0,46.25,16.59,46.25,46.61v11.65c0,1.06,0,2.12-.71,2.47-.35.35-1.41.71-2.47.71h-36.01c-1.41,0-2.47-.35-2.82-.71-.35-.35-.71-1.41-.71-2.47v-5.65c0-9.53-2.82-14.83-15.18-14.83h-27.89c-12,0-14.83,5.3-14.83,14.48v8.47c0,10.24,2.12,13.42,12.36,16.24l57.55,16.59c22.95,6,32.13,19.42,32.13,46.25v17.3ZM1902,316.94c-1.54,3.63-3.66,6.81-6.36,9.54-2.7,2.73-5.88,4.89-9.54,6.48-3.66,1.6-7.59,2.4-11.77,2.4s-8.09-.79-11.73-2.35c-3.63-1.57-6.79-3.7-9.46-6.4-2.67-2.7-4.78-5.86-6.32-9.5-1.54-3.63-2.31-7.49-2.31-11.56s.77-7.93,2.31-11.56c1.54-3.63,3.66-6.81,6.36-9.54,2.7-2.73,5.88-4.89,9.54-6.48,3.66-1.6,7.59-2.4,11.77-2.4s8.09.79,11.73,2.35c3.63,1.57,6.78,3.7,9.46,6.4,2.67,2.7,4.78,5.86,6.32,9.5,1.54,3.64,2.31,7.49,2.31,11.56s-.77,7.93-2.31,11.56Z"/>
-    <path d="M357.4,320.98h-45.55v56.49h45.55c9.53,0,14.12-2.47,14.12-14.83v-27.89c0-12.36-4.59-13.77-14.12-13.77Z"/>
-    <path d="M1891.94,287.96c-2.2-2.22-4.78-3.98-7.76-5.26-2.98-1.29-6.21-1.93-9.69-1.93s-6.73.66-9.73,1.97c-3,1.31-5.6,3.08-7.8,5.3-2.19,2.22-3.92,4.85-5.19,7.88-1.26,3.03-1.89,6.23-1.89,9.62s.62,6.64,1.85,9.62c1.24,2.98,2.95,5.58,5.15,7.8,2.2,2.22,4.78,3.98,7.76,5.26,2.98,1.29,6.21,1.93,9.69,1.93s6.73-.66,9.73-1.97c3-1.31,5.6-3.08,7.8-5.3,2.2-2.22,3.92-4.83,5.19-7.84,1.26-3,1.89-6.22,1.89-9.65s-.62-6.57-1.85-9.58c-1.24-3-2.95-5.61-5.15-7.84ZM1881.93,319.38c-1.88.97-4.27,1.45-7.16,1.45-2.2,0-4.25-.4-6.15-1.21-1.9-.8-3.54-1.92-4.91-3.34-1.37-1.42-2.44-3.08-3.22-4.99-.78-1.9-1.17-3.96-1.17-6.15s.39-4.18,1.17-6.11c.78-1.93,1.85-3.62,3.22-5.07,1.37-1.45,3-2.59,4.91-3.42,1.9-.83,4.01-1.25,6.32-1.25,2.9,0,5.26.44,7.08,1.33,1.82.88,3.46,2.02,4.91,3.42l-3.78,4.34c-1.18-1.07-2.44-1.94-3.78-2.62-1.34-.67-2.81-1.01-4.42-1.01-1.4,0-2.67.27-3.82.8-1.15.54-2.16,1.28-3.02,2.21-.86.94-1.52,2.03-1.97,3.26-.46,1.23-.68,2.57-.68,4.02s.24,2.72.73,3.98c.48,1.26,1.14,2.36,1.97,3.3.83.94,1.82,1.68,2.98,2.21,1.15.54,2.43.8,3.82.8,1.82,0,3.36-.33,4.63-1.01,1.26-.67,2.5-1.6,3.74-2.77l3.86,3.78c-1.61,1.72-3.35,3.06-5.23,4.02Z"/>
-    <polygon points="1406.67 309.32 1387.6 398.3 1427.85 398.3 1407.73 309.32 1406.67 309.32"/>
-  </symbol>
-
-  <!-- platform icons: one consistent line set, drawn to match the mark's weight -->
-  <symbol id="ic-spotify" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
-    <circle cx="12" cy="12" r="9.2"/>
-    <path d="M7.1 9.2c3.2-.95 6.6-.6 9.5 1"/>
-    <path d="M7.9 12.4c2.6-.75 5.4-.45 7.8.85"/>
-    <path d="M8.7 15.4c2.05-.55 4.2-.32 6.1.75"/>
-  </symbol>
-  <symbol id="ic-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-    <rect x="3.1" y="3.1" width="17.8" height="17.8" rx="5.2"/>
-    <circle cx="12" cy="12" r="4.1"/>
-    <circle cx="17" cy="7" r="1.15" fill="currentColor" stroke="none"/>
-  </symbol>
-  <symbol id="ic-beatport" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
-    <path d="M8.6 3.2v7.4"/>
-    <circle cx="13.1" cy="14.6" r="5.6"/>
-  </symbol>
-  <symbol id="ic-apple" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round">
-    <path d="M9.4 16.6V6.4l9-1.75v10.2"/>
-    <ellipse cx="7.2" cy="16.9" rx="2.3" ry="2"/>
-    <ellipse cx="16.2" cy="14.9" rx="2.3" ry="2"/>
-  </symbol>
-  <symbol id="ic-soundcloud" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M2.8 13.4v4.2"/>
-    <path d="M6 11v6.6"/>
-    <path d="M9.2 12.6v5"/>
-    <path d="M12.4 8.4v9.2"/>
-    <path d="M12.4 17.6h6.4a2.6 2.6 0 0 0 .2-5.2 4.7 4.7 0 0 0-6.6-3.7"/>
-  </symbol>
-</svg>
-
-<!-- ============ HEADER ============ -->
 <header class="hdr">
-  <a href="#top" class="hdr__logo" aria-label="Crossroads — home">
-    <svg viewBox="0 0 1920 768" fill="currentColor" aria-hidden="true"><use href="#cr-logo"/></svg>
+  <a href="#top" class="hdr__logo" aria-label="Crossroads home">
+    <svg viewBox="0 0 1920 768" fill="currentColor" aria-hidden="true"><use href="/assets/sprite.svg#cr-logo"/></svg>
   </a>
   <nav class="hdr__nav">
     <a href="#roster">Roster</a>
@@ -526,304 +43,87 @@ a.card__media:focus-visible{outline:2px solid var(--ink);outline-offset:-4px}
   </nav>
 </header>
 
-<!-- ============ HERO ============ -->
 <main id="top">
 <section class="hero">
-  <div class="hero__inner">
-    <div class="hero__mark rv">
-      <svg viewBox="0 0 1920 768" fill="currentColor" role="img" aria-label="CROSSROADS"><use href="#cr-logo"/></svg>
-    </div>
-
-    <div class="hero__actions rv" style="transition-delay:.1s">
-      <a href="#roster" class="btn"><span>Roster <i class="plus" aria-hidden="true"></i></span></a>
-      <a href="#contact" class="btn btn--ghost"><span>Contact</span></a>
+  <div class="hero__stage">
+    <!-- The logo is a stencil: the letters are holes. Here the holes are windows onto
+         the roster — the cross body stays solid white, the photos only show through the letters. -->
+    <div class="hero__mark">
+      <svg viewBox="0 0 1920 768" role="img" aria-label="CROSSROADS">
+        <defs>
+          <clipPath id="sil"><path d="M1536,192V0h-384v192H0v384h384v192h384v-192h1152V192h-384Z"/></clipPath>
+        </defs>
+        <g clip-path="url(#sil)"><g id="windows"></g></g>
+        <use href="/assets/sprite.svg#cr-logo" fill="#fff"/>
+      </svg>
     </div>
   </div>
 
-  <p class="hero__line rv" style="transition-delay:.18s">Built around artists, driven by strategy, and focused on your next crossroads</p>
-
-  <!-- names only, per client note -->
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker__track" id="ticker"></div>
+  <div class="hero__row">
+    <p class="hero__line">Built around artists, driven by strategy, and focused on your next crossroads</p>
+    <div class="hero__actions">
+      <a href="#roster" class="btn"><span>Roster <i class="plus" aria-hidden="true"></i></span></a>
+    </div>
   </div>
 
 </section>
 
-<!-- ============ ROSTER ============ -->
 <section class="roster" id="roster">
-  <div class="roster__head">
-    <h2 class="roster__title rv">The Roster</h2>
-    <div class="roster__aside rv" style="transition-delay:.1s">
-      <span class="roster__count" id="count">01 — 06</span>
-      <div class="nav">
-        <button type="button" data-dir="-1" aria-label="Previous artist">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 4 7 12l8 8"/></svg>
-        </button>
-        <button type="button" data-dir="1" aria-label="Next artist">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 4l8 8-8 8"/></svg>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="rail" id="rail" tabindex="0" role="region" aria-label="Artist carousel">
-    <!-- cards are generated below so the order lives in one place -->
-  </div>
-
-  <div class="rail__foot">
-    <div class="bar"><b id="prog"></b></div>
-  </div>
+  <h2 class="sr">The Roster</h2>
+  <div class="strips" id="strips"></div>
 </section>
 </main>
 
-<!-- ============ FOOTER ============ -->
 <footer class="ftr" id="contact">
-  <div class="ftr__top">
-    <h2 class="ftr__cta">Lets <em>talk</em></h2>
+  <h2 class="ftr__cta">Lets<br>talk</h2>
+  <div class="ftr__row">
     <a href="mailto:booking@cross-roadsmgmt.com" class="btn"><span>booking@cross-roadsmgmt.com <i class="plus" aria-hidden="true"></i></span></a>
+    <a class="ftr__tel" href="tel:+972548051138">+972 54-805-1138</a>
   </div>
-
-  <div class="ftr__cols">
-    <div class="ftr__col">
-      <h4 class="eyebrow">Contact</h4>
-      <ul>
-        <li><a href="mailto:booking@cross-roadsmgmt.com">booking@cross-roadsmgmt.com</a></li>
-        <li><a href="tel:+972548051138">+972 54-805-1138</a></li>
-      </ul>
-    </div>
-    <!-- 'Management' and 'Studio' columns removed: every value in them was
-         invented, and they can't sit next to real contact details on a public
-         page. Send real ones and they go straight back. -->
-    <!-- 'Follow' column removed: the agency's own social profiles were never
-         supplied, so all four entries pointed at '#'. Send the real handles and
-         it goes back. -->
-  </div>
-
   <div class="ftr__base">
-    <span class="eyebrow">© 2026 Crossroads Agency</span>
-    <span class="eyebrow sep">Design by Ormitus</span>
+    <span>© 2026 Crossroads Agency</span>
+    <span>Design by Ormitus</span>
   </div>
 </footer>
 
+<script src="/assets/artists.js"></script>
 <script>
-/* ---------- roster data (order exactly as briefed) ----------
-   photo: null  -> renders the generated placeholder instead
-   links: '#'   -> PLACEHOLDER URL, swap for the artist's real profile   */
-const PLATFORMS = [
-  ['spotify',    'Spotify'],
-  ['apple',      'Apple Music'],
-  ['beatport',   'Beatport'],
-  ['soundcloud', 'SoundCloud'],
-  ['instagram',  'Instagram'],
-];
+const SPRITE = '/assets/sprite.svg';
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* Real profiles. Share-tracking parameters (igsh / si / utm_* / ref) stripped,
-   and on.soundcloud.com shorteners resolved to their canonical profile URLs so
-   they can't expire. A platform with no entry simply renders no icon — never a
-   dead link, and never one platform's URL behind another's icon. */
-const ARTISTS = [
-  { name:'Mishell', photo:'img/mishell.jpg', epk:'/mishell/', links:{
-      spotify:   'https://open.spotify.com/artist/3kCsXVpVs1ZhLnIVkNzdHJ',
-      apple:     'https://music.apple.com/il/artist/mishell/250454064',
-      beatport:  'https://www.beatport.com/artist/mishell/270228',
-      soundcloud:'https://soundcloud.com/mishellmusik',
-      instagram: 'https://www.instagram.com/_mishell_____' } },
-
-  { name:'Genish', photo:'img/genish.jpg', epk:'/genish/', links:{
-      spotify:   'https://open.spotify.com/artist/12rfpY7qPWCqM5kN8q1Ry1',
-      apple:     'https://music.apple.com/il/artist/genish/787229909',
-      beatport:  'https://www.beatport.com/artist/genish/929264',
-      soundcloud:'https://soundcloud.com/genishmusic',
-      instagram: 'https://www.instagram.com/genish__' } },
-
-  { name:'Yuvee', photo:'img/yuvee.jpg', epk:'/yuvee/', links:{
-      spotify:   'https://open.spotify.com/artist/2uUpxGX8XaVGhqh398dP2f',
-      apple:     'https://music.apple.com/il/artist/yuvee/1216600486',
-      beatport:  'https://www.beatport.com/artist/yuve/1243590',
-      soundcloud:'https://soundcloud.com/yuveemusic',
-      instagram: 'https://www.instagram.com/yuvee_music' } },
-
-  /* Still needed for Nevos: Spotify, Apple Music, Beatport */
-  { name:'Nevos', photo:'img/nevos.jpg', epk:'/nevos/', links:{
-      soundcloud:'https://soundcloud.com/nevosmusic',
-      instagram: 'https://www.instagram.com/nevos_music' } },
-
-  { name:'Mentesh', photo:'img/mentesh.jpg', epk:'/mentesh/', links:{
-      spotify:   'https://open.spotify.com/artist/4AUqHwTX2zVGZOlXgrSNoF',
-      apple:     'https://music.apple.com/il/artist/mentesh/1671188421',
-      beatport:  'https://www.beatport.com/artist/mentesh/1109477',
-      soundcloud:'https://soundcloud.com/mentesh',
-      instagram: 'https://www.instagram.com/guymentesh' } },
-];
-
-const media = a => a.photo
-  ? `<img src="${a.photo}" alt="${a.name}" loading="lazy" decoding="async" width="900" height="1200">`
-  : `<i class="dots"></i><i class="glow"></i><i class="bars"></i>
-     <span class="card__initial">${a.name[0]}</span>
-     <span class="card__ph"><i class="plus"></i> Image placeholder</span>`;
-
-const links = a => PLATFORMS
-  .filter(([key]) => a.links[key])          // no URL, no icon — never a dead link
-  .map(([key,label]) => `
-  <a href="${a.links[key]}" target="_blank" rel="noopener noreferrer"
-     aria-label="${a.name} on ${label}" title="${label}">
-    <svg aria-hidden="true"><use href="#ic-${key}"/></svg>
-  </a>`).join('');
-
-const pad = n => String(n).padStart(2,'0');
-
-/* everything that counts artists reads the array, so pulling one can't leave a
-   stale number behind */
-document.getElementById('count').textContent = `01 — ${pad(ARTISTS.length)}`;
-
-const rail = document.getElementById('rail');
-rail.innerHTML = ARTISTS.map((a,i) => `
-  <article class="card rv" style="transition-delay:${Math.min(i,5)*.06}s">
-    ${a.epk
-      ? `<a class="card__media" href="${a.epk}" aria-label="${a.name} — press kit">`
-      : `<div class="card__media">`}
-      ${media(a)}
-      <span class="card__num">${pad(i+1)}</span>
-    ${a.epk ? `</a>` : `</div>`}
-    <div class="card__body">
-      <h3 class="card__name">${a.name}</h3>
-      <div class="card__links">${links(a)}</div>
-    </div>
-  </article>
-`).join('');
-
-/* ticker: artist names only.
-   The -50% loop is only seamless while each half is at least as wide as the
-   viewport. Six short names are not, so the tail ran out and left a blank
-   stretch — repeat the list until one half covers the screen, and scale the
-   duration so the speed stays constant however many repeats that takes. */
-const tick  = document.getElementById('ticker');
-const UNIT  = ARTISTS.map(a => `${a.name} <i class="plus"></i>`).join(' ');
-const SPEED = 90; // px per second
-
-const MIN_HALF = 4000; // px — wider than any viewport this is going to run on
-
-function buildTicker(){
-  tick.style.animation = 'none';
-  tick.innerHTML = `<span>${UNIT}</span>`;
-  const unitW = tick.firstElementChild.getBoundingClientRect().width;
-  if (!unitW) return;
-  // Sizing this to the *current* viewport meant a resize measured mid-layout
-  // could lock in too few repeats and reopen the gap. Overshooting instead costs
-  // a handful of spans and makes the loop correct whatever the timing.
-  const reps = Math.ceil(Math.max(MIN_HALF, window.innerWidth * 2) / unitW);
-  const half = `<span>${Array(reps).fill(UNIT).join(' ')}</span>`;
-  tick.innerHTML = half + half;
-  const halfW = tick.firstElementChild.getBoundingClientRect().width;
-  tick.style.animation = '';
-  tick.style.animationDuration = (halfW / SPEED) + 's';
-}
-/* A resize can land mid-layout — the mobile media query changes the ticker's
-   font-size, so one pass can measure a transient width and lock in a wrong
-   repeat count. buildTicker is idempotent, so run it again after a frame. */
-const settle = () => requestAnimationFrame(() => { buildTicker(); requestAnimationFrame(buildTicker); });
-
-buildTicker();
-document.fonts?.ready.then(settle);   // name widths change once Archivo lands
-
-/* observe the band itself rather than listening for 'resize' — its width tracks
-   the viewport, and this still fires where a resize event doesn't (zoom, devtools
-   viewport overrides, a pane being dragged). Rebuilding the track inside doesn't
-   change the band's own width, so this can't feed back on itself. */
-let tickTimer;
-const rebuild = () => { clearTimeout(tickTimer); tickTimer = setTimeout(settle, 180); };
-new ResizeObserver(rebuild).observe(tick.parentElement);
-window.addEventListener('resize', rebuild);
-
-/* ---------- carousel ---------- */
-const prog = document.getElementById('prog');
-const [btnPrev, btnNext] = document.querySelectorAll('.nav button');
-
-const step = () => (rail.querySelector('.card')?.offsetWidth || 320) + 1;
-const maxScroll = () => rail.scrollWidth - rail.clientWidth;
-
-function sync(){
-  const max = maxScroll();
-  const pos = rail.scrollLeft;
-  const p   = max > 0 ? pos / max : 0;
-  prog.style.width = (12 + p * 88) + '%';
-  btnPrev.disabled = pos < 4;
-  btnNext.disabled = pos > max - 4;
-}
-rail.addEventListener('scroll', sync, {passive:true});
-window.addEventListener('resize', sync);
-
-document.querySelectorAll('.nav button').forEach(b => {
-  b.addEventListener('click', () => {
-    rail.scrollBy({ left: step() * Number(b.dataset.dir), behavior:'smooth' });
-  });
-});
-
-rail.addEventListener('keydown', e => {
-  if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-  e.preventDefault();
-  rail.scrollBy({ left: step() * (e.key === 'ArrowRight' ? 1 : -1), behavior:'smooth' });
-});
-
-/* Drag to scroll (mouse/pen; touch scrolls natively).
-   The pointer is captured only once the gesture is genuinely a drag. Capturing
-   on pointerdown retargets the follow-up click to the rail, which silently broke
-   every card link. */
-/* Generous on purpose. A real mouse click on a 42px icon drifts several pixels
-   between press and release; the old 4px threshold read that as a drag and
-   cancelled the click, which is why the card links felt dead. */
-const DRAG_THRESHOLD = 12; // px
-let down = false, dragging = false, startX = 0, startScroll = 0, pid = null, swallowClick = false;
-
-rail.addEventListener('pointerdown', e => {
-  swallowClick = false;
-  if (e.pointerType === 'touch' || e.button !== 0) return;
-  down = true; dragging = false; pid = e.pointerId;
-  startX = e.clientX; startScroll = rail.scrollLeft;
-});
-
-rail.addEventListener('pointermove', e => {
-  if (!down) return;
-  const d = e.clientX - startX;
-  if (!dragging) {
-    if (Math.abs(d) <= DRAG_THRESHOLD) return;   // still a click — leave links alone
-    dragging = true;
-    rail.classList.add('is-drag');
-    try { rail.setPointerCapture(pid); } catch {}
+/* ---------- hero windows: all five artists sit side by side behind the logo, at natural scale ----------
+   Five 3:4 portraits fill the logo's 1920 width exactly (384 each), faces on the letter band.
+   Every few seconds the whole row slides one portrait over, so the positions rotate. */
+const PW = 384, PH = 512, FACE_Y = 255;           // portrait box in logo units; y puts faces on the letters
+const win = document.getElementById('windows');
+const row = [...ARTISTS, ...ARTISTS];              // doubled so the slide can wrap seamlessly
+win.innerHTML = row.map((a,i) =>
+  `<image href="${a.photo}" x="${i*PW}" y="${FACE_Y}" width="${PW}" height="${PH}" preserveAspectRatio="xMidYMid slice"/>`).join('');
+let pos = 0;
+const slideTo = n => { win.style.transform = `translateX(${-n*PW}px)`; };
+if (!reduce) setInterval(() => {
+  pos++; slideTo(pos);
+  if (pos === ARTISTS.length) {                    // we are now showing the duplicate set: jump back unseen
+    setTimeout(() => { win.classList.add('snap'); pos = 0; slideTo(0); void win.getBoundingClientRect(); win.classList.remove('snap'); }, 1700);
   }
-  rail.scrollLeft = startScroll - d;
-});
+}, 3200);
 
-const endDrag = () => {
-  if (!down) return;
-  down = false;
-  if (dragging) {
-    // only eat the click if the rail actually moved — at a scroll boundary a
-    // drag goes nowhere, and swallowing there would kill a legitimate click
-    swallowClick = Math.abs(rail.scrollLeft - startScroll) > 2;
-    rail.classList.remove('is-drag');
-    try { rail.releasePointerCapture(pid); } catch {}
-  }
-  dragging = false;
-};
-rail.addEventListener('pointerup', endDrag);
-rail.addEventListener('pointercancel', endDrag);
+/* ---------- roster: five strips, the hovered one opens ---------- */
+const href = a => a.name === 'Genish' ? '/genish/' : a.epk;
+const icons = a => PLATFORMS.filter(([k]) => a.links[k]).map(([k,label]) =>
+  `<a href="${a.links[k]}" target="_blank" rel="noopener noreferrer" title="${label}" aria-label="${a.name} on ${label}"><svg aria-hidden="true"><use href="${SPRITE}#ic-${k}"/></svg></a>`).join('');
+document.getElementById('strips').innerHTML = ARTISTS.map(a => `
+  <article class="strip">
+    <img src="${a.photo}" alt="" loading="lazy" width="900" height="1200">
+    <a class="strip__cover" href="${href(a)}" aria-label="${a.name}"></a>
+    <div class="strip__meta"><h3 class="strip__name">${a.name}</h3><div class="strip__plats">${icons(a)}</div></div>
+  </article>`).join('');
 
-rail.addEventListener('click', e => {
-  if (!swallowClick) return;
-  e.preventDefault(); e.stopPropagation();
-  swallowClick = false;
-}, true);
-
-sync();
-window.addEventListener('load', sync);
-
-/* ---------- reveal on scroll ---------- */
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(en => { if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
-}, { rootMargin:'0px 0px -8% 0px', threshold:0.08 });
+/* reveal on scroll */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}), { rootMargin:'0px 0px -6% 0px', threshold:0.05 });
 document.querySelectorAll('.rv').forEach(el => io.observe(el));
 </script>
-<script src="/assets/cursor.js" defer></script>
 </body>
 </html>

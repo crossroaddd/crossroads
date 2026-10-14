@@ -12,29 +12,27 @@ Everything derives from the logo, which is a **stencil**: a plus/cross built fro
 bars with `CROSSROADS` knocked *out* of it, so the letters are holes and the background
 reads through them.
 
-- **Monochrome only** — black `#000`, warm paper `#F2F0EA`, one grey. The mark has no
-  accent colour, so neither does the site.
-- **Cross motif** — the hero background is a page-sized ghost of the logo's own cross,
-  using its exact proportions (vertical arm 20–40%, horizontal arm 25–75%). The `+`
-  recurs as button icon, ticker separator and card hover mark.
-- **Bar composition** — the header is a solid bar (the logo's horizontal arm), the
-  ticker is a band, the carousel is a band with 1px hairline gaps between cards.
-- **Hard edges, no radius.** Archivo 900 uppercase, tight tracking.
+- **Monochrome only** — black `#000`, white, one grey. The mark has no accent colour,
+  so neither does the site. The artist photography is the only colour on the page
+  (the one exception is Mishell's own red Mess mark, kept as their brand asset).
+- **The hero is the stencil, literally** — the five artists sit side by side behind the
+  letters at natural scale, and the row slides one portrait over every few seconds.
+- **Roster = five full-height strips** — the logo's horizontal bar cut into five; the
+  hovered strip opens. On phones they stack.
+- **Artist pages** — portrait pinned on the left, content on the right, plain headings
+  (no section numbers, no uppercase micro-labels).
+- **Hard edges, no radius.** Archivo 900 uppercase, tracking no tighter than -0.04em,
+  display type capped around 6rem.
 
 ## Structure
 
-`index.html` is self-contained — one file, inline CSS and JS, no build step.
-The logo and the platform icons live once in SVG `<symbol>`s and are reused via `<use>`.
+One shared stylesheet (`assets/site.css`) and one shared artist list
+(`assets/artists.js`, order and links in one place). Logo and platform icons live once in
+`assets/sprite.svg` and are reused with `<use>`.
 
-1. **Hero** — stencil wordmark on the left, Roster / Contact on the right, sharing a
-   centre line on a plain black field. Below it a ticker of the artist names.
-2. **Roster** — drag/swipe carousel. Order: Mishell, Genish, Yuvee, Nevos, Mentesh.
-   Each card carries its platform links: Spotify, Apple Music, Beatport, SoundCloud,
-   Instagram.
-3. **Footer** — "Lets talk", the booking address, and the contact details.
-
-The page is monochrome throughout, so the artist photography is the only colour in it.
-That's deliberate — don't add an accent hue elsewhere without rethinking it.
+1. **Home** (`index.html`) — stencil hero, roster strips, "Lets talk" footer.
+2. **Artist pages** (`/mishell`, `/genish`, `/yuvee`, `/nevos`, `/mentesh`) — each keeps
+   its own content (embeds, sets, shows, brand book) in its own `index.html`.
 
 ## Still placeholder
 
