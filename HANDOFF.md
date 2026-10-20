@@ -64,6 +64,22 @@ and URLs are unchanged. Things that changed on purpose:
 - The ticker and the drag carousel are gone. Roster order lives in `assets/artists.js`.
 - Artist pages still carry their own content; shared look comes from `site.css`.
 
+## Asset code gate
+
+Every Drive / Dropbox / Google Docs link on the artist pages (photos, videos, press images, rider,
+biography, logo, including the mobile bottom bar) asks for a code before it opens. Streaming links
+(Spotify, SoundCloud, Apple Music, Beatport, YouTube), embeds, contact links and the Mess links stay open.
+
+- The URLs are AES-GCM encrypted in `data-gate` attributes and decrypted in the browser by
+  `assets/gate.js` once the right code is entered (the code is remembered for that tab session only).
+- Change the code: `node tools/gate.mjs rekey <old> <new>`, then commit the five artist pages and
+  `assets/gate.js` together. Add a new asset link as a normal `<a href="...">` and run
+  `node tools/gate.mjs lock <code>`; it only touches links that are not locked yet.
+- **This is a gate for casual visitors, not real access control.** A 4-digit code can be brute-forced
+  offline in minutes, and the repo is public: the plain links are still in git history and in the
+  pages' earlier commits. If the folders must be truly private, restrict them in Drive/Dropbox itself.
+- The code is deliberately not written anywhere in this repo.
+
 ## Decisions that are easy to undo by accident
 
 - **Contact details differ between the home page and the artist pages, on
