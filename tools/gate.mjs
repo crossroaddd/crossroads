@@ -14,7 +14,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const PAGES = ['genish', 'mishell', 'yuvee', 'nevos', 'mentesh'].map(a => path.join(ROOT, a, 'index.html'));
+const PAGES = ['genish', 'mishell', 'yuvee', 'nevos', 'mentesh', 'dor', 'adam'].map(a => path.join(ROOT, a, 'index.html'));
 const GATE_JS = path.join(ROOT, 'assets', 'gate.js');
 const HOSTS = new Set(['drive.google.com', 'www.dropbox.com', 'docs.google.com']);
 const ITER = 300000;
@@ -38,7 +38,9 @@ const [cmd, a1, a2] = process.argv.slice(2);
 const A = /<a\b[^>]*>/g;
 
 if (cmd === 'lock') {
-  const salt = c.getRandomValues(new Uint8Array(16)), k = await key(a1, salt); let n = 0;
+  // reuse the salt already in gate.js so links locked earlier keep working
+  const existing = fs.readFileSync(GATE_JS, 'utf8').match(/salt: '([^']+)'/)?.[1];
+  const salt = existing ? unb64(existing) : c.getRandomValues(new Uint8Array(16)), k = await key(a1, salt); let n = 0;
   for (const f of PAGES) {
     let s = fs.readFileSync(f, 'utf8');
     const out = []; let last = 0;
