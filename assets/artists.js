@@ -3,6 +3,7 @@ const PLATFORMS = [
   ['apple',      'Apple Music'],
   ['beatport',   'Beatport'],
   ['soundcloud', 'SoundCloud'],
+  ['youtube',    'YouTube'],
   ['instagram',  'Instagram'],
 ];
 
@@ -24,6 +25,21 @@ const ARTISTS = [
       beatport:  'https://www.beatport.com/artist/genish/929264',
       soundcloud:'https://soundcloud.com/genishmusic',
       instagram: 'https://www.instagram.com/genish__' } },
+
+  /* heroY lifts his photo in the hero because his face sits low in the frame. */
+  { name:'Adam Sellouk', photo:'/img/adam.jpg', epk:'/adam/', heroY:-80, links:{
+      spotify:   'https://open.spotify.com/artist/2T7HN3rqTpIn8OiVb0I5oq',
+      beatport:  'https://www.beatport.com/artist/adam-sellouk/950222',
+      soundcloud:'https://soundcloud.com/adamselloukmusic',
+      youtube:   'https://www.youtube.com/channel/UCDmCCNTCgRC53qXdgTt3yWA',
+      instagram: 'https://www.instagram.com/adamsellouk/' } },
+
+  { name:'Dor Danino', photo:'/img/dor.jpg', epk:'/dor/', links:{
+      spotify:   'https://open.spotify.com/artist/5OT75tS8Kr97I3OPJvIRBs',
+      beatport:  'https://www.beatport.com/artist/dor-danino/682713',
+      soundcloud:'https://soundcloud.com/dordanino',
+      youtube:   'https://www.youtube.com/channel/UCCoyzPhgck6XcSxRVVIekbw',
+      instagram: 'https://www.instagram.com/dordanino/' } },
 
   { name:'Yuvee', photo:'/img/yuvee.jpg', epk:'/yuvee/', links:{
       spotify:   'https://open.spotify.com/artist/2uUpxGX8XaVGhqh398dP2f',
