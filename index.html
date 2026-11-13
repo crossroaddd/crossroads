@@ -98,7 +98,7 @@ const PW = 384, PH = 512, FACE_Y = 255;           // portrait box in logo units;
 const win = document.getElementById('windows');
 const row = [...ARTISTS, ...ARTISTS];              // doubled so the slide can wrap seamlessly
 win.innerHTML = row.map((a,i) =>
-  `<image href="${a.photo}" x="${i*PW}" y="${FACE_Y}" width="${PW}" height="${PH}" preserveAspectRatio="xMidYMid slice"/>`).join('');
+  `<image href="${a.photo}" x="${i*PW}" y="${FACE_Y + (a.heroY || 0)}" width="${PW}" height="${PH}" preserveAspectRatio="xMidYMid slice"/>`).join('');
 let pos = 0;
 const slideTo = n => { win.style.transform = `translateX(${-n*PW}px)`; };
 if (!reduce) setInterval(() => {
