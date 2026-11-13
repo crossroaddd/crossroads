@@ -50,9 +50,6 @@ not a broken deploy, check githubstatus.com before investigating.
 - **Nevos is missing platform links.** His roster card shows SoundCloud and
   Instagram only; Spotify, Apple Music and Beatport have never been supplied. A
   platform with no URL renders no icon, so nothing is a dead link.
-- **Genish has two riders.** His page carries a `Technical requirements` section
-  from his own EPK *and* a `Rider` button pointing at the agency-wide rider. The
-  client has not said which one wins.
 
 ## Redesign (October 2026)
 
@@ -82,6 +79,9 @@ biography, logo, including the mobile bottom bar) asks for a code before it open
 
 ## Decisions that are easy to undo by accident
 
+- **Genish's rider is only behind the Rider button.** The client (Daniel) decided the full "Technical
+  requirements" text must not sit on his page. His Rider button opens the Tech Rider Drive folder; his
+  other asset buttons are Press photos, Videos and Sounds (all code-gated like the other pages).
 - **Contact details differ between the home page and the artist pages, on
   purpose.** Home page: `booking@cross-roadsmgmt.com`, `+972 54-805-1138`.
   Every artist page: `daniel@cross-roadsmgmt.com`, `+972 52-539-2032`. Nevos
